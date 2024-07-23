@@ -94,3 +94,11 @@ npm i --legacy-peer-deps
 # Setup editor
 Quick suggestion -> string - cho tailwind suggest
 install Dev - dependency + Prisma extension + Eslint
+
+## Setup and deploy db
+Vercel > storage > Postgres
+Create, copy env local
+
+```bash
+npx prisma init
+```
