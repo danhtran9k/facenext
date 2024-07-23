@@ -101,4 +101,8 @@ Create, copy env local
 
 ```bash
 npx prisma init
+
+# update /prisma/schema.prisma db 
+npx prisma db push
+
 ```

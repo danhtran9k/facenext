@@ -15,3 +15,31 @@ datasource db {
   url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
+
+model User {
+  id           String    @id
+  username     String    @unique
+  displayName  String
+  email        String?   @unique
+  passwordHash String?
+  googleId     String?   @unique
+  avatarUrl    String?
+  bio          String?
+  sessions     Session[]
+
+  createdAt DateTime @default(now())
+
+  @@map("users")
+}
+
+// https://lucia-auth.com/database/prisma
+// https://www.prisma.io/docs/orm/prisma-schema/data-model/relations/referential-actions#cascade
+// https://www.prisma.io/docs/orm/reference/prisma-schema-reference#map-1
+model Session {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
