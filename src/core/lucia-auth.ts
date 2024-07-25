@@ -6,7 +6,6 @@ import { cache } from "react";
 
 import prisma from "./prisma";
 
-
 // https://lucia-auth.com/database/prisma
 const adapter = new PrismaAdapter(prisma.session, prisma.user);
 
