@@ -9,6 +9,7 @@ const nextConfig = {
   // https://lucia-auth.com/guides/email-and-password/basics
   // có đề cập tên thư viện nhưng trong docs setup ko thấy nói
   // check trong example có
+  // https://lucia-auth.com/tutorials/username-and-password/nextjs-app
   serverExternalPackages: ["@node-rs/argon2"],
 };
 
