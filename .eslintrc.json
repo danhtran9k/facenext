@@ -1,3 +1,73 @@
 {
-  "extends": ["next/core-web-vitals", "prettier"]
+  "extends": [
+    "next/core-web-vitals",
+    "prettier"
+  ],
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": [
+              "./app",
+              "*/../app"
+            ],
+            "message": "App imports must be absolute."
+          }
+        ]
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "src/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "@app/**",
+            "group": "internal", // Using internal to keep @app within the same top-level grouping
+            "position": "before"
+          },
+          {
+            "pattern": "@core/**",
+            "group": "internal", // Adding @core after @app in the internal group
+            "position": "after"
+          },
+          {
+            "pattern": "@module/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "@vendor/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "builtin"
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
 }
