@@ -1,9 +1,9 @@
-import { UserDropdown } from "@module/navbar";
+import { Navbar } from "@module/navbar";
 
 export default function Home() {
   return (
     <main>
-      <UserDropdown />
+      <Navbar />
     </main>
   );
 }
