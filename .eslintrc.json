@@ -41,6 +41,11 @@
             "position": "after"
           },
           {
+            "pattern": "@module/atom-shadcn/**",
+            "group": "internal",
+            "position": "after"
+          },
+          {
             "pattern": "@module/**",
             "group": "internal",
             "position": "after"
