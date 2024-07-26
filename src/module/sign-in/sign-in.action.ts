@@ -10,10 +10,10 @@ import prisma from "@core/prisma";
 
 import { signInSchema, SignInValues } from "./sign-in.dto";
 
-export default async function Page() {}
-
 // sign-in with password only
-async function signIn(credentials: SignInValues): Promise<{ error: string }> {
+export async function signIn(
+  credentials: SignInValues,
+): Promise<{ error: string }> {
   try {
     const { username, password } = signInSchema.parse(credentials);
 
