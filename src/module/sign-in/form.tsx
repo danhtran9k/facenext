@@ -12,10 +12,10 @@ import { Input } from "@module/atom-shadcn/input";
 import LoadingButton from "@module/common/loading-btn";
 import { PasswordInput } from "@module/common/password-input";
 
-import { useSignUp } from "./use-sign-up";
+import { useSignIn } from "./use-sign-in";
 
-export function SignUpForm() {
-  const { form, onSubmit } = useSignUp();
+export function SignInForm() {
+  const { form, onSubmit } = useSignIn();
 
   // https://ui.shadcn.com/docs/components/form#build-your-form
   return (
@@ -36,19 +36,6 @@ export function SignUpForm() {
         />
         <FormField
           control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="Email" type="email" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
           name="password"
           render={({ field }) => (
             <FormItem>
@@ -61,7 +48,7 @@ export function SignUpForm() {
           )}
         />
         <LoadingButton loading={false} type="submit" className="w-full">
-          Create account
+          Log in
         </LoadingButton>
       </form>
     </Form>
