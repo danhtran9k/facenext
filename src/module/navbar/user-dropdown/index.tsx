@@ -15,7 +15,7 @@ import {
 } from "@module/atom-shadcn/dropdown-menu";
 
 import { useSession } from "@module/app-provider";
-import { logout } from "@module/sign-out/sign-out.action";
+import { logout } from "@module/sign-out";
 
 import UserAvatar from "../user-avatar";
 

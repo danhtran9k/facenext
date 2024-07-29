@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import loginImage from "@app/assets/login-image.jpg";
 
-import { SignInForm } from "@module/sign-in/form";
+import { SignInForm } from "@module/sign-in";
 
 export const metadata: Metadata = {
   title: "Login",

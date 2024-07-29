@@ -9,6 +9,15 @@
           {
             "group": ["./app", "*/../app"],
             "message": "App imports must be absolute."
+          },
+          {
+            "group": [
+              "@module/*/**",
+              "!@module/atom-shadcn/*",
+              "!@module/common/*",
+              "!@module/form-input/*"
+            ],
+            "message": "Module imports must be absolute."
           }
         ]
       }
