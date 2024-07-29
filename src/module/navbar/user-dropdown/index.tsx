@@ -17,6 +17,7 @@ import {
 import { useSession } from "@module/app-provider";
 import { logout } from "@module/sign-out";
 
+import { ThemeDropdownSubmenu } from "../theme-dropdown-submenu";
 import UserAvatar from "../user-avatar";
 
 interface UserButtonProps {
@@ -40,14 +41,20 @@ export function UserDropdown({ className }: UserButtonProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>Logged in as @{user.username}</DropdownMenuLabel>
+
         <DropdownMenuSeparator />
+
         <Link href={urlProfile}>
           <DropdownMenuItem>
             <UserIcon className="mr-2 size-4" />
             Profile
           </DropdownMenuItem>
         </Link>
+
+        <ThemeDropdownSubmenu />
+
         <DropdownMenuSeparator />
+
         <DropdownMenuItem onClick={handleLogout}>
           <LogOutIcon className="mr-2 size-4" />
           Logout

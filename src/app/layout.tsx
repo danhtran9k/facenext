@@ -4,6 +4,8 @@ import "./globals.css";
 
 import { TPureLayout } from "@core/types/common.props";
 
+import { ThemeProvider } from "@module/app-provider";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -25,7 +27,14 @@ export default function RootLayout({ children }: TPureLayout) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
