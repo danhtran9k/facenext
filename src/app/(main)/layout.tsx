@@ -4,7 +4,7 @@ import { validateRequest } from "@core/lucia-auth";
 import { TPureLayout } from "@core/types/common.props";
 
 import { SessionProvider } from "@module/app-provider";
-import { Navbar } from "@module/navbar";
+import { BottomMenu, Navbar, SideMenu } from "@module/global-app";
 
 export default async function Layout({ children }: TPureLayout) {
   // Vì validateRequest được cache lại nên nhiếu component gọi trong 1 lượt request ko sao -> được de-duplicate
@@ -14,11 +14,18 @@ export default async function Layout({ children }: TPureLayout) {
 
   if (!session.user) redirect("/login");
 
+  // control hidden qua css, sv vẫn phải trả về, vẫn render ra nhưng ko show
+  // tuỳ, ko hay lắm nhưng tạm skip, vì ko cần effect để tính toán nên trade-off
+  // flex-grow:1 ?
   return (
     <SessionProvider value={session}>
       <div className="flex min-h-screen flex-col">
         <Navbar />
-        <div className="mx-auto max-w-7xl p-5">{children}</div>
+        <div className="mx-auto flex w-full max-w-7xl grow gap-5 p-5">
+          <SideMenu className="hidden sm:block" />
+          {children}
+        </div>
+        <BottomMenu className="sm:hidden" />
       </div>
     </SessionProvider>
   );
