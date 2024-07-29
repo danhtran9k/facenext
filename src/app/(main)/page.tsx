@@ -1,9 +1,3 @@
-import { Navbar } from "@module/navbar";
-
 export default function Home() {
-  return (
-    <main>
-      <Navbar />
-    </main>
-  );
+  return <main>Home with authen layout redirect to login</main>;
 }

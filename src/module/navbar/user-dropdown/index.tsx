@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@module/atom-shadcn/dropdown-menu";
 
+import { useSession } from "@module/app-provider";
 import { logout } from "@module/sign-out/sign-out.action";
 
 import UserAvatar from "../user-avatar";
@@ -23,7 +24,7 @@ interface UserButtonProps {
 }
 
 export function UserDropdown({ className }: UserButtonProps) {
-  const user = dummyUser;
+  const { user } = useSession();
   const urlProfile = `/users/${user.username}`;
 
   const handleLogout = () => {
@@ -55,8 +56,3 @@ export function UserDropdown({ className }: UserButtonProps) {
     </DropdownMenu>
   );
 }
-
-const dummyUser = {
-  username: "dummy",
-  avatarUrl: null,
-};
