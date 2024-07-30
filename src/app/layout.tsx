@@ -4,6 +4,8 @@ import "./globals.css";
 
 import { TPureLayout } from "@core/types/common.props";
 
+import { Toaster } from "@module/atom-shadcn/toaster";
+
 import { ThemeProvider } from "@module/app-provider";
 
 const geistSans = localFont({
@@ -35,6 +37,7 @@ export default function RootLayout({ children }: TPureLayout) {
         >
           {children}
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );

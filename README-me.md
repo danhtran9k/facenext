@@ -1,4 +1,9 @@
-Features and technologies:
+# Project & IDE setup (create-next-app, Shadcn UI, Prettier Tailwind plugin, Prisma, extensions)
+
+> Coding in Flow channel
+
+## Features and technologies:
+
 -Next.js 15
 -Server actions and server components
 -TanStack React Query
@@ -23,49 +28,13 @@ Features and technologies:
 -Deploy on Vercel & set up cron job
 -IDE setup with Prettier & plugins
 
-22:51 / 7:37:10
+## Ref src
 
-•
-Project & IDE setup (create-next-app, Shadcn UI, Prettier Tailwind plugin, Prisma, extensions)
+`https://github.com/codinginflow/nextjs-15-social-media-app`
 
-🖨️ Transcript Build A Full-Stack Social Media App With Next.js 15 (React Query, Lucia Auth, TypeScript, Tailwind)
+## Init src command
 
-Coding in Flow
-274K subscribers
-
-Subscribe
-
-1.7K
-
-Share
-
-20,298 views Jul 19, 2024
-Build and deploy a full-stack social media app like Twitter or Facebook with Next.js 15.
-
-Features and technologies:
--Next.js 15
--Server actions and server components
--TanStack React Query
--Optimistic updates
--Infinite scrolling feeds
--File uploads with drag & drop and copy-paste support (UploadThing)
--Like system
--Follow system
--Comment system
--Notification system
--DM system (powered by Stream)
--Bookmarks
--Lucia authentication (username/password & Google OAuth2)
--Postgres DB with Prisma ORM
--Hashtags & mentions
--Full-text search
--Advanced caching & revalidation
--Mobile-responsive layout with Tailwind CSS & Shadcn UI components
--Dark theme, light theme, and system theme
--Real-time form validation with React Hook Form & Zod
--TipTap editor
--Deploy on Vercel & set up cron job
--IDE setup with Prettier & plugins
+For custom init - check git commit
 
 ```bash
 # Init
