@@ -2,23 +2,28 @@ import Link from "next/link";
 
 import { cn } from "@core/utils";
 
-import { Button } from "@module/atom-shadcn/button";
+import { Button } from "@module/app-shadcn/button";
 
-import { BottomMenuItem } from "./bottom-menu-item";
+import { SideMenuItem } from "./side-menu-item";
 
-interface BottomMenuProps {
+interface SideMenuProps {
   className?: string;
 }
 
-export function BottomMenu({ className }: BottomMenuProps) {
+export function SideMenu({ className }: SideMenuProps) {
+  // khoảng cách top 5.25 rem tính toán tay hard-code - hơi tệ
+  // h-fit kết hợp với position sticky
+  // flex-none ? - flex 0 0 auto
+  // space-y-3 ?
+
   return (
     <div
       className={cn(
-        "sticky bottom-0 flex w-full justify-center gap-5 border-t bg-card p-3",
+        "sticky top-[5.25rem] h-fit flex-none space-y-3 rounded-2xl bg-card px-3 py-5 shadow-sm lg:px-5 xl:w-80",
         className,
       )}
     >
-      {BottomMenuItem.map(item => (
+      {SideMenuItem.map(item => (
         <Button
           key={item.href}
           variant="ghost"

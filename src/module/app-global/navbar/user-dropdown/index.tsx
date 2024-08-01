@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { cn } from "@core/utils";
 
+import { useSession } from "@module/app-provider";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,9 +13,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@module/atom-shadcn/dropdown-menu";
+} from "@module/app-shadcn/dropdown-menu";
 
-import { useSession } from "@module/app-provider";
 import { logout } from "@module/sign-out";
 
 import { ThemeDropdownSubmenu } from "../theme-dropdown-submenu";

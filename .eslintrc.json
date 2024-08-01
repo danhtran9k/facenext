@@ -13,9 +13,10 @@
           {
             "group": [
               "@module/*/**",
-              "!@module/atom-shadcn/*",
-              "!@module/common/*",
-              "!@module/form-input/*"
+              "!@module/app-shadcn/*",
+              "!@module/app-common/*",
+              "!@module/app-form/*",
+              "!@module/app-global/*"
             ],
             "message": "Module imports must be absolute."
           }
@@ -50,7 +51,12 @@
             "position": "after"
           },
           {
-            "pattern": "@module/atom-shadcn/**",
+            "pattern": "{@module/app-provider/**,@module/app-provider,@module/app-shadcn/**}",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "{@module/app-common/**,@module/app-global,@module/app-form/**}",
             "group": "internal",
             "position": "after"
           },

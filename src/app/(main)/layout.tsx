@@ -4,7 +4,10 @@ import { validateRequest } from "@core/lucia-auth";
 import { TPureLayout } from "@core/types/common.props";
 
 import { SessionProvider } from "@module/app-provider";
-import { BottomMenu, Navbar, SideMenu } from "@module/global-app";
+
+import { BottomMenu } from "@module/app-global/bottom-menu";
+import { Navbar } from "@module/app-global/navbar";
+import { SideMenu } from "@module/app-global/side-menu";
 
 export default async function Layout({ children }: TPureLayout) {
   // Vì validateRequest được cache lại nên nhiếu component gọi trong 1 lượt request ko sao -> được de-duplicate

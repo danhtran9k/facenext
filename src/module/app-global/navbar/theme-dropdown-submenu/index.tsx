@@ -7,7 +7,7 @@ import {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-} from "@module/atom-shadcn/dropdown-menu";
+} from "@module/app-shadcn/dropdown-menu";
 
 // https://www.radix-ui.com/primitives/docs/components/dropdown-menu
 export function ThemeDropdownSubmenu() {

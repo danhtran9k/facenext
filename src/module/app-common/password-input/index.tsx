@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 import { cn } from "@core/utils";
 
-import { Input, InputProps } from "@module/atom-shadcn/input";
+import { Input, InputProps } from "@module/app-shadcn/input";
 
 // ref drilling - vì Input shadcn hoạt động dựa trên ref
 const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(

@@ -4,9 +4,8 @@ import "./globals.css";
 
 import { TPureLayout } from "@core/types/common.props";
 
-import { Toaster } from "@module/atom-shadcn/toaster";
-
 import { ThemeProvider } from "@module/app-provider";
+import { Toaster } from "@module/app-shadcn/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

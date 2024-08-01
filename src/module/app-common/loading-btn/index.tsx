@@ -2,7 +2,7 @@ import { Loader2 } from "lucide-react";
 
 import { cn } from "@core/utils";
 
-import { Button, ButtonProps } from "@module/atom-shadcn/button";
+import { Button, ButtonProps } from "@module/app-shadcn/button";
 
 interface LoadingButtonProps extends ButtonProps {
   loading: boolean;

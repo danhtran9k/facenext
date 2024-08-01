@@ -7,11 +7,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@module/atom-shadcn/form";
-import { Input } from "@module/atom-shadcn/input";
+} from "@module/app-shadcn/form";
+import { Input } from "@module/app-shadcn/input";
 
-import LoadingButton from "@module/common/loading-btn";
-import { PasswordInput } from "@module/common/password-input";
+import LoadingButton from "@module/app-common/loading-btn";
+import { PasswordInput } from "@module/app-common/password-input";
 
 import { useSignIn } from "./use-sign-in";
 
