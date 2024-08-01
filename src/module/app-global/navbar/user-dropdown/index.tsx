@@ -1,5 +1,6 @@
 "use client";
 
+import { useQueryClient } from "@tanstack/react-query";
 import { LogOutIcon, UserIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -28,7 +29,11 @@ export function UserDropdown({ className }: UserButtonProps) {
   const { user } = useSession();
   const urlProfile = `/users/${user.username}`;
 
+  const queryClient = useQueryClient();
+
+  // clear all query cache client side when logout
   const handleLogout = () => {
+    queryClient.clear();
     logout();
   };
 

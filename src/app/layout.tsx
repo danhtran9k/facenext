@@ -4,7 +4,7 @@ import "./globals.css";
 
 import { TPureLayout } from "@core/types/common.props";
 
-import { ThemeProvider } from "@module/app-provider";
+import { ReactQueryProvider, ThemeProvider } from "@module/app-provider";
 import { Toaster } from "@module/app-shadcn/toaster";
 
 const geistSans = localFont({
@@ -26,17 +26,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: TPureLayout) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-        <Toaster />
+        <ReactQueryProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+          <Toaster />
+        </ReactQueryProvider>
       </body>
     </html>
   );

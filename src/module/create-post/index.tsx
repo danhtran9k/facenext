@@ -17,6 +17,10 @@ export function CreatePostEditor() {
   const { user } = useSession();
 
   const editor = useEditor({
+    // solving warning
+    // https://tiptap.dev/docs/guides/performance#gain-more-control-over-rendering
+    // https://tiptap.dev/blog/release-notes/say-hello-to-tiptap-2-5-our-most-performant-editor-yet
+    immediatelyRender: false,
     extensions: [
       // https://tiptap.dev/docs/editor/extensions/functionality/starterkit#using-the-starterkit-extension
       StarterKit.configure({
