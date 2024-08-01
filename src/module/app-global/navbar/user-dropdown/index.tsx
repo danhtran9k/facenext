@@ -18,7 +18,7 @@ import {
 import { logout } from "@module/sign-out";
 
 import { ThemeDropdownSubmenu } from "../theme-dropdown-submenu";
-import UserAvatar from "../user-avatar";
+import { UserAvatar } from "../user-avatar";
 
 interface UserButtonProps {
   className?: string;
