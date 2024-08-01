@@ -13,11 +13,7 @@ interface UserAvatarProps {
 // ref https://ui.shadcn.com/docs/components/avatar
 // tuy nhiên thư viện lại dùng react-avatar của radix
 // tham khảo tailwind class và tự viết lại
-export default function UserAvatar({
-  avatarUrl,
-  size,
-  className,
-}: UserAvatarProps) {
+export function UserAvatar({ avatarUrl, size, className }: UserAvatarProps) {
   return (
     <Image
       src={avatarUrl ?? avatarPlaceholder}
