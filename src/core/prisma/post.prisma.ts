@@ -1,12 +1,18 @@
 import { Prisma } from "@prisma/client";
 
+// type này đúng ra phải use-server-only
+// client ko được phép truy cập
+
+export const userDataSelect = {
+  id: true,
+  username: true,
+  displayName: true,
+  avatarUrl: true,
+} satisfies Prisma.UserSelect;
+
 export const postDataInclude = {
   user: {
-    select: {
-      username: true,
-      displayName: true,
-      avatarUrl: true,
-    },
+    select: userDataSelect,
   },
 } satisfies Prisma.PostInclude;
 // dùng satisfies để kiểm tra xem có phải là PostInclude không
