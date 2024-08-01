@@ -1,24 +1,16 @@
-import prisma from "@core/prisma";
-import { postDataInclude } from "@core/prisma/post.prisma";
-
 import { TrendsSidebar } from "@module/app-global/trend-sidebar";
 import { CreatePostEditor } from "@module/create-post";
-import { PostItem } from "@module/post-item";
+import { ForYouFeedClient, ForYouFeedServer } from "@module/for-you-feed";
 
-export default async function Home() {
-  const posts = await prisma.post.findMany({
-    include: postDataInclude,
-    orderBy: { createdAt: "desc" },
-  });
+const CLIENT_MODE = true;
 
+export default function Home() {
   // min-w-0 to shrink auto width
   return (
     <main className="flex w-full min-w-0 gap-5">
       <div className="w-full min-w-0 space-y-5">
         <CreatePostEditor />
-        {posts.map(post => (
-          <PostItem key={post.id} post={post} />
-        ))}
+        {CLIENT_MODE ? <ForYouFeedClient /> : <ForYouFeedServer />}
       </div>
       <TrendsSidebar />
     </main>
