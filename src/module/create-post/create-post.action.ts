@@ -2,6 +2,7 @@
 
 import { validateRequest } from "@core/lucia-auth";
 import prisma from "@core/prisma";
+import { postDataInclude } from "@core/prisma/post.prisma";
 
 import { createPostSchema } from "./create-post.dto";
 
@@ -12,13 +13,15 @@ export async function submitPost(input: string) {
 
   const { content } = createPostSchema.parse({ content: input });
 
-  await prisma.post.create({
+  const newPost = await prisma.post.create({
     data: {
       content,
       userId: user.id,
     },
+    include: postDataInclude,
   });
-
   // ko thể gọi revalidatePath("") vì action này gọi trong client component !!
   // -> dùng react query
+
+  return newPost;
 }

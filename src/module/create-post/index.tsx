@@ -5,12 +5,14 @@ import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
 import { useSession } from "@module/app-provider";
-import { Button } from "@module/app-shadcn/button";
+
+import LoadingButton from "@module/app-common/loading-btn";
 
 import { UserAvatar } from "@module/app-global/navbar";
 
 import { submitPost } from "./create-post.action";
 import "./styles.css";
+import { useSubmitPostMutation } from "./createPost.mutate";
 
 export function CreatePostEditor() {
   // https://tiptap.dev/docs/editor/getting-started/install/nextjs#integrate-tiptap
@@ -33,6 +35,7 @@ export function CreatePostEditor() {
       }),
     ],
   });
+  const { mutate, isPending } = useSubmitPostMutation();
 
   // https://tiptap.dev/docs/editor/api/editor#methods
   const input =
@@ -42,8 +45,14 @@ export function CreatePostEditor() {
 
   // https://tiptap.dev/docs/editor/api/commands
   async function onSubmit() {
-    await submitPost(input);
-    editor?.commands.clearContent();
+    // await submitPost(input);
+    // có thể dùng try-catch xử lý trực tiếp nhưng lằng nhằng state
+    mutate(input, {
+      // đúng ra viết arrow func nhưng chơi style lạ
+      onSuccess() {
+        editor?.commands.clearContent();
+      },
+    });
   }
 
   return (
@@ -57,13 +66,14 @@ export function CreatePostEditor() {
       </div>
 
       <div className="flex justify-end">
-        <Button
+        <LoadingButton
           onClick={onSubmit}
           disabled={!input.trim()}
+          loading={isPending}
           className="min-w-20"
         >
           Post
-        </Button>
+        </LoadingButton>
       </div>
     </div>
   );
