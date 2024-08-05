@@ -1,3 +1,5 @@
+"use client";
+
 import { useInView } from "react-intersection-observer";
 
 interface InfiniteScrollContainerProps extends React.PropsWithChildren {
@@ -5,9 +7,9 @@ interface InfiniteScrollContainerProps extends React.PropsWithChildren {
   className?: string;
 }
 
-// TODO: tại sao dùng hook nhưng ko cần `use client` ?
-// vẫn chạy bình thường
-// tuy nhiên behaviour đôi lúc sai
+// Dùng hook nhưng ko cần `use client` ?
+// vì for-you-feed là client component sẵn và import component này vào
+// tuy nhiên chặt chẽ thì nên add
 export default function InfiniteScrollContainer({
   children,
   onBottomReached,

@@ -1,6 +1,6 @@
 import { TrendsSidebar } from "@module/app-global/trend-sidebar";
-import { CreatePostEditor } from "@module/create-post";
 import { ForYouFeedClient, ForYouFeedServer } from "@module/for-you-feed";
+import { CreatePostEditor } from "@module/post-create";
 
 const CLIENT_MODE = true;
 
