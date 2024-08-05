@@ -28,8 +28,10 @@ export function DeletePostDialog({
   const { mutate, isPending } = useDeletePostMutation();
 
   // State hơi dị, open nhưng cần setOpen thêm ???
+  // click OutSide chỉ gọi handleOpenChange mà ko thật sự thay đổi state
+  // phải manual set, đang mutate ko cho close dialog
   function handleOpenChange(open: boolean) {
-    if (!open || isPending) {
+    if (!open || !isPending) {
       onClose();
     }
   }

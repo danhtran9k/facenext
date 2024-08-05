@@ -58,6 +58,9 @@ export function useDeletePostMutation() {
         oldData => updateQueriesDataAfterDelete(oldData, deletedPost.id),
       );
 
+      // ko có post thì ko thể delete được
+      // ko phải gọi revalidate query như create vì ko có edge case
+
       // Nếu đang trong url delete post thì chuyển về user profile
       if (pathname === `/posts/${deletedPost.id}`) {
         router.push(`/users/${deletedPost.user.username}`);

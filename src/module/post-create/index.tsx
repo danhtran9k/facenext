@@ -10,9 +10,8 @@ import LoadingButton from "@module/app-common/loading-btn";
 
 import { UserAvatar } from "@module/app-global/navbar";
 
-import { submitPost } from "./create-post.action";
-import "./styles.css";
 import { useSubmitPostMutation } from "./createPost.mutate";
+import "./styles.css";
 
 export function CreatePostEditor() {
   // https://tiptap.dev/docs/editor/getting-started/install/nextjs#integrate-tiptap
