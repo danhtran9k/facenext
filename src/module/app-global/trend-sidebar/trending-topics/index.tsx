@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { formatNumber } from "@core/helper/number.utils";
 
-import { getTrendingTopics } from "./getTrendingTopics";
+import { getTrendingTopics } from "./getTrendingTopics.query";
 
 export async function TrendingTopics() {
   const trendingTopics = await getTrendingTopics();

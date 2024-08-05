@@ -27,3 +27,14 @@ export interface PostsPage {
   posts: PostWithUser[];
   nextCursor: string | null;
 }
+
+export interface FollowerInfo {
+  followers: number;
+  isFollowedByUser: boolean;
+}
+
+export interface UserIdParam {
+  params: {
+    userId: string;
+  };
+}
