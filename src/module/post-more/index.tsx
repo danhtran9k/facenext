@@ -14,7 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@module/app-shadcn/dropdown-menu";
 
-import { DeletePostDialog } from "@module/delete-post/";
+import { DeletePostDialog } from "@module/post-delete";
 
 interface PostMoreButtonProps {
   post: PostWithUser;
