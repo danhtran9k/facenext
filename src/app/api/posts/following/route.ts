@@ -21,12 +21,21 @@ export async function GET(req: NextRequest) {
 
     // n+1 problem ??
     const posts = await prisma.post.findMany({
-      include: postDataInclude(user.id),
-      orderBy: { createdAt: "desc" },
+      where: {
+        user: {
+          followers: {
+            some: {
+              followerId: user.id,
+            },
+          },
+        },
+      },
+      cursor: cursor ? { id: cursor } : undefined,
       take: pageSize + 1,
       // skip: cursor ? 1 : 0,
       // ko dùng skip vì take đã lấy dư 1, tự search thêm
-      cursor: cursor ? { id: cursor } : undefined,
+      include: postDataInclude(user.id),
+      orderBy: { createdAt: "desc" },
     });
 
     // vì lấy dư + 1 nên phải slice và tính toán nextCursor lại

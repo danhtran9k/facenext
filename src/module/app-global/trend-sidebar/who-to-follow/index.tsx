@@ -2,11 +2,10 @@ import Link from "next/link";
 
 import { validateRequest } from "@core/lucia-auth";
 import prisma from "@core/prisma";
-import { userDataSelect } from "@core/prisma/post.prisma";
-
-import { Button } from "@module/app-shadcn/button";
+import { userDataSelect } from "@core/prisma/post.query";
 
 import { UserAvatar } from "@module/app-global/navbar";
+import { FollowButton } from "@module/follow-btn";
 
 export async function WhoToFollow() {
   const { user } = await validateRequest();
@@ -18,11 +17,20 @@ export async function WhoToFollow() {
       NOT: {
         id: user.id,
       },
+      // https://www.prisma.io/docs/orm/reference/prisma-client-reference
+      // check where - NOT - none
+      // not chỉ dùng cho equal, none cho relation
+      followers: {
+        none: {
+          followerId: user.id,
+        },
+      },
     },
-    select: userDataSelect,
+    select: userDataSelect(user.id),
     take: 5,
   });
 
+  // bản chất gốc component này chỉ show những ai chưa follow
   return (
     <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm">
       <div className="text-xl font-bold">Who to follow</div>
@@ -35,14 +43,27 @@ export async function WhoToFollow() {
             <UserAvatar avatarUrl={user.avatarUrl} className="flex-none" />
             <div>
               <p className="line-clamp-1 break-all font-semibold hover:underline">
-                {user.displayName}
+                {user.displayName} - [{user._count.followers}]
               </p>
               <p className="line-clamp-1 break-all text-muted-foreground">
                 @{user.username}
               </p>
             </div>
           </Link>
-          <Button>Follow</Button>
+          <FollowButton
+            userId={user.id}
+            initialState={{
+              // props truyền thừa, ko sử dụng trong component trừ việc tạo dummy initial
+              followers: user._count.followers,
+              // bản chất query ở trên đã có none sẵn, hơi lỏ
+              // code đoạn này cứ kì kì
+              // thực chất qua query thì isFollowedByUser = false initial sẵn
+              // logic này set vô chỉ để khi muốn mở rộng gì thêm, hơi thừa
+              isFollowedByUser: user.followers.some(
+                ({ followerId }) => followerId === user.id,
+              ),
+            }}
+          />
         </div>
       ))}
     </div>
