@@ -2,7 +2,8 @@ import { NextRequest } from "next/server";
 
 import { validateRequest } from "@core/lucia-auth";
 import prisma from "@core/prisma";
-import { postDataInclude, PostsPage } from "@core/prisma/post.prisma";
+import { PostsPage } from "@core/prisma/post.prisma";
+import { postDataInclude } from "@core/prisma/post.query";
 
 const DEFAULT_LIMIT = 10;
 export async function GET(req: NextRequest) {
@@ -20,7 +21,7 @@ export async function GET(req: NextRequest) {
 
     // n+1 problem ??
     const posts = await prisma.post.findMany({
-      include: postDataInclude,
+      include: postDataInclude(user.id),
       orderBy: { createdAt: "desc" },
       take: pageSize + 1,
       // skip: cursor ? 1 : 0,

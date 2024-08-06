@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { validateRequest } from "@core/lucia-auth";
 import prisma from "@core/prisma";
-import { userDataSelect } from "@core/prisma/post.prisma";
+import { userDataSelect } from "@core/prisma/post.query";
 
 import { Button } from "@module/app-shadcn/button";
 
@@ -19,7 +19,7 @@ export async function WhoToFollow() {
         id: user.id,
       },
     },
-    select: userDataSelect,
+    select: userDataSelect(user.id),
     take: 5,
   });
 
