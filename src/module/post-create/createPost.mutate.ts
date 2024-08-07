@@ -7,9 +7,22 @@ import {
 
 import { PostsPage } from "@core/prisma/post.prisma";
 
+import { useSession } from "@module/app-provider";
 import { useToast } from "@module/app-shadcn/use-toast";
 
 import { submitPost } from "./create-post.action";
+
+const invalidateQueryPostSubmitFilter = (userId: string) =>
+  ({
+    queryKey: ["post-feed"],
+    predicate(query) {
+      return (
+        query.queryKey.includes("for-you") ||
+        (query.queryKey.includes("user-posts") &&
+          query.queryKey.includes(userId))
+      );
+    },
+  }) satisfies QueryFilters;
 
 // có cần directive useClient ko
 // vì là hook - ko phải jsx -> pass được ?
@@ -18,6 +31,9 @@ export function useSubmitPostMutation() {
 
   const queryClient = useQueryClient();
 
+  const { user } = useSession();
+  const queryFilter = invalidateQueryPostSubmitFilter(user.id);
+
   const mutation = useMutation({
     mutationFn: submitPost,
     onSuccess: async newPost => {
@@ -25,8 +41,6 @@ export function useSubmitPostMutation() {
       // nhưng sẽ phí 1 lần request lên BE lại
       // Đồng thời vì dùng infinite query nên sẽ gọi lại toàn bộ page
       //  => quá tệ
-
-      const queryFilter: QueryFilters = { queryKey: ["post-feed", "for-you"] };
 
       // Cancel các query đang chạy để tránh bugs racing condition và ko merge page data được
       // Solution trade-off vì thật chất data có khả năng out-sync
@@ -64,7 +78,7 @@ export function useSubmitPostMutation() {
         predicate(query) {
           // Nếu data gốc chưa kịp fetch hoặc đang empty thì refetch ok
           // page sẽ refetch - load nhẹ
-          return !query.state.data;
+          return queryFilter.predicate(query) && !query.state.data;
         },
       });
 

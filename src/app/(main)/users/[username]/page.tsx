@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 import { validateRequest } from "@core/lucia-auth";
 
 import { TrendsSidebar } from "@module/app-global/trend-sidebar";
@@ -8,6 +10,20 @@ import { getUserProfile } from "./getUserProfile.query";
 
 interface PageProps {
   params: { username: string };
+}
+
+export async function generateMetadata({
+  params: { username },
+}: PageProps): Promise<Metadata> {
+  const { user: loggedInUser } = await validateRequest();
+
+  if (!loggedInUser) return {};
+
+  const user = await getUserProfile(username, loggedInUser.id);
+
+  return {
+    title: `${user.displayName} (@${user.username})`,
+  };
 }
 
 export default async function Page({ params: { username } }: PageProps) {
