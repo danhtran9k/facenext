@@ -5,7 +5,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 
-import { PostsPage } from "@core/prisma/post.prisma";
+import { PostCursor, PostsPage } from "@core/prisma/post.prisma";
 
 import { useSession } from "@module/app-provider";
 import { useToast } from "@module/app-shadcn/use-toast";
@@ -51,7 +51,7 @@ export function useSubmitPostMutation() {
       // modified post data cache của user profile,
       // vì react query share giữa các tab với nhau
       // Logic delete post sẽ tương tự
-      queryClient.setQueriesData<InfiniteData<PostsPage, string | null>>(
+      queryClient.setQueriesData<InfiniteData<PostsPage, PostCursor>>(
         queryFilter,
         oldData => {
           // [[page1], [page2], ... [pageN]]

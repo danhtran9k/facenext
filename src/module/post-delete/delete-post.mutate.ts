@@ -6,16 +6,16 @@ import {
 } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 
-import { PostsPage } from "@core/prisma/post.prisma";
+import { PostCursor, PostsPage } from "@core/prisma/post.prisma";
 
 import { useToast } from "@module/app-shadcn/use-toast";
 
 import { deletePost } from "./delete-post.action";
 
 function updateQueriesDataAfterDelete(
-  oldData: InfiniteData<PostsPage, string | null> | undefined,
+  oldData: InfiniteData<PostsPage, PostCursor> | undefined,
   deletedPostId: string,
-): InfiniteData<PostsPage, string | null> | undefined {
+): InfiniteData<PostsPage, PostCursor> | undefined {
   if (!oldData) return oldData;
 
   return {
@@ -53,7 +53,7 @@ export function useDeletePostMutation() {
 
       await queryClient.cancelQueries(queryFilter);
 
-      queryClient.setQueriesData<InfiniteData<PostsPage, string | null>>(
+      queryClient.setQueriesData<InfiniteData<PostsPage, PostCursor>>(
         queryFilter,
         oldData => updateQueriesDataAfterDelete(oldData, deletedPost.id),
       );

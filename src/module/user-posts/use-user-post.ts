@@ -1,10 +1,9 @@
 import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 
 import kyInstance from "@core/ky";
-import { PostsPage } from "@core/prisma/post.prisma";
+import { PostCursor, PostsPage } from "@core/prisma/post.prisma";
 
-type StringOrNull = string | null;
-type TFetchFeed = { pageParam: StringOrNull };
+type TFetchFeed = { pageParam: PostCursor };
 
 const fetchMyFeed =
   (userId: string) =>
@@ -25,7 +24,7 @@ export const useUserPost = <TData = InfiniteData<PostsPage>>(
   const mutate = useInfiniteQuery({
     queryKey: ["post-feed", "user-posts", userId],
     queryFn: fetchMyFeed(userId),
-    initialPageParam: null as StringOrNull,
+    initialPageParam: null as PostCursor,
     getNextPageParam: lastPage => lastPage.nextCursor,
     select,
   });

@@ -10,9 +10,11 @@ export type PostWithUser = Prisma.PostGetPayload<{
   include: ReturnType<typeof postDataInclude>;
 }>;
 
+export type PostCursor = string | null;
+
 export interface PostsPage {
   posts: PostWithUser[];
-  nextCursor: string | null;
+  nextCursor: PostCursor;
 }
 
 export interface FollowerInfo {
