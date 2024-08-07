@@ -9,6 +9,7 @@ import { Button } from "@module/app-shadcn/button";
 import { UserAvatar } from "@module/app-global/navbar";
 import { FollowButton } from "@module/follow-btn";
 import { FollowerCount } from "@module/follower-count";
+import { Linkify } from "@module/linkify";
 
 interface UserProfileProps {
   user: UserData;
@@ -59,9 +60,11 @@ export async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
       {user.bio && (
         <>
           <hr />
-          <div className="overflow-hidden whitespace-pre-line break-words">
-            {user.bio}
-          </div>
+          <Linkify>
+            <div className="overflow-hidden whitespace-pre-line break-words">
+              {user.bio}
+            </div>
+          </Linkify>
         </>
       )}
     </div>

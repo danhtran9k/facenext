@@ -9,18 +9,20 @@ import {
   TooltipTrigger,
 } from "@module/app-shadcn/tooltip";
 
+import { TooltipUserContent } from "./tooltip-user-content";
+
 interface TooltipUserProps extends PropsWithChildren {
   user: UserData;
 }
 
 // https://ui.shadcn.com/docs/components/tooltip
-export function TooltipUserBase({ children }: TooltipUserProps) {
+export function TooltipUserBase({ children, user }: TooltipUserProps) {
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger>Hover</TooltipTrigger>
+        <TooltipTrigger asChild>{children}</TooltipTrigger>
         <TooltipContent>
-          <p>Add to library</p>
+          <TooltipUserContent user={user} />
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
