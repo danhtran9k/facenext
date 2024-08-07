@@ -5,7 +5,7 @@ import { FollowerInfo } from "@core/prisma/post.prisma";
 import { Button } from "@module/app-shadcn/button";
 
 import { useFollowMutate } from "./use-follow.mutate";
-import useFollowerInfo from "./use-follower-info";
+import { useFollowerInfo } from "./use-follower-info";
 
 interface FollowButtonProps {
   userId: string;
