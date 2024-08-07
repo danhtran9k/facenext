@@ -1,6 +1,8 @@
 import { validateRequest } from "@core/lucia-auth";
 
 import { TrendsSidebar } from "@module/app-global/trend-sidebar";
+import { UserPosts } from "@module/user-posts";
+import { UserProfile } from "@module/user-profile";
 
 import { getUserProfile } from "./getUserProfile.query";
 
@@ -30,13 +32,13 @@ export default async function Page({ params: { username } }: PageProps) {
   return (
     <main className="flex w-full min-w-0 gap-5">
       <div className="w-full min-w-0 space-y-5">
-        UserProfile
+        <UserProfile user={user} loggedInUserId={loggedInUser.id} />
         <div className="rounded-2xl bg-card p-5 shadow-sm">
           <h2 className="text-center text-2xl font-bold">
             {user.displayName}&apos;s posts
           </h2>
         </div>
-        UserPosts
+        <UserPosts userId={user.id} />
       </div>
       <TrendsSidebar />
     </main>
