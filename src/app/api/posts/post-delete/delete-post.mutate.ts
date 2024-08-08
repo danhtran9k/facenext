@@ -6,7 +6,7 @@ import {
 } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 
-import { PostCursor, PostsPage } from "@core/prisma/post.prisma";
+import { PostCursor, PostsPage } from "@app/api/posts/post.prisma";
 
 import { useToast } from "@module/app-shadcn/use-toast";
 

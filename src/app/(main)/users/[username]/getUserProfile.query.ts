@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
-import prisma from "@core/prisma";
-import { userDataSelect } from "@core/prisma/user.query";
+import prisma from "@app/api/_core/prisma";
+import { userDataSelect } from "@app/api/users/user.query";
 
 export const getUserProfile = cache(
   async (username: string, loggedInUserId: string) => {

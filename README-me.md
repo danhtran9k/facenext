@@ -51,7 +51,6 @@ npm i -D prettier eslint-config-prettier prettier-plugin-tailwindcss --legacy-pe
 npx --legacy-peer-deps shadcn-ui@latest init
 npx --legacy-peer-deps shadcn-ui@latest add button dialog dropdown-menu form input label skeleton tabs textarea toast tooltip
 
-
 # ========================================
 # re-init from git clone
 # ========================================

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
-import kyInstance from "@core/ky";
-import { FollowerInfo } from "@core/prisma/post.prisma";
+import kyInstance from "@app/api/_core/ky";
+import { FollowerInfo } from "@app/api/posts/post.prisma";
 
 export function useFollowerInfo(userId: string, initialState: FollowerInfo) {
   const query = useQuery({

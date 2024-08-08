@@ -1,8 +1,9 @@
 import { formatDate } from "date-fns";
 
+import { FollowerInfo } from "@app/api/posts/post.prisma";
+import { UserData } from "@app/api/users/user.query";
+
 import { formatNumber } from "@core/helper/number.utils";
-import { FollowerInfo } from "@core/prisma/post.prisma";
-import { UserData } from "@core/prisma/user.query";
 
 import { Button } from "@module/app-shadcn/button";
 

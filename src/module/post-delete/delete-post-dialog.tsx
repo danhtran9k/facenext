@@ -1,4 +1,5 @@
-import { PostWithUser } from "@core/prisma/post.prisma";
+import { useDeletePostMutation } from "@app/api/posts/post-delete/delete-post.mutate";
+import { PostWithUser } from "@app/api/posts/post.prisma";
 
 import { Button } from "@module/app-shadcn/button";
 import {
@@ -11,8 +12,6 @@ import {
 } from "@module/app-shadcn/dialog";
 
 import LoadingButton from "@module/app-common/loading-btn";
-
-import { useDeletePostMutation } from "./delete-post.mutate";
 
 interface DeletePostDialogProps {
   post: PostWithUser;

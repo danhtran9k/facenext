@@ -1,7 +1,7 @@
 import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 
-import kyInstance from "@core/ky";
-import { PostCursor, PostsPage } from "@core/prisma/post.prisma";
+import kyInstance from "@app/api/_core/ky";
+import { PostCursor, PostsPage } from "@app/api/posts/post.prisma";
 
 type TFetchFeed = { pageParam: PostCursor };
 

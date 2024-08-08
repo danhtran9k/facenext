@@ -5,8 +5,8 @@ import { isRedirectError } from "next/dist/client/components/redirect";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { lucia } from "@core/lucia-auth";
-import prisma from "@core/prisma";
+import { lucia } from "@app/api/_core/lucia-auth";
+import prisma from "@app/api/_core/prisma";
 
 import { signInSchema, SignInValues } from "./sign-in.dto";
 

@@ -4,13 +4,14 @@ import Placeholder from "@tiptap/extension-placeholder";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
+import { useSubmitPostMutation } from "@app/api/posts/post-create/createPost.mutate";
+
 import { useSession } from "@module/app-provider";
 
 import LoadingButton from "@module/app-common/loading-btn";
 
 import { UserAvatar } from "@module/app-global/navbar";
 
-import { useSubmitPostMutation } from "./createPost.mutate";
 import "./styles.css";
 
 export function CreatePostEditor() {

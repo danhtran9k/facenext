@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 
-import { userDataSelect } from "./user.query";
+import { userDataSelect } from "../users/user.query";
 
 // query này use-server-only
 // client ko được phép truy cập

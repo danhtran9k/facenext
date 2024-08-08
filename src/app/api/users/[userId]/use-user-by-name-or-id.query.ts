@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { HTTPError } from "ky";
 
-import kyInstance from "@core/ky";
-import { UserData } from "@core/prisma/user.query";
+import kyInstance from "@app/api/_core/ky";
+import { UserData } from "@app/api/users/user.query";
 
 export const useUserByNameOrId = (username: string) => {
   return useQuery({

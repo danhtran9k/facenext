@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 
-import { validateRequest } from "@core/lucia-auth";
+import { validateRequest } from "@app/api/_core/lucia-auth";
+
 import { TPureLayout } from "@core/types/common.props";
 
 import { SessionProvider } from "@module/app-provider";

@@ -1,6 +1,6 @@
-import { validateRequest } from "@core/lucia-auth";
-import prisma from "@core/prisma";
-import { postDataInclude } from "@core/prisma/post.query";
+import { validateRequest } from "@app/api/_core/lucia-auth";
+import prisma from "@app/api/_core/prisma";
+import { postDataInclude } from "@app/api/posts/post.query";
 
 import { PostItem } from "@module/post-item";
 

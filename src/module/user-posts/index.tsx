@@ -2,11 +2,12 @@
 
 import { Loader2 } from "lucide-react";
 
+import { useUserPost } from "@app/api/users/[userId]/posts/use-user-post.query";
+
 import InfiniteScrollContainer from "@module/app-common/InfiniteScrollContainer";
 
 import { PostItem, PostsLoadingSkeleton } from "@module/post-item";
 
-import { useUserPost } from "./use-user-post";
 interface UserPostsProps {
   userId: string;
 }

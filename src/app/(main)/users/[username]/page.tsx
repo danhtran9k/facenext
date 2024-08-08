@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { validateRequest } from "@core/lucia-auth";
+import { validateRequest } from "@app/api/_core/lucia-auth";
 
 import { TrendsSidebar } from "@module/app-global/trend-sidebar";
 import { UserPosts } from "@module/user-posts";

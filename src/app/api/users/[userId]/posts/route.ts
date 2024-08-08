@@ -1,9 +1,9 @@
 import { NextRequest } from "next/server";
 
-import { validateRequest } from "@core/lucia-auth";
-import prisma from "@core/prisma";
-import { PostsPage, UserIdParam } from "@core/prisma/post.prisma";
-import { postDataInclude } from "@core/prisma/post.query";
+import { validateRequest } from "@app/api/_core/lucia-auth";
+import prisma from "@app/api/_core/prisma";
+import { PostsPage, UserIdParam } from "@app/api/posts/post.prisma";
+import { postDataInclude } from "@app/api/posts/post.query";
 
 const DEFAULT_LIMIT = 10;
 

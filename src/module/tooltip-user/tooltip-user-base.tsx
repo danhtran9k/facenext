@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
-import { UserData } from "@core/prisma/user.query";
+import { UserData } from "@app/api/users/user.query";
 
 import {
   Tooltip,

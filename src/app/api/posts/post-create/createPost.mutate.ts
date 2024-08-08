@@ -5,7 +5,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 
-import { PostCursor, PostsPage } from "@core/prisma/post.prisma";
+import { PostCursor, PostsPage } from "@app/api/posts/post.prisma";
 
 import { useSession } from "@module/app-provider";
 import { useToast } from "@module/app-shadcn/use-toast";

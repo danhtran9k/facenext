@@ -1,11 +1,10 @@
 "use client";
 
-import { FollowerInfo } from "@core/prisma/post.prisma";
+import { FollowerInfo } from "@app/api/posts/post.prisma";
+import { useFollowMutate } from "@app/api/users/[userId]/followers/use-follow.mutate";
+import { useFollowerInfo } from "@app/api/users/[userId]/followers/use-follower-info";
 
 import { Button } from "@module/app-shadcn/button";
-
-import { useFollowMutate } from "./use-follow.mutate";
-import { useFollowerInfo } from "./use-follower-info";
 
 interface FollowButtonProps {
   userId: string;

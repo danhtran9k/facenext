@@ -3,7 +3,7 @@
 import { MoreHorizontal, Trash2 } from "lucide-react";
 import { useState } from "react";
 
-import { PostWithUser } from "@core/prisma/post.prisma";
+import { PostWithUser } from "@app/api/posts/post.prisma";
 
 import { useSession } from "@module/app-provider";
 import { Button } from "@module/app-shadcn/button";

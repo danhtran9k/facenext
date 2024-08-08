@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import { validateRequest } from "@core/lucia-auth";
-import prisma from "@core/prisma";
-import { userDataSelect } from "@core/prisma/user.query";
+import { validateRequest } from "@app/api/_core/lucia-auth";
+import prisma from "@app/api/_core/prisma";
+import { userDataSelect } from "@app/api/users/user.query";
 
 import { UserAvatar } from "@module/app-global/navbar";
 import { FollowButton } from "@module/follow-btn";

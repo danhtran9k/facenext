@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 
-import { FollowerInfo } from "@core/prisma/post.prisma";
-import { UserData } from "@core/prisma/user.query";
+import { FollowerInfo } from "@app/api/posts/post.prisma";
+import { UserData } from "@app/api/users/user.query";
 
 import { useSession } from "@module/app-provider";
 

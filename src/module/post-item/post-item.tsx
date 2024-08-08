@@ -1,7 +1,8 @@
 import Link from "next/link";
 
+import { PostWithUser } from "@app/api/posts/post.prisma";
+
 import { formatRelativeDate } from "@core/helper/time.utils";
-import { PostWithUser } from "@core/prisma/post.prisma";
 
 import { UserAvatar } from "@module/app-global/navbar";
 import PostMoreButton from "@module/post-more";

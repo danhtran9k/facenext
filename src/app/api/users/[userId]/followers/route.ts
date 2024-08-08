@@ -1,6 +1,6 @@
-import { validateRequest } from "@core/lucia-auth";
-import prisma from "@core/prisma";
-import { FollowerInfo, UserIdParam } from "@core/prisma/post.prisma";
+import { validateRequest } from "@app/api/_core/lucia-auth";
+import prisma from "@app/api/_core/prisma";
+import { FollowerInfo, UserIdParam } from "@app/api/posts/post.prisma";
 
 export async function GET(_: Request, { params: { userId } }: UserIdParam) {
   try {

@@ -1,7 +1,7 @@
-import { validateRequest } from "@core/lucia-auth";
-import prisma from "@core/prisma";
-import { UserIdParam } from "@core/prisma/post.prisma";
-import { userDataSelect } from "@core/prisma/user.query";
+import { validateRequest } from "@app/api/_core/lucia-auth";
+import prisma from "@app/api/_core/prisma";
+import { UserIdParam } from "@app/api/posts/post.prisma";
+import { userDataSelect } from "@app/api/users/user.query";
 
 // Tuy là userId nhưng sẽ query theo userName
 export async function GET(_: Request, { params: { userId } }: UserIdParam) {

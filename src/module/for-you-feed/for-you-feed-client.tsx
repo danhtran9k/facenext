@@ -2,11 +2,11 @@
 
 import { Loader2 } from "lucide-react";
 
+import { useInfinityFeed } from "@app/api/posts/for-you/useInfinityFeed";
+
 import InfiniteScrollContainer from "@module/app-common/InfiniteScrollContainer";
 
 import { PostItem, PostsLoadingSkeleton } from "@module/post-item";
-
-import { useInfinityFeed } from "./useInfinityFeed";
 
 const _nativeFetch_ForYouFeed = async () => {
   const res = await fetch("/api/posts/for-you");
