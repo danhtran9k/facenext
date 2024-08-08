@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { PropsWithChildren } from "react";
 
+import { useUserByNameOrId } from "@app/api/users/[userId]/use-user-by-name-or-id.query";
+
 import { TooltipUser } from "@module/tooltip-user";
 
 interface LinkifyUsernameTooltipProps extends PropsWithChildren {
@@ -17,7 +19,8 @@ export function LinkifyUsernameTooltip({
   children,
   username,
 }: LinkifyUsernameTooltipProps) {
-  const { data } = { data: null };
+  const { data } = useUserByNameOrId(username);
+  console.log("🚀 ~ data:", data);
 
   if (!data) {
     // Tuy ko có data những vẫn setup url dummy

@@ -2,14 +2,14 @@ import { NextRequest } from "next/server";
 
 import { validateRequest } from "@core/lucia-auth";
 import prisma from "@core/prisma";
-import { PostsPage } from "@core/prisma/post.prisma";
+import { PostsPage, UserIdParam } from "@core/prisma/post.prisma";
 import { postDataInclude } from "@core/prisma/post.query";
 
 const DEFAULT_LIMIT = 10;
 
 export async function GET(
   req: NextRequest,
-  { params: { userId } }: { params: { userId: string } },
+  { params: { userId } }: UserIdParam,
 ) {
   try {
     const { user } = await validateRequest();
