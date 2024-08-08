@@ -5,6 +5,7 @@ import { PostWithUser } from "@core/prisma/post.prisma";
 
 import { UserAvatar } from "@module/app-global/navbar";
 import PostMoreButton from "@module/post-more";
+import { TooltipUser } from "@module/tooltip-user";
 
 interface PostProps {
   post: PostWithUser;
@@ -15,16 +16,18 @@ export function PostItem({ post }: PostProps) {
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm">
       <div className="flex justify-between gap-3">
         <div className="flex flex-wrap gap-3">
-          <Link href={`/users/${post.user.username}`}>
+          <TooltipUser user={post.user}>
             <UserAvatar avatarUrl={post.user.avatarUrl} />
-          </Link>
+          </TooltipUser>
+
           <div>
-            <Link
-              href={`/users/${post.user.username}`}
+            <TooltipUser
+              user={post.user}
               className="block font-medium hover:underline"
             >
               {post.user.displayName}
-            </Link>
+            </TooltipUser>
+
             <Link
               href={`/posts/${post.id}`}
               className="block text-sm text-muted-foreground hover:underline"

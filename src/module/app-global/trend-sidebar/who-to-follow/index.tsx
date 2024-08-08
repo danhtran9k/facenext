@@ -6,6 +6,7 @@ import { userDataSelect } from "@core/prisma/user.query";
 
 import { UserAvatar } from "@module/app-global/navbar";
 import { FollowButton } from "@module/follow-btn";
+import { TooltipUser } from "@module/tooltip-user";
 
 export async function WhoToFollow() {
   const { user } = await validateRequest();
@@ -36,10 +37,7 @@ export async function WhoToFollow() {
       <div className="text-xl font-bold">Who to follow</div>
       {usersToFollow.map(user => (
         <div key={user.id} className="flex items-center justify-between gap-3">
-          <Link
-            href={`/users/${user.username}`}
-            className="flex items-center gap-3"
-          >
+          <TooltipUser user={user} className="flex items-center gap-3">
             <UserAvatar avatarUrl={user.avatarUrl} className="flex-none" />
             <div>
               <p className="line-clamp-1 break-all font-semibold hover:underline">
@@ -49,7 +47,8 @@ export async function WhoToFollow() {
                 @{user.username}
               </p>
             </div>
-          </Link>
+          </TooltipUser>
+
           <FollowButton
             userId={user.id}
             initialState={{
