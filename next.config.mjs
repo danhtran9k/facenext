@@ -11,6 +11,16 @@ const nextConfig = {
   // check trong example có
   // https://lucia-auth.com/tutorials/username-and-password/nextjs-app
   serverExternalPackages: ["@node-rs/argon2"],
+  images: {
+    remotePatterns: [
+      // https://docs.uploadthing.com/working-with-files#accessing-files
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+        pathname: "/a/<APP_ID>/*",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
