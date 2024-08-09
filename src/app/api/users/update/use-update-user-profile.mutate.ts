@@ -87,6 +87,7 @@ const useOnSuccess = () => {
         updatePostAfterProfileUpdate(oldData, updatedUser, newAvatarUrl),
     );
 
+    // Vì có nhiều part của page là server component nên phải soft-refresh lại
     router.refresh();
 
     toast({

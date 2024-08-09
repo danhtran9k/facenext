@@ -53,9 +53,16 @@ export function UserProfileEditDialog({
   const { mutate, isPending } = useUpdateProfileMutation();
 
   async function onSubmit(values: UpdateUserProfileValues) {
-    mutate({
-      values,
-    });
+    mutate(
+      {
+        values,
+      },
+      {
+        onSuccess: () => {
+          onOpenChange(false);
+        },
+      },
+    );
   }
 
   return (
