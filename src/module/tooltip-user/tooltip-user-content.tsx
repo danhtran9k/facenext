@@ -45,7 +45,7 @@ export function TooltipUserContent({ user }: UserDataProps) {
         </Link>
       </div>
       {user.bio && (
-        <Linkify>
+        <Linkify hasNestedTooltip={false}>
           <div className="line-clamp-4 whitespace-pre-line">{user.bio}</div>
         </Linkify>
       )}

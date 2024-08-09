@@ -9,6 +9,7 @@ import { TooltipUser } from "@module/tooltip-user";
 
 interface LinkifyUsernameTooltipProps extends PropsWithChildren {
   username: string;
+  hasNestedTooltip?: boolean;
 }
 
 // Vì tooltip này sinh ra do Linkify nội suy nên chỉ biết được userName
@@ -18,11 +19,11 @@ interface LinkifyUsernameTooltipProps extends PropsWithChildren {
 export function LinkifyUsernameTooltip({
   children,
   username,
+  hasNestedTooltip = true,
 }: LinkifyUsernameTooltipProps) {
   const { data } = useUserByNameOrId(username);
-  console.log("🚀 ~ data:", data);
 
-  if (!data) {
+  if (!data || !hasNestedTooltip) {
     // Tuy ko có data những vẫn setup url dummy
     // Cẩn thận mis-match giữa 2 link
     return (
