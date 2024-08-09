@@ -5,12 +5,12 @@ import { UserData } from "@app/api/users/user.query";
 
 import { formatNumber } from "@core/helper/number.utils";
 
-import { Button } from "@module/app-shadcn/button";
-
 import { UserAvatar } from "@module/app-global/navbar";
 import { FollowButton } from "@module/follow-btn";
 import { FollowerCount } from "@module/follower-count";
 import { Linkify } from "@module/linkify";
+
+import UserProfileEditBtn from "./user-profile-edit-btn";
 
 interface UserProfileProps {
   user: UserData;
@@ -53,7 +53,7 @@ export async function UserProfile({ user, loggedInUserId }: UserProfileProps) {
           </div>
         </div>
         {user.id === loggedInUserId ? (
-          <Button>Edit profile</Button>
+          <UserProfileEditBtn user={user} />
         ) : (
           <FollowButton userId={user.id} initialState={followerInfo} />
         )}
