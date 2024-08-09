@@ -4,7 +4,7 @@ import { HTTPError } from "ky";
 import kyInstance from "@app/api/_core/ky";
 import { UserData } from "@app/api/users/user.query";
 
-export const useUserByNameOrId = (username: string) => {
+export const useUserByNameOrId = (username: string, enabled = true) => {
   return useQuery({
     queryKey: ["user-data", username],
     queryFn: () => kyInstance.get(`/api/users/${username}`).json<UserData>(),
@@ -15,5 +15,6 @@ export const useUserByNameOrId = (username: string) => {
       return failureCount < 3;
     },
     staleTime: Infinity,
+    enabled,
   });
 };

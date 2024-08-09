@@ -3,12 +3,12 @@ import { LinkIt } from "react-linkify-it";
 
 import { TPureLayout } from "@core/types/common.props";
 
-const REGEX_HASHTAG = /(#[a-zA-Z0-9]+)/;
+import { LINKIFY_REGEX_HASHTAG } from "./linkify-regex.helper";
 
 export function LinkifyHashtag({ children }: TPureLayout) {
   return (
     <LinkIt
-      regex={REGEX_HASHTAG}
+      regex={LINKIFY_REGEX_HASHTAG}
       component={(match, key) => (
         <Link
           key={key}

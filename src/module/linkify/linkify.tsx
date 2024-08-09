@@ -1,12 +1,16 @@
-import { TPureLayout } from "@core/types/common.props";
+import { PropsWithChildren } from "react";
 
 import { LinkifyHashtag } from "./linkify-hashtag";
 import { LinkifyUrl } from "./linkify-url";
 import { LinkifyUsername } from "./linkify-username";
 
-export function Linkify({ children }: TPureLayout) {
+type TLinkifyProps = PropsWithChildren<{
+  hasNestedTooltip?: boolean;
+}>;
+
+export function Linkify({ children, hasNestedTooltip = true }: TLinkifyProps) {
   return (
-    <LinkifyUsername>
+    <LinkifyUsername hasNestedTooltip={hasNestedTooltip}>
       <LinkifyHashtag>
         <LinkifyUrl>{children}</LinkifyUrl>
       </LinkifyHashtag>
