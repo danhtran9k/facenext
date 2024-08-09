@@ -1,6 +1,7 @@
 "use-client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import {
@@ -9,10 +10,12 @@ import {
 } from "@app/api/users/update/update-user-profile.dto";
 import { useUpdateProfileMutation } from "@app/api/users/update/use-update-user-profile.mutate";
 import { UserData } from "@app/api/users/user.query";
+import avatarPlaceholder from "@app/assets/avatar-placeholder.png";
 
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -30,6 +33,8 @@ import { Label } from "@module/app-shadcn/label";
 import { Textarea } from "@module/app-shadcn/textarea";
 
 import LoadingButton from "@module/app-common/loading-btn";
+
+import { UserProfileAvatarUpload } from "./user-profile-avatar-upload";
 
 interface UserProfileEditDialogProps {
   user: UserData;
@@ -51,6 +56,7 @@ export function UserProfileEditDialog({
   });
 
   const { mutate, isPending } = useUpdateProfileMutation();
+  const [srcAvatar, setSrcAvatar] = useState<Blob | null>(null);
 
   async function onSubmit(values: UpdateUserProfileValues) {
     mutate(
@@ -70,10 +76,18 @@ export function UserProfileEditDialog({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
+          <DialogDescription />
         </DialogHeader>
         <div className="space-y-1.5">
           <Label>Avatar</Label>
-          AvatarInput /
+          <UserProfileAvatarUpload
+            src={
+              srcAvatar
+                ? URL.createObjectURL(srcAvatar)
+                : (user.avatarUrl ?? avatarPlaceholder)
+            }
+            setSrc={setSrcAvatar}
+          />
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
