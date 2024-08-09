@@ -14,10 +14,11 @@ const nextConfig = {
   images: {
     remotePatterns: [
       // https://docs.uploadthing.com/working-with-files#accessing-files
+      // Next sẽ resize ảnh nhưng tốn server compute, TÙY HOSTING sẽ free hay tính phí khác nhau -> phải set pathname của riêng app mình
       {
         protocol: "https",
         hostname: "utfs.io",
-        pathname: "/a/<APP_ID>/*",
+        pathname: `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/*`,
       },
     ],
   },

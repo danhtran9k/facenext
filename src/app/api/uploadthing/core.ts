@@ -2,6 +2,7 @@ import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 
 import { validateRequest } from "../_core/lucia-auth";
+import prisma from "../_core/prisma";
 
 const f = createUploadthing();
 
@@ -14,7 +15,7 @@ export const ourFileRouter = {
     // Set permissions and file types for this FileRoute
     .middleware(async () => {
       // This code runs on your server before upload
-      const user = await validateRequest();
+      const { user } = await validateRequest();
 
       // If you throw, the user will not be able to upload
       if (!user) throw new UploadThingError("Unauthorized");
@@ -24,12 +25,20 @@ export const ourFileRouter = {
     })
     .onUploadComplete(async ({ metadata, file }) => {
       // This code RUNS ON YOUR SERVER after upload
-      console.log("Upload complete for userId:", metadata.user);
+      const newAvatarUrl = file.url.replace(
+        "/f/",
+        `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/`,
+      );
 
-      console.log("file url", file.url);
+      await prisma.user.update({
+        where: { id: metadata.user.id },
+        data: {
+          avatarUrl: newAvatarUrl,
+        },
+      });
 
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
-      return { uploadedBy: metadata.user.user?.id };
+      return { avatarUrl: newAvatarUrl };
     }),
 } satisfies FileRouter;
 

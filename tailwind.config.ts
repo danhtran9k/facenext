@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { withUt } from "uploadthing/tw";
 
 const config = {
   darkMode: ["class"],
@@ -77,4 +78,6 @@ const config = {
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
 
-export default config;
+// https://docs.uploadthing.com/getting-started/appdir#add-uploadthings-styles
+// nếu wrap có thể sử dụng 1 số component build sẵn
+export default withUt(config);
