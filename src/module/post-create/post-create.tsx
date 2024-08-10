@@ -1,8 +1,6 @@
 "use client";
 
-import Placeholder from "@tiptap/extension-placeholder";
-import { EditorContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
+import { EditorContent } from "@tiptap/react";
 
 import { useSubmitPostMutation } from "@app/api/posts/post-create/createPost.mutate";
 
@@ -13,40 +11,16 @@ import LoadingButton from "@module/app-common/loading-btn";
 import { UserAvatar } from "@module/app-global/navbar";
 
 import "./styles.css";
+import { usePostEditor } from "./use-post-editor";
 
 export function CreatePostEditor() {
-  // https://tiptap.dev/docs/editor/getting-started/install/nextjs#integrate-tiptap
   const { user } = useSession();
-
-  const editor = useEditor({
-    // solving warning
-    // https://tiptap.dev/docs/guides/performance#gain-more-control-over-rendering
-    // https://tiptap.dev/blog/release-notes/say-hello-to-tiptap-2-5-our-most-performant-editor-yet
-    immediatelyRender: false,
-    extensions: [
-      // https://tiptap.dev/docs/editor/extensions/functionality/starterkit#using-the-starterkit-extension
-      StarterKit.configure({
-        bold: false,
-        italic: false,
-      }),
-      // https://tiptap.dev/docs/editor/extensions/functionality/placeholder#placeholder
-      Placeholder.configure({
-        placeholder: "What's crack-a-lackin'?",
-      }),
-    ],
-  });
+  const { input, editor } = usePostEditor();
   const { mutate, isPending } = useSubmitPostMutation();
 
-  // https://tiptap.dev/docs/editor/api/editor#methods
-  const input =
-    editor?.getText({
-      blockSeparator: "\n",
-    }) ?? "";
-
-  const mediaIds: string[] = [];
-
-  // https://tiptap.dev/docs/editor/api/commands
   async function onSubmit() {
+    const mediaIds: string[] = [];
+
     // await submitPost(input);
     // có thể dùng try-catch xử lý trực tiếp nhưng lằng nhằng state
     mutate(
@@ -54,6 +28,7 @@ export function CreatePostEditor() {
       {
         // đúng ra viết arrow func nhưng chơi style lạ
         onSuccess() {
+          // https://tiptap.dev/docs/editor/api/commands
           editor?.commands.clearContent();
         },
       },
