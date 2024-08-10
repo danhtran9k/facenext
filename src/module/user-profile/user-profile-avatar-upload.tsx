@@ -2,29 +2,33 @@
 
 import { Camera } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useRef } from "react";
+
+import { CropImageDialog, useCropImageResize } from "@module/app-vendor";
 
 interface AvatarInputProps {
   src: string | StaticImageData;
   setSrc: (blob: Blob | null) => void;
 }
 
-export function UserProfileAvatarUpload({ src }: AvatarInputProps) {
-  const [imageToCrop, setImageToCrop] = useState<File>();
+export function UserProfileAvatarUpload({ src, setSrc }: AvatarInputProps) {
+  // cả 2 set này đều modify state của imageToCrop
+  const { imageToCrop, setImageToCrop, setResizeImage } = useCropImageResize();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  function handleResizeImage(image: File | undefined) {
-    if (!image) return;
-
-    // handle resize and crop
-    setImageToCrop(image);
-  }
-
-  // Sau khi chọn image, cropped xong thì ảnh đó lại được resized 1 lần nữa
+  // Ảnh được chọn sẽ resize ngay trước khi xử lý cropped
   // resize image này set vào chính state của imageToCrop
   function onImageSelected(e: ChangeEvent<HTMLInputElement>) {
     const image = e.target.files?.[0];
-    handleResizeImage(image);
+    setResizeImage(image);
+  }
+
+  function onCloseCropDialog() {
+    setImageToCrop(undefined);
+    // reset file input để có thể chọn lạ file cũ khi cần
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   }
 
   // hidden input, proxy button simulate input click by ref
@@ -58,12 +62,10 @@ export function UserProfileAvatarUpload({ src }: AvatarInputProps) {
       </button>
 
       {imageToCrop && (
-        <Image
+        <CropImageDialog
           src={URL.createObjectURL(imageToCrop)}
-          alt="Avatar preview"
-          width={150}
-          height={150}
-          className="size-32 flex-none rounded-full object-cover"
+          onCropped={setSrc}
+          onClose={onCloseCropDialog}
         />
       )}
     </>

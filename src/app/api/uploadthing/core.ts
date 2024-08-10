@@ -1,5 +1,5 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
-import { UploadThingError } from "uploadthing/server";
+import { UploadThingError, UTApi } from "uploadthing/server";
 
 import { validateRequest } from "../_core/lucia-auth";
 import prisma from "../_core/prisma";
@@ -24,6 +24,15 @@ export const ourFileRouter = {
       return { user };
     })
     .onUploadComplete(async ({ metadata, file }) => {
+      // delete old avatar image to save space
+      const oldAvatarUrl = metadata.user.avatarUrl;
+      if (oldAvatarUrl) {
+        const key = oldAvatarUrl.split(
+          `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/`,
+        )[1];
+        await new UTApi().deleteFiles(key);
+      }
+
       // This code RUNS ON YOUR SERVER after upload
       const newAvatarUrl = file.url.replace(
         "/f/",

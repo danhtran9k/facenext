@@ -59,13 +59,21 @@ export function UserProfileEditDialog({
   const [srcAvatar, setSrcAvatar] = useState<Blob | null>(null);
 
   async function onSubmit(values: UpdateUserProfileValues) {
+    const currTime = new Date().getTime();
+
+    const newAvatarFile = srcAvatar
+      ? new File([srcAvatar], `avatar_${user.id}_${currTime}.webp`)
+      : undefined;
+
     mutate(
       {
         values,
+        avatar: newAvatarFile,
       },
       {
         onSuccess: () => {
           onOpenChange(false);
+          setSrcAvatar(null);
         },
       },
     );
