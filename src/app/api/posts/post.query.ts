@@ -10,4 +10,5 @@ export const postDataInclude = (loggedInUserId: string) =>
     user: {
       select: userDataSelect(loggedInUserId),
     },
+    attachments: true,
   }) satisfies Prisma.PostInclude;

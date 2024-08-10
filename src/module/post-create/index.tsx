@@ -43,16 +43,21 @@ export function CreatePostEditor() {
       blockSeparator: "\n",
     }) ?? "";
 
+  const mediaIds: string[] = [];
+
   // https://tiptap.dev/docs/editor/api/commands
   async function onSubmit() {
     // await submitPost(input);
     // có thể dùng try-catch xử lý trực tiếp nhưng lằng nhằng state
-    mutate(input, {
-      // đúng ra viết arrow func nhưng chơi style lạ
-      onSuccess() {
-        editor?.commands.clearContent();
+    mutate(
+      { content: input, mediaIds },
+      {
+        // đúng ra viết arrow func nhưng chơi style lạ
+        onSuccess() {
+          editor?.commands.clearContent();
+        },
       },
-    });
+    );
   }
 
   return (
