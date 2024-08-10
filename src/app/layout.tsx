@@ -1,11 +1,15 @@
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { extractRouterConfig } from "uploadthing/server";
 import "./globals.css";
 
 import { TPureLayout } from "@core/types/common.props";
 
 import { ReactQueryProvider, ThemeProvider } from "@module/app-provider";
 import { Toaster } from "@module/app-shadcn/toaster";
+
+import { ourFileRouter } from "./api/uploadthing/core";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,10 +28,12 @@ export const metadata: Metadata = {
   description: "The social media app for powernerds",
 };
 
+// https://docs.uploadthing.com/getting-started/appdir#optional-uploadthing-ssr-plugin
 export default function RootLayout({ children }: TPureLayout) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         <ReactQueryProvider>
           <ThemeProvider
             attribute="class"

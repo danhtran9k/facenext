@@ -61,7 +61,7 @@
             "position": "after"
           },
           {
-            "pattern": "@module/**",
+            "pattern": "{@module/**, @module/app-vendor/**}",
             "group": "internal",
             "position": "after"
           },

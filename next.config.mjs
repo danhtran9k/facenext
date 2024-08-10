@@ -11,6 +11,17 @@ const nextConfig = {
   // check trong example có
   // https://lucia-auth.com/tutorials/username-and-password/nextjs-app
   serverExternalPackages: ["@node-rs/argon2"],
+  images: {
+    remotePatterns: [
+      // https://docs.uploadthing.com/working-with-files#accessing-files
+      // Next sẽ resize ảnh nhưng tốn server compute, TÙY HOSTING sẽ free hay tính phí khác nhau -> phải set pathname của riêng app mình
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+        pathname: `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/*`,
+      },
+    ],
+  },
 };
 
 export default nextConfig;
