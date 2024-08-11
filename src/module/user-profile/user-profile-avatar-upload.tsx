@@ -1,4 +1,4 @@
-"use-client";
+"use client";
 
 import { Camera } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
@@ -8,7 +8,6 @@ import { CropImageDialog, useCropImageResize } from "@core/app-vendor";
 import { ACCEPTED_UPLOAD_FILE_TYPES } from "@core/app.const";
 
 import { BtnFileInput } from "@module/app-common/btn-file-input";
-
 
 interface AvatarInputProps {
   src: string | StaticImageData;

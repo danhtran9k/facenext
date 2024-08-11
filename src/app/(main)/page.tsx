@@ -30,6 +30,7 @@ export default function Home() {
               Following
             </TabsTrigger>
           </TabsList>
+
           <TabsContent value="for-you">
             {CLIENT_MODE ? <ForYouFeedClient /> : <ForYouFeedServer />}
           </TabsContent>
@@ -38,6 +39,7 @@ export default function Home() {
           </TabsContent>
         </Tabs>
       </div>
+
       <TrendsSidebar />
     </main>
   );

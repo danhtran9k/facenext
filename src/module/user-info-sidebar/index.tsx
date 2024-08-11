@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { validateRequest } from "@app/api/_core/lucia-auth";
 import { UserData } from "@app/api/users/user.query";
 
