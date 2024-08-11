@@ -37,6 +37,9 @@ export function PostItem({ post }: PostProps) {
             <Link
               href={`/posts/${post.id}`}
               className="block text-sm text-muted-foreground hover:underline"
+              // do hàm tính toán Data sẽ khiến createdAt cache
+              // Tạm sẽ test ko dùng xem có lỗi ko
+              // suppressHydrationWarning
             >
               {formatRelativeDate(post.createdAt)}
             </Link>
