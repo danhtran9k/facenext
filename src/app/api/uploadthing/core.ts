@@ -1,6 +1,8 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError, UTApi } from "uploadthing/server";
 
+import { MAX_UPLOAD_FILE_COUNT } from "@core/app.const";
+
 import { validateRequest } from "../_core/lucia-auth";
 import prisma from "../_core/prisma";
 
@@ -48,6 +50,40 @@ export const ourFileRouter = {
 
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
       return { avatarUrl: newAvatarUrl };
+    }),
+  // https://docs.uploadthing.com/api-reference/server#file-routes
+  attachment: f({
+    image: { maxFileSize: "4MB", maxFileCount: MAX_UPLOAD_FILE_COUNT },
+    video: { maxFileSize: "16MB", maxFileCount: MAX_UPLOAD_FILE_COUNT },
+  })
+    // Set permissions and file types for this FileRoute
+    .middleware(async () => {
+      // This code runs on your server before upload
+      const { user } = await validateRequest();
+
+      // If you throw, the user will not be able to upload
+      if (!user) throw new UploadThingError("Unauthorized");
+
+      // Whatever is returned here is accessible in onUploadComplete as `metadata`
+      return { user };
+    })
+    .onUploadComplete(async ({ metadata, file }) => {
+      // delete old avatar image to save space
+      const url = file.url.replace(
+        "/f/",
+        `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/`,
+      );
+      const type = file.type.startsWith("image") ? "IMAGE" : "VIDEO";
+
+      const media = await prisma.media.create({
+        data: {
+          url,
+          type,
+        },
+      });
+
+      // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
+      return { mediaId: media.id };
     }),
 } satisfies FileRouter;
 

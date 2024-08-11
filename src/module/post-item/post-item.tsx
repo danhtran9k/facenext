@@ -9,6 +9,8 @@ import { Linkify } from "@module/linkify";
 import PostMoreButton from "@module/post-more";
 import { TooltipUser } from "@module/tooltip-user";
 
+import { MediaPreviews } from "./post-media-preview";
+
 interface PostProps {
   post: PostWithUser;
 }
@@ -51,6 +53,10 @@ export function PostItem({ post }: PostProps) {
       <div className="whitespace-pre-line break-words">
         <Linkify>{post.content}</Linkify>
       </div>
+
+      {!!post.attachments.length && (
+        <MediaPreviews attachments={post.attachments} />
+      )}
     </article>
   );
 }

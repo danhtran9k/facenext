@@ -37,11 +37,12 @@ model Session {
 }
 
 model Post {
-  id        String   @id @default(cuid())
-  userId    String
-  content   String
-  createdAt DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id          String   @id @default(cuid())
+  userId      String
+  content     String
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  attachments Media[]
 
   @@map("posts")
 }
@@ -55,4 +56,27 @@ model Follow {
 
   @@unique([followerId, followingId])
   @@map("follows")
+}
+
+// media trỏ về UploadThing nên delete ko Cascade để có thể track ngược về cronJob delete sau
+// postId có thể null vì logic cho người dùng upload media tạm nhưng có quyền ko post ngay
+// việc upload tạm giúp giảm thời gian khi post bài vì media đã gửi trước
+
+model Media {
+  id   String    @id @default(cuid())
+  url  String
+  type MediaType
+
+  postId String?
+  post   Post?   @relation(fields: [postId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+
+  @@map("post_media")
+}
+
+// https://github.com/prisma/prisma/issues/273
+enum MediaType {
+  IMAGE @map("IMAGE")
+  VIDEO @map("VIDEO")
 }
