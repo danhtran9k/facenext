@@ -5,6 +5,7 @@ import { PostWithUser } from "@app/api/posts/post.prisma";
 import { formatRelativeDate } from "@core/helper/time.utils";
 
 import { UserAvatar } from "@module/app-global/navbar";
+import { LikeButton } from "@module/like-btn";
 import { Linkify } from "@module/linkify";
 import PostMoreButton from "@module/post-more";
 import { TooltipUser } from "@module/tooltip-user";
@@ -60,6 +61,21 @@ export function PostItem({ post }: PostProps) {
       {!!post.attachments.length && (
         <MediaPreviews attachments={post.attachments} />
       )}
+
+      <hr className="text-muted-foreground" />
+      <LikeButton
+        postId={post.id}
+        initialState={{
+          likes: post._count.likes,
+          // isLikedByUser: post.likes.some(like => like.userId === user.id),
+          // Logic bên trên chuẩn hơn nhưng sẽ phải chuyển thành use-client để lấy user, hoặc truyền post.likes vào LikeButton
+
+          // WARNING-DANGER-TODO: Bản chất ở dây cheat vì be chỉ trả về like chứa chính user đang query
+          // Nếu be có trả list user like thì initial data cũng thay đổi
+          // isLike có thể tính toán ngay trong component
+          isLikedByUser: !!post.likes?.length,
+        }}
+      />
     </article>
   );
 }

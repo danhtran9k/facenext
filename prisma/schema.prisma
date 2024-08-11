@@ -23,6 +23,7 @@ model User {
   sessions     Session[]
   following    Follow[]  @relation("Follower")
   followers    Follow[]  @relation("Following")
+  Like         Like[]
 
   @@map("users")
 }
@@ -43,6 +44,7 @@ model Post {
   createdAt   DateTime @default(now())
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   attachments Media[]
+  likes       Like[]
 
   @@map("posts")
 }
@@ -79,4 +81,17 @@ model Media {
 enum MediaType {
   IMAGE @map("IMAGE")
   VIDEO @map("VIDEO")
+}
+
+// 1 to Big many relation
+// ko gộp vào user được vì quá nhiều
+model Like {
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+  @@map("likes")
 }

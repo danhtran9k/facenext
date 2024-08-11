@@ -27,3 +27,15 @@ export interface UserIdParam {
     userId: string;
   };
 }
+
+export interface PostIdParam {
+  params: {
+    postId: string;
+  };
+}
+
+export interface LikeInfo {
+  likes: number;
+  isLikedByUser: boolean;
+  // có thể mở rộng list user Like nhưng sẽ query nặng hơn
+}

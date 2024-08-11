@@ -11,4 +11,18 @@ export const postDataInclude = (loggedInUserId: string) =>
       select: userDataSelect(loggedInUserId),
     },
     attachments: true,
+    likes: {
+      // Thực chất là trả isLiked cho client
+      where: {
+        userId: loggedInUserId,
+      },
+      select: {
+        userId: true,
+      },
+    },
+    _count: {
+      select: {
+        likes: true,
+      },
+    },
   }) satisfies Prisma.PostInclude;
