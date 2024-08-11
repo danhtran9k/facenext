@@ -1,0 +1,19 @@
+POSTGRES_URL=
+POSTGRES_PRISMA_URL=connect_timeout=
+POSTGRES_URL_NO_SSL=
+POSTGRES_URL_NON_POOLING=
+POSTGRES_USER=
+POSTGRES_HOST=
+POSTGRES_PASSWORD=
+POSTGRES_DATABASE=
+
+# Uploadthing key
+
+# key private ko gắn NEXT*PUBLIC* vào sẽ ko expose cho client
+
+UPLOADTHING_SECRET=
+NEXT_PUBLIC_UPLOADTHING_APP_ID=
+
+# CronJob - secret - just random string to verified
+
+CRON_SECRET=

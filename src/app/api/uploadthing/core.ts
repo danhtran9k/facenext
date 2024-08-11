@@ -5,6 +5,7 @@ import { MAX_UPLOAD_FILE_COUNT } from "@core/app.const";
 
 import { validateRequest } from "../_core/lucia-auth";
 import prisma from "../_core/prisma";
+import { UPLOADTHING_PATH } from "../_core/server.helper";
 
 const f = createUploadthing();
 
@@ -29,17 +30,12 @@ export const ourFileRouter = {
       // delete old avatar image to save space
       const oldAvatarUrl = metadata.user.avatarUrl;
       if (oldAvatarUrl) {
-        const key = oldAvatarUrl.split(
-          `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/`,
-        )[1];
+        const key = oldAvatarUrl.split(UPLOADTHING_PATH)[1];
         await new UTApi().deleteFiles(key);
       }
 
       // This code RUNS ON YOUR SERVER after upload
-      const newAvatarUrl = file.url.replace(
-        "/f/",
-        `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/`,
-      );
+      const newAvatarUrl = file.url.replace("/f/", UPLOADTHING_PATH);
 
       await prisma.user.update({
         where: { id: metadata.user.id },
@@ -69,10 +65,7 @@ export const ourFileRouter = {
     })
     .onUploadComplete(async ({ metadata, file }) => {
       // delete old avatar image to save space
-      const url = file.url.replace(
-        "/f/",
-        `/a/${process.env.NEXT_PUBLIC_UPLOADTHING_APP_ID}/`,
-      );
+      const url = file.url.replace("/f/", UPLOADTHING_PATH);
       const type = file.type.startsWith("image") ? "IMAGE" : "VIDEO";
 
       const media = await prisma.media.create({
