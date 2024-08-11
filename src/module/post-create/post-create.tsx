@@ -1,10 +1,11 @@
 "use client";
 
-import { EditorContent } from "@tiptap/react";
 import { ImageIcon, Loader2 } from "lucide-react";
 
 import { useSubmitPostMutation } from "@app/api/posts/post-create/createPost.mutate";
 import { usePostMediaUpload } from "@app/api/posts/post-media/use-post-media-upload";
+
+import { ACCEPTED_UPLOAD_FILE_TYPES } from "@core/app.const";
 
 import { useSession } from "@module/app-provider";
 import { Button } from "@module/app-shadcn/button";
@@ -14,8 +15,8 @@ import LoadingButton from "@module/app-common/loading-btn";
 
 import { UserAvatar } from "@module/app-global/navbar";
 
+import { EditorWithDragDropUpload } from "./editor-with-dragdrop-upload";
 import { AttachmentPreviews } from "./post-attach-preview";
-import "./styles.css";
 import { usePostEditor } from "./use-post-editor";
 
 export function CreatePostEditor() {
@@ -55,14 +56,14 @@ export function CreatePostEditor() {
     );
   }
 
+  const isBtnPostDisabled = !input.trim() || isUploading;
+  const isBtnAttachmentDisabled = isUploading || attachments.length >= 5;
+
   return (
     <div className="flex flex-col gap-5 rounded-2xl bg-card p-5 shadow-sm">
       <div className="flex gap-5">
         <UserAvatar avatarUrl={user.avatarUrl} className="hidden sm:inline" />
-        <EditorContent
-          editor={editor}
-          className="max-h-[20rem] w-full overflow-y-auto rounded-2xl bg-background px-5 py-3"
-        />
+        <EditorWithDragDropUpload editor={editor} handleUpload={startUpload} />
       </div>
 
       {!!attachments.length && (
@@ -81,9 +82,9 @@ export function CreatePostEditor() {
         )}
         <BtnFileInput
           isMultiple
-          accept="image/*, video/*"
+          accept={ACCEPTED_UPLOAD_FILE_TYPES.POST}
           onSelectedMulti={startUpload}
-          disabled={isUploading || attachments.length >= 5}
+          disabled={isBtnAttachmentDisabled}
           btnCustom={
             <Button
               variant="ghost"
@@ -97,7 +98,7 @@ export function CreatePostEditor() {
 
         <LoadingButton
           onClick={onSubmit}
-          disabled={!input.trim() || isUploading}
+          disabled={isBtnPostDisabled}
           loading={isPending}
           className="min-w-20"
         >

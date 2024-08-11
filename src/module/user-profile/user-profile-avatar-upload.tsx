@@ -4,6 +4,8 @@ import { Camera } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
 import { useRef } from "react";
 
+import { ACCEPTED_UPLOAD_FILE_TYPES } from "@core/app.const";
+
 import { BtnFileInput } from "@module/app-common/btn-file-input";
 
 import { CropImageDialog, useCropImageResize } from "@module/app-vendor";
@@ -36,7 +38,7 @@ export function UserProfileAvatarUpload({ src, setSrc }: AvatarInputProps) {
   return (
     <>
       <BtnFileInput
-        accept="image/*"
+        accept={ACCEPTED_UPLOAD_FILE_TYPES.AVATAR}
         onSelectedSingle={setResizeImage}
         className="group relative block"
       >
