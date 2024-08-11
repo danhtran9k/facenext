@@ -1,7 +1,7 @@
 import { UTApi } from "uploadthing/server";
 
-import prisma from "../_core/prisma";
-import { getUploadthingKey } from "../_core/server.helper";
+import prisma from "@app/api/_core/prisma";
+import { getUploadthingKey } from "@app/api/_core/server.helper";
 
 // Nếu chưa deploy có thể tự dùng Postman gửi kèm token header để manual gọi api ko qua cronjob
 export async function GET(req: Request) {

@@ -81,5 +81,18 @@
         }
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/api/**"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": ["../*"]
+          }
+        ]
+      }
+    }
+  ]
 }

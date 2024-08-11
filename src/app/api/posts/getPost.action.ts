@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { cache } from "react";
 
-import prisma from "../_core/prisma";
+import prisma from "@app/api/_core/prisma";
 
 import { postDataInclude } from "./post.query";
 

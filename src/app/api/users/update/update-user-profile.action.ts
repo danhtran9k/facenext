@@ -2,8 +2,7 @@
 
 import { validateRequest } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
-
-import { userDataSelect } from "../user.query";
+import { userDataSelect } from "@app/api/users/user.query";
 
 import {
   updateUserProfileSchema,
