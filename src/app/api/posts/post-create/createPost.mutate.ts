@@ -7,8 +7,8 @@ import {
 
 import { PostCursor, PostsPage } from "@app/api/posts/post.prisma";
 
-import { useSession } from "@module/app-provider";
-import { useToast } from "@module/app-shadcn/use-toast";
+import { useSession } from "@core/app-provider";
+import { useToast } from "@core/app-shadcn/use-toast";
 
 import { submitPost } from "./create-post.action";
 

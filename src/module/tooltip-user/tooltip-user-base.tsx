@@ -7,7 +7,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@module/app-shadcn/tooltip";
+} from "@core/app-shadcn/tooltip";
 
 import { TooltipUserContent } from "./tooltip-user-content";
 

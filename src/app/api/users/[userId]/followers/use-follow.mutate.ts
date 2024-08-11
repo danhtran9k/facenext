@@ -3,7 +3,7 @@ import { QueryKey, useMutation, useQueryClient } from "@tanstack/react-query";
 import kyInstance from "@app/api/_core/ky";
 import { FollowerInfo } from "@app/api/posts/post.prisma";
 
-import { useToast } from "@module/app-shadcn/use-toast";
+import { useToast } from "@core/app-shadcn/use-toast";
 
 const mutateFollow = (isFollowedByUser: boolean, userId: string) => () => {
   return isFollowedByUser

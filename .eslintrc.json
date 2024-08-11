@@ -15,7 +15,7 @@
           {
             "group": [
               "@module/*/**",
-              "!@module/app-shadcn/*",
+              "!@core/app-shadcn/*",
               "!@module/app-common/*",
               "!@module/app-form/*",
               "!@module/app-global/*"
@@ -53,7 +53,7 @@
             "position": "after"
           },
           {
-            "pattern": "{@module/app-provider/**,@module/app-provider,@module/app-shadcn/**}",
+            "pattern": "{@module/app-provider/**,@module/app-provider,@core/app-shadcn/**}",
             "group": "internal",
             "position": "after"
           },

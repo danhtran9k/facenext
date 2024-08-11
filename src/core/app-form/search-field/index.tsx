@@ -3,7 +3,7 @@
 import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-import { Input } from "@module/app-shadcn/input";
+import { Input } from "@core/app-shadcn/input";
 
 export default function SearchField() {
   const router = useRouter();

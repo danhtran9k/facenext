@@ -4,10 +4,10 @@ import localFont from "next/font/local";
 import { extractRouterConfig } from "uploadthing/server";
 import "./globals.css";
 
+import { ReactQueryProvider, ThemeProvider } from "@core/app-provider";
+import { Toaster } from "@core/app-shadcn/toaster";
 import { TPureLayout } from "@core/types/common.props";
 
-import { ReactQueryProvider, ThemeProvider } from "@module/app-provider";
-import { Toaster } from "@module/app-shadcn/toaster";
 
 import { ourFileRouter } from "./api/uploadthing/core";
 

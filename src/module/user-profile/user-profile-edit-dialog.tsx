@@ -19,7 +19,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@module/app-shadcn/dialog";
+} from "@core/app-shadcn/dialog";
 import {
   Form,
   FormControl,
@@ -27,10 +27,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@module/app-shadcn/form";
-import { Input } from "@module/app-shadcn/input";
-import { Label } from "@module/app-shadcn/label";
-import { Textarea } from "@module/app-shadcn/textarea";
+} from "@core/app-shadcn/form";
+import { Input } from "@core/app-shadcn/input";
+import { Label } from "@core/app-shadcn/label";
+import { Textarea } from "@core/app-shadcn/textarea";
 
 import LoadingButton from "@module/app-common/loading-btn";
 

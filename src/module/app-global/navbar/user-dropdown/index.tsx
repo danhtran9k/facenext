@@ -4,9 +4,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { LogOutIcon, UserIcon } from "lucide-react";
 import Link from "next/link";
 
-import { cn } from "@core/utils";
-
-import { useSession } from "@module/app-provider";
+import { useSession } from "@core/app-provider";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +12,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@module/app-shadcn/dropdown-menu";
+} from "@core/app-shadcn/dropdown-menu";
+import { cn } from "@core/utils";
+
 
 import { logout } from "@module/sign-out";
 

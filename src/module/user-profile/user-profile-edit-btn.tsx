@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { UserData } from "@app/api/users/user.query";
 
-import { Button } from "@module/app-shadcn/button";
+import { Button } from "@core/app-shadcn/button";
 
 import { UserProfileEditDialog } from "./user-profile-edit-dialog";
 

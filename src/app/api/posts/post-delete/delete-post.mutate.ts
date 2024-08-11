@@ -8,7 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { PostCursor, PostsPage } from "@app/api/posts/post.prisma";
 
-import { useToast } from "@module/app-shadcn/use-toast";
+import { useToast } from "@core/app-shadcn/use-toast";
 
 import { deletePost } from "./delete-post.action";
 

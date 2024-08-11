@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import SearchField from "@module/app-form/search-field";
+import SearchField from "@core/app-form/search-field";
 
 import { UserDropdown } from "../user-dropdown";
 

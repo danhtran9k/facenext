@@ -5,14 +5,14 @@ import { useState } from "react";
 
 import { PostWithUser } from "@app/api/posts/post.prisma";
 
-import { useSession } from "@module/app-provider";
-import { Button } from "@module/app-shadcn/button";
+import { useSession } from "@core/app-provider";
+import { Button } from "@core/app-shadcn/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@module/app-shadcn/dropdown-menu";
+} from "@core/app-shadcn/dropdown-menu";
 
 import { DeletePostDialog } from "@module/post-delete";
 

@@ -1,8 +1,8 @@
 import { useState } from "react";
 
+import { useToast } from "@core/app-shadcn/use-toast";
 import { splitFilename } from "@core/helper/filename.utils";
 
-import { useToast } from "@module/app-shadcn/use-toast";
 
 import { useUploadThing } from "@module/app-common/uploadthing.ts";
 

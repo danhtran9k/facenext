@@ -1,4 +1,4 @@
-import { Skeleton } from "@module/app-shadcn/skeleton";
+import { Skeleton } from "@core/app-shadcn/skeleton";
 
 export function PostsLoadingSkeleton() {
   return (

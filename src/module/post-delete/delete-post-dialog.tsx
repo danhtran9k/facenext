@@ -1,7 +1,7 @@
 import { useDeletePostMutation } from "@app/api/posts/post-delete/delete-post.mutate";
 import { PostWithUser } from "@app/api/posts/post.prisma";
 
-import { Button } from "@module/app-shadcn/button";
+import { Button } from "@core/app-shadcn/button";
 import {
   Dialog,
   DialogContent,
@@ -9,7 +9,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@module/app-shadcn/dialog";
+} from "@core/app-shadcn/dialog";
 
 import LoadingButton from "@module/app-common/loading-btn";
 

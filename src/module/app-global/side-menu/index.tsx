@@ -1,8 +1,8 @@
 import Link from "next/link";
 
+import { Button } from "@core/app-shadcn/button";
 import { cn } from "@core/utils";
 
-import { Button } from "@module/app-shadcn/button";
 
 import { SideMenuItem } from "./side-menu-item";
 

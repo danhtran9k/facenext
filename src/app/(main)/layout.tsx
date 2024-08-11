@@ -2,9 +2,9 @@ import { redirect } from "next/navigation";
 
 import { validateRequest } from "@app/api/_core/lucia-auth";
 
+import { SessionProvider } from "@core/app-provider";
 import { TPureLayout } from "@core/types/common.props";
 
-import { SessionProvider } from "@module/app-provider";
 
 import { BottomMenu } from "@module/app-global/bottom-menu";
 import { Navbar } from "@module/app-global/navbar";

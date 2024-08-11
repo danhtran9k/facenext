@@ -7,8 +7,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@module/app-shadcn/form";
-import { Input } from "@module/app-shadcn/input";
+} from "@core/app-shadcn/form";
+import { Input } from "@core/app-shadcn/input";
 
 import LoadingButton from "@module/app-common/loading-btn";
 import { PasswordInput } from "@module/app-common/password-input";

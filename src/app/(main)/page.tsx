@@ -3,7 +3,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@module/app-shadcn/tabs";
+} from "@core/app-shadcn/tabs";
 
 import { TrendsSidebar } from "@module/app-global/trend-sidebar";
 import { FeedFollowing } from "@module/feed-following";

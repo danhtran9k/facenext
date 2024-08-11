@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FollowerInfo } from "@app/api/posts/post.prisma";
 import { UserData } from "@app/api/users/user.query";
 
-import { useSession } from "@module/app-provider";
+import { useSession } from "@core/app-provider";
 
 import { UserAvatar } from "@module/app-global/navbar";
 import { FollowButton } from "@module/follow-btn";
