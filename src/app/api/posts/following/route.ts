@@ -1,23 +1,27 @@
 import { NextRequest } from "next/server";
 
+import {
+  DEFAULT_PAGE_LIMIT,
+  INTERNAL_ERROR,
+  UNAUTHORIZED_ERROR,
+} from "@app/api/_core/api.common";
 import { validateRequest } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
 import { PostsPage } from "@app/api/posts/post.prisma";
 import { postDataInclude } from "@app/api/posts/post.query";
 
-const DEFAULT_LIMIT = 10;
 export async function GET(req: NextRequest) {
   try {
     const { user } = await validateRequest();
 
     if (!user) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
+      return UNAUTHORIZED_ERROR;
     }
 
     // https://nextjs.org/docs/app/api-reference/functions/next-request#nexturl
     const cursor = req.nextUrl.searchParams.get("cursor") || undefined;
     const pageSize =
-      Number(req.nextUrl.searchParams.get("limit")) || DEFAULT_LIMIT;
+      Number(req.nextUrl.searchParams.get("limit")) || DEFAULT_PAGE_LIMIT;
 
     // n+1 problem ??
     const posts = await prisma.post.findMany({
@@ -49,6 +53,6 @@ export async function GET(req: NextRequest) {
     return Response.json(data);
   } catch (error) {
     console.error(error);
-    return Response.json({ error: "Internal server error" }, { status: 500 });
+    return INTERNAL_ERROR;
   }
 }

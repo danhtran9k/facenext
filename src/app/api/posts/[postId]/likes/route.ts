@@ -1,3 +1,4 @@
+import { INTERNAL_ERROR, UNAUTHORIZED_ERROR } from "@app/api/_core/api.common";
 import { validateRequest } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
 import { LikeInfo, PostIdParam } from "@app/api/posts/post.prisma";
@@ -7,7 +8,7 @@ export async function GET(_: Request, { params: { postId } }: PostIdParam) {
     const { user: loggedInUser } = await validateRequest();
 
     if (!loggedInUser) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
+      return UNAUTHORIZED_ERROR;
     }
 
     // Dùng findUnique ko dùng findFirst vì id là unique constraint
@@ -42,7 +43,7 @@ export async function GET(_: Request, { params: { postId } }: PostIdParam) {
     return Response.json(data);
   } catch (error) {
     console.error(error);
-    return Response.json({ error: "Internal server error" }, { status: 500 });
+    return INTERNAL_ERROR;
   }
 }
 
@@ -51,7 +52,7 @@ export async function POST(_: Request, { params: { postId } }: PostIdParam) {
     const { user: loggedInUser } = await validateRequest();
 
     if (!loggedInUser) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
+      return UNAUTHORIZED_ERROR;
     }
 
     await prisma.like.upsert({
@@ -71,7 +72,7 @@ export async function POST(_: Request, { params: { postId } }: PostIdParam) {
     return new Response();
   } catch (error) {
     console.error(error);
-    return Response.json({ error: "Internal server error" }, { status: 500 });
+    return INTERNAL_ERROR;
   }
 }
 
@@ -80,7 +81,7 @@ export async function DELETE(_: Request, { params: { postId } }: PostIdParam) {
     const { user: loggedInUser } = await validateRequest();
 
     if (!loggedInUser) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
+      return UNAUTHORIZED_ERROR;
     }
 
     await prisma.like.deleteMany({
@@ -93,6 +94,6 @@ export async function DELETE(_: Request, { params: { postId } }: PostIdParam) {
     return new Response();
   } catch (error) {
     console.error(error);
-    return Response.json({ error: "Internal server error" }, { status: 500 });
+    return INTERNAL_ERROR;
   }
 }

@@ -1,5 +1,6 @@
 import { UTApi } from "uploadthing/server";
 
+import { INTERNAL_ERROR } from "@app/api/_core/api.common";
 import prisma from "@app/api/_core/prisma";
 import { getUploadthingKey } from "@app/api/_core/server.helper";
 
@@ -49,6 +50,6 @@ export async function GET(req: Request) {
     return new Response();
   } catch (error) {
     console.error(error);
-    return Response.json({ error: "Internal server error" }, { status: 500 });
+    return INTERNAL_ERROR;
   }
 }

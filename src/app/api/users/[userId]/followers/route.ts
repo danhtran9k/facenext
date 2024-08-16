@@ -1,3 +1,4 @@
+import { INTERNAL_ERROR, UNAUTHORIZED_ERROR } from "@app/api/_core/api.common";
 import { validateRequest } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
 import { FollowerInfo, UserIdParam } from "@app/api/posts/post.prisma";
@@ -11,7 +12,7 @@ export async function GET(_: Request, { params: { userId } }: UserIdParam) {
     // và chỉ show số followers của user đó mà ko show detail là ai
     // Ý tưởng hơi trật khớp 1 tí, đúng ra phải có concept private / public
     if (!loggedInUser) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
+      return UNAUTHORIZED_ERROR;
     }
 
     const user = await prisma.user.findUnique({
@@ -45,7 +46,7 @@ export async function GET(_: Request, { params: { userId } }: UserIdParam) {
     return Response.json(data);
   } catch (error) {
     console.error(error);
-    return Response.json({ error: "Internal server error" }, { status: 500 });
+    return INTERNAL_ERROR;
   }
 }
 
@@ -56,7 +57,7 @@ export async function POST(_: Request, { params: { userId } }: UserIdParam) {
     const { user: loggedInUser } = await validateRequest();
 
     if (!loggedInUser) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
+      return UNAUTHORIZED_ERROR;
     }
 
     const follow = {
@@ -79,7 +80,7 @@ export async function POST(_: Request, { params: { userId } }: UserIdParam) {
     return new Response();
   } catch (error) {
     console.error(error);
-    return Response.json({ error: "Internal server error" }, { status: 500 });
+    return INTERNAL_ERROR;
   }
 }
 
@@ -88,7 +89,7 @@ export async function DELETE(_: Request, { params: { userId } }: UserIdParam) {
     const { user: loggedInUser } = await validateRequest();
 
     if (!loggedInUser) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
+      return UNAUTHORIZED_ERROR;
     }
 
     const follow = {
@@ -104,6 +105,6 @@ export async function DELETE(_: Request, { params: { userId } }: UserIdParam) {
     return new Response();
   } catch (error) {
     console.error(error);
-    return Response.json({ error: "Internal server error" }, { status: 500 });
+    return INTERNAL_ERROR;
   }
 }
