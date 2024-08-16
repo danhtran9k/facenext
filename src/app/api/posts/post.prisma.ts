@@ -39,3 +39,7 @@ export interface LikeInfo {
   isLikedByUser: boolean;
   // có thể mở rộng list user Like nhưng sẽ query nặng hơn
 }
+
+export interface BookmarkInfo {
+  isBookmarkedByUser: boolean;
+}
