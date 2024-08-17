@@ -24,6 +24,7 @@ export async function GET(req: NextRequest) {
       include: {
         post: {
           // chỗ này lại include bookmark ngược ko hay
+          // Tuy nhiên vì feed data lại vào post-item nên vẫn cần
           include: postDataInclude(user.id),
         },
       },
