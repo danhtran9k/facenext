@@ -28,9 +28,12 @@ export const postDataInclude = (loggedInUserId: string) =>
         userId: true,
       },
     },
+    // ko select comment nhưng vẫn count được
+    // -> ORM xử lý ngầm
     _count: {
       select: {
         likes: true,
+        comments: true,
       },
     },
   }) satisfies Prisma.PostInclude;
