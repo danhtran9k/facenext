@@ -18,6 +18,7 @@ export const useBookmarkInfinity = () => {
     queryFn: queryFn,
     initialPageParam: null as string | null,
     getNextPageParam: lastPage => lastPage.nextCursor,
+    staleTime: 1000,
   });
 
   return query;

@@ -41,7 +41,7 @@ export function PostItem({ post }: PostProps) {
               className="block text-sm text-muted-foreground hover:underline"
               // do hàm tính toán Data sẽ khiến createdAt cache
               // Tạm sẽ test ko dùng xem có lỗi ko
-              // suppressHydrationWarning
+              suppressHydrationWarning
             >
               {formatRelativeDate(post.createdAt)}
             </Link>

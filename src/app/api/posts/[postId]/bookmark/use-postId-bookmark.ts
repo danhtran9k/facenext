@@ -8,14 +8,20 @@ export const postIdBookmarkQueryKey = (postId: string): QueryKey => [
   postId,
 ];
 
+const queryPostIdBookmarkFn = (postId: string) => () =>
+  kyInstance.get(`/api/posts/${postId}/bookmark`).json<BookmarkInfo>();
+
+// feedInitialData và staleTime: Infinity
+// data thì modified bằng setQueryData => gần như api ko dùng
+// => thực tế initial có thể tìm qua post-item sẵn, logic chỗ này ko hay
+// be cũng phải cấp 1 api GET endpoint vô nghĩa (vì thực chất là query post rồi mod lại data)
 export const usePostIdBookmark = (
   postId: string,
   initialState: BookmarkInfo,
 ) => {
   const query = useQuery({
     queryKey: postIdBookmarkQueryKey(postId),
-    queryFn: () =>
-      kyInstance.get(`/api/posts/${postId}/bookmark`).json<BookmarkInfo>(),
+    queryFn: queryPostIdBookmarkFn(postId),
     initialData: initialState,
     staleTime: Infinity,
   });

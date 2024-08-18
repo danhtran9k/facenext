@@ -28,7 +28,8 @@ export const usePostIdBookmarkMutate = (
 
       const previousState = queryClient.getQueryData<BookmarkInfo>(queryKey);
 
-      // Chỗ này cũng phải dùng predicate giống create-post mới đúng
+      // ko cần predicate vì trên trang Bookmark sẽ giữ post đó,
+      // còn navigate vào page thì staletime default sẽ là 0 hoặc 1s -> check R-Q provider note
       queryClient.setQueryData<BookmarkInfo>(queryKey, () => ({
         isBookmarkedByUser: !previousState?.isBookmarkedByUser,
       }));

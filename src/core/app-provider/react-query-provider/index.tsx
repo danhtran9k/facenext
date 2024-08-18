@@ -13,6 +13,7 @@ export function ReactQueryProvider({
   const [queryClient] = useState(
     () =>
       new QueryClient({
+        // Vấn đề với bookmarks infinite - ko re-fetch lại liền
         defaultOptions: {
           queries: {
             // With SSR, we usually want to set some default staleTime
