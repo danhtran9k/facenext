@@ -1,4 +1,5 @@
 import { Prisma } from "@prisma/client";
+import { InfiniteData } from "@tanstack/react-query";
 import { z } from "zod";
 
 import { getCommentDataInclude } from "@app/api/posts/[postId]/comment/comment.query";
@@ -19,3 +20,5 @@ export interface CommentsPage {
 export const createCommentSchema = z.object({
   content: requiredString,
 });
+
+export type InfinityComment = InfiniteData<CommentsPage, CommentCursor>;

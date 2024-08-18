@@ -1,8 +1,9 @@
 "use client";
 
-import { Loader2 } from "lucide-react";
+import { Loader2, SendHorizonal } from "lucide-react";
 import { useState } from "react";
 
+import { useCreatePostComment } from "@app/api/posts/[postId]/comment/use-create-comment.hook";
 import { PostWithUser } from "@app/api/posts/post.prisma";
 
 import { Button } from "@core/app-shadcn/button";
@@ -15,10 +16,22 @@ interface CommentInputProps {
 export function PostCommentInput({ post }: CommentInputProps) {
   const [input, setInput] = useState("");
 
+  const { mutate, isPending } = useCreatePostComment(post.id);
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
 
     if (!input) return;
+
+    mutate(
+      {
+        post,
+        content: input,
+      },
+      {
+        onSuccess: () => setInput(""),
+      },
+    );
   }
 
   return (
@@ -29,8 +42,13 @@ export function PostCommentInput({ post }: CommentInputProps) {
         onChange={e => setInput(e.target.value)}
         autoFocus
       />
-      <Button type="submit" variant="ghost" size="icon">
-        <Loader2 className="animate-spin" />
+      <Button
+        type="submit"
+        variant="ghost"
+        size="icon"
+        disabled={!input.trim() || isPending}
+      >
+        {!isPending ? <SendHorizonal /> : <Loader2 className="animate-spin" />}
       </Button>
     </form>
   );
