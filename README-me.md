@@ -83,3 +83,14 @@ npx prisma db push
 npm i -D --legacy-peer-deps eslint-plugin-import
 
 ```
+
+TODO:
+Đang có vấn đề với logic mention
+-> mention xem như là text -> vậy khi user-update rename thì text cũ ko update
+=> sẽ gọi fail user-info
+
+Logic bookmark và infinity bookmark cũng ko khớp nhau
+Nếu cố gắng setQueriesData thì dễ dup data do BE paginate, vì ko biết data mới sẽ push ntn
+(đẹp nhất là sort theo ngày bookmark, tuy nhiên logic thực tế có thể lại sort theo post bt)
+=> ko biết chắc và khả năng phải data lớn mới test hết case được
+=> tạm skip vì mất quá nhiều thời gian vào logic business ko cần thiết lúc này

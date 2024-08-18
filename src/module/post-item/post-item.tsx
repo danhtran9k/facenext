@@ -82,7 +82,7 @@ export function PostItem({ post }: PostProps) {
           postId={post.id}
           // tương tự như LikeButton, be chỉ trả về bookmark của user đang query
           initialState={{
-            isBookmarkedByUser: !!post.bookmark.length,
+            isBookmarkedByUser: !!post.bookmarks.length,
           }}
         />
       </div>

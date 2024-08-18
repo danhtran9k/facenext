@@ -20,7 +20,7 @@ export const postDataInclude = (loggedInUserId: string) =>
         userId: true,
       },
     },
-    bookmark: {
+    bookmarks: {
       where: {
         userId: loggedInUserId,
       },

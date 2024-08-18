@@ -46,7 +46,7 @@ model Post {
   user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   attachments Media[]
   likes       Like[]
-  bookmark    Bookmark[]
+  bookmarks   Bookmark[]
 
   @@map("posts")
 }

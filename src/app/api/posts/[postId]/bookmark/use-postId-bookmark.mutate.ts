@@ -28,6 +28,7 @@ export const usePostIdBookmarkMutate = (
 
       const previousState = queryClient.getQueryData<BookmarkInfo>(queryKey);
 
+      // Chỗ này cũng phải dùng predicate giống create-post mới đúng
       queryClient.setQueryData<BookmarkInfo>(queryKey, () => ({
         isBookmarkedByUser: !previousState?.isBookmarkedByUser,
       }));
