@@ -3,6 +3,7 @@ import { CommentData } from "@app/api/posts/[postId]/comment/comment.dto";
 import { formatRelativeDate } from "@core/helper/time.utils";
 
 import { UserAvatar } from "@module/app-global/navbar";
+import { CommentMoreButton } from "@module/post-comment";
 import { TooltipUser } from "@module/tooltip-user";
 
 interface CommentProps {
@@ -25,12 +26,18 @@ export function PostCommentItem({ comment }: CommentProps) {
           >
             {comment.user.displayName}
           </TooltipUser>
-          <span className="text-muted-foreground">
+          <span className="text-muted-foreground" suppressHydrationWarning>
             {formatRelativeDate(comment.createdAt)}
           </span>
         </div>
         <div>{comment.content}</div>
       </div>
+      <CommentMoreButton
+        comment={comment}
+        className="ms-auto opacity-0 transition-opacity group-hover/comment:opacity-100"
+        // logic check logic comment thuộc user hay ko nhét vào trong component
+        // trade-off, ko clear ở ui ngoài nhưng bù lại giới hạn tầm 'use client'
+      />
     </div>
   );
 }
