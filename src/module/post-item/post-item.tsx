@@ -5,6 +5,7 @@ import { PostWithUser } from "@app/api/posts/post.prisma";
 import { formatRelativeDate } from "@core/helper/time.utils";
 
 import { UserAvatar } from "@module/app-global/navbar";
+import { BookmarkButton } from "@module/bookmark-btn";
 import { LikeButton } from "@module/like-btn";
 import { Linkify } from "@module/linkify";
 import PostMoreButton from "@module/post-more";
@@ -40,7 +41,7 @@ export function PostItem({ post }: PostProps) {
               className="block text-sm text-muted-foreground hover:underline"
               // do hàm tính toán Data sẽ khiến createdAt cache
               // Tạm sẽ test ko dùng xem có lỗi ko
-              // suppressHydrationWarning
+              suppressHydrationWarning
             >
               {formatRelativeDate(post.createdAt)}
             </Link>
@@ -63,19 +64,28 @@ export function PostItem({ post }: PostProps) {
       )}
 
       <hr className="text-muted-foreground" />
-      <LikeButton
-        postId={post.id}
-        initialState={{
-          likes: post._count.likes,
-          // isLikedByUser: post.likes.some(like => like.userId === user.id),
-          // Logic bên trên chuẩn hơn nhưng sẽ phải chuyển thành use-client để lấy user, hoặc truyền post.likes vào LikeButton
+      <div className="gap- flex justify-between">
+        <LikeButton
+          postId={post.id}
+          initialState={{
+            likes: post._count.likes,
+            // isLikedByUser: post.likes.some(like => like.userId === user.id),
+            // Logic bên trên chuẩn hơn nhưng sẽ phải chuyển thành use-client để lấy user, hoặc truyền post.likes vào LikeButton
 
-          // WARNING-DANGER-TODO: Bản chất ở dây cheat vì be chỉ trả về like chứa chính user đang query
-          // Nếu be có trả list user like thì initial data cũng thay đổi
-          // isLike có thể tính toán ngay trong component
-          isLikedByUser: !!post.likes?.length,
-        }}
-      />
+            // WARNING-DANGER-TODO: Bản chất ở dây cheat vì be chỉ trả về like chứa chính user đang query
+            // Nếu be có trả list user like thì initial data cũng thay đổi
+            // isLike có thể tính toán ngay trong component
+            isLikedByUser: !!post.likes?.length,
+          }}
+        />
+        <BookmarkButton
+          postId={post.id}
+          // tương tự như LikeButton, be chỉ trả về bookmark của user đang query
+          initialState={{
+            isBookmarkedByUser: !!post.bookmarks.length,
+          }}
+        />
+      </div>
     </article>
   );
 }
