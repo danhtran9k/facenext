@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 import { PostWithUser } from "@app/api/posts/post.prisma";
 
@@ -8,6 +11,7 @@ import { UserAvatar } from "@module/app-global/navbar";
 import { BookmarkButton } from "@module/bookmark-btn";
 import { LikeButton } from "@module/like-btn";
 import { Linkify } from "@module/linkify";
+import { PostCommentShowBtn, PostComment } from "@module/post-comment";
 import PostMoreButton from "@module/post-more";
 import { TooltipUser } from "@module/tooltip-user";
 
@@ -20,6 +24,8 @@ interface PostProps {
 export function PostItem({ post }: PostProps) {
   // Bọc Linkify vào post content khá căng, mọi post sẽ tự fetch lại user, hover vào thì sẽ có popup profile, trong popup profile lại có thể hover vào mention trong profile -> ??
   // Hoặc có thể xử lý Linkify này chỉ có 1 tầng popup, không cho popup lồng vào popup -> cần modifiy code Linkify
+  const [showComments, setShowComments] = useState(false);
+
   return (
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm">
       <div className="flex justify-between gap-3">
@@ -65,19 +71,25 @@ export function PostItem({ post }: PostProps) {
 
       <hr className="text-muted-foreground" />
       <div className="gap- flex justify-between">
-        <LikeButton
-          postId={post.id}
-          initialState={{
-            likes: post._count.likes,
-            // isLikedByUser: post.likes.some(like => like.userId === user.id),
-            // Logic bên trên chuẩn hơn nhưng sẽ phải chuyển thành use-client để lấy user, hoặc truyền post.likes vào LikeButton
+        <div className="flex items-center gap-5">
+          <LikeButton
+            postId={post.id}
+            initialState={{
+              likes: post._count.likes,
+              // isLikedByUser: post.likes.some(like => like.userId === user.id),
+              // Logic bên trên chuẩn hơn nhưng sẽ phải chuyển thành use-client để lấy user, hoặc truyền post.likes vào LikeButton
 
-            // WARNING-DANGER-TODO: Bản chất ở dây cheat vì be chỉ trả về like chứa chính user đang query
-            // Nếu be có trả list user like thì initial data cũng thay đổi
-            // isLike có thể tính toán ngay trong component
-            isLikedByUser: !!post.likes?.length,
-          }}
-        />
+              // WARNING-DANGER-TODO: Bản chất ở dây cheat vì be chỉ trả về like chứa chính user đang query
+              // Nếu be có trả list user like thì initial data cũng thay đổi
+              // isLike có thể tính toán ngay trong component
+              isLikedByUser: !!post.likes?.length,
+            }}
+          />
+          <PostCommentShowBtn
+            post={post}
+            onClick={() => setShowComments(!showComments)}
+          />
+        </div>
         <BookmarkButton
           postId={post.id}
           // tương tự như LikeButton, be chỉ trả về bookmark của user đang query
@@ -86,6 +98,7 @@ export function PostItem({ post }: PostProps) {
           }}
         />
       </div>
+      {showComments && <PostComment post={post} />}
     </article>
   );
 }
