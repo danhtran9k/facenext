@@ -1,21 +1,20 @@
 import {
-  InfiniteData,
   QueryFilters,
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 
-import { PostCursor, PostsPage } from "@app/api/posts/post.prisma";
+import { InfinityPost } from "@app/api/posts/post.prisma";
 
 import { useToast } from "@core/app-shadcn/use-toast";
 
 import { deletePost } from "./delete-post.action";
 
 function updateQueriesDataAfterDelete(
-  oldData: InfiniteData<PostsPage, PostCursor> | undefined,
+  oldData: InfinityPost | undefined,
   deletedPostId: string,
-): InfiniteData<PostsPage, PostCursor> | undefined {
+): InfinityPost | undefined {
   if (!oldData) return oldData;
 
   return {
@@ -53,9 +52,8 @@ export function useDeletePostMutation() {
 
       await queryClient.cancelQueries(queryFilter);
 
-      queryClient.setQueriesData<InfiniteData<PostsPage, PostCursor>>(
-        queryFilter,
-        oldData => updateQueriesDataAfterDelete(oldData, deletedPost.id),
+      queryClient.setQueriesData<InfinityPost>(queryFilter, oldData =>
+        updateQueriesDataAfterDelete(oldData, deletedPost.id),
       );
 
       // ko có post thì ko thể delete được

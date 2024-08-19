@@ -1,12 +1,11 @@
 import {
-  InfiniteData,
   QueryFilters,
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
-import { PostCursor, PostsPage } from "@app/api/posts/post.prisma";
+import { InfinityPost } from "@app/api/posts/post.prisma";
 
 import { useToast } from "@core/app-shadcn/use-toast";
 
@@ -34,7 +33,7 @@ type TUseMutateFn = ReturnType<typeof useMutateFn>;
 type TUseMutateFnResult = Awaited<ReturnType<TUseMutateFn>>;
 
 const updatePostAfterProfileUpdate = (
-  oldData: InfiniteData<PostsPage, PostCursor> | undefined,
+  oldData: InfinityPost | undefined,
   updatedUser: any,
   newAvatarUrl: string | undefined,
 ) => {
@@ -81,10 +80,8 @@ const useOnSuccess = () => {
 
     await queryClient.cancelQueries(queryFilter);
 
-    queryClient.setQueriesData<InfiniteData<PostsPage, PostCursor>>(
-      queryFilter,
-      oldData =>
-        updatePostAfterProfileUpdate(oldData, updatedUser, newAvatarUrl),
+    queryClient.setQueriesData<InfinityPost>(queryFilter, oldData =>
+      updatePostAfterProfileUpdate(oldData, updatedUser, newAvatarUrl),
     );
 
     // Vì có nhiều part của page là server component nên phải soft-refresh lại

@@ -1,11 +1,10 @@
 import {
-  InfiniteData,
   QueryFilters,
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
 
-import { PostCursor, PostsPage } from "@app/api/posts/post.prisma";
+import { InfinityPost } from "@app/api/posts/post.prisma";
 
 import { useSession } from "@core/app-provider";
 import { useToast } from "@core/app-shadcn/use-toast";
@@ -51,25 +50,22 @@ export function useSubmitPostMutation() {
       // modified post data cache của user profile,
       // vì react query share giữa các tab với nhau
       // Logic delete post sẽ tương tự
-      queryClient.setQueriesData<InfiniteData<PostsPage, PostCursor>>(
-        queryFilter,
-        oldData => {
-          // [[page1], [page2], ... [pageN]]
-          const firstPage = oldData?.pages[0];
+      queryClient.setQueriesData<InfinityPost>(queryFilter, oldData => {
+        // [[page1], [page2], ... [pageN]]
+        const firstPage = oldData?.pages[0];
 
-          if (firstPage) {
-            const newFistPage = {
-              posts: [newPost, ...firstPage.posts],
-              nextCursor: firstPage.nextCursor,
-            };
+        if (firstPage) {
+          const newFistPage = {
+            posts: [newPost, ...firstPage.posts],
+            nextCursor: firstPage.nextCursor,
+          };
 
-            return {
-              pageParams: oldData.pageParams,
-              pages: [newFistPage, ...oldData.pages.slice(1)],
-            };
-          }
-        },
-      );
+          return {
+            pageParams: oldData.pageParams,
+            pages: [newFistPage, ...oldData.pages.slice(1)],
+          };
+        }
+      });
 
       // Edge case khi user thao tác tạo post quá nhanh,
       // 1st page chưa kịp load đã bị cancel query ở trên
