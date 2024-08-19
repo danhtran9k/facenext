@@ -5,6 +5,8 @@ import {
   TSubmitComment,
 } from "@app/api/posts/[postId]/comment/comment-create.action";
 import { InfinityComment } from "@app/api/posts/[postId]/comment/comment.dto";
+import { setCommentCount } from "@app/api/posts/[postId]/comment/set-comment-count.helper";
+import { InfinityPost } from "@app/api/posts/post.prisma";
 
 import { useToast } from "@core/app-shadcn/use-toast";
 
@@ -43,6 +45,14 @@ export const useCreatePostComment = (postId: string) => {
         setQueryData(oldData, newComment),
       );
 
+      queryClient.setQueriesData<InfinityPost>(
+        // vì comment có thể vào bất kì post-feed nào
+        // -> ko predicate như create với delete post
+        { queryKey: ["post-feed"] },
+        oldData => setCommentCount(oldData, postId, +1),
+      );
+
+      // Nếu comment đang empty thì invalidate query để fetch lại
       queryClient.invalidateQueries({
         queryKey,
         predicate(query) {

@@ -10,6 +10,6 @@ export const UNAUTHORIZED_ERROR = Response.json(
   { status: 401 },
 );
 
-export const DEFAULT_PAGE_LIMIT = 10;
+export const DEFAULT_PAGE_LIMIT = 4;
 
 export type TFetchFeed = { pageParam: PostCursor };

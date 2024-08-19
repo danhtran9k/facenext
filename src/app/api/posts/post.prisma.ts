@@ -1,4 +1,5 @@
 import { Prisma } from "@prisma/client";
+import { InfiniteData } from "@tanstack/react-query";
 
 import { postDataInclude } from "./post.query";
 
@@ -11,6 +12,7 @@ export type PostWithUser = Prisma.PostGetPayload<{
 }>;
 
 export type PostCursor = string | null;
+export type InfinityPost = InfiniteData<PostsPage, PostCursor>;
 
 export interface PostsPage {
   posts: PostWithUser[];

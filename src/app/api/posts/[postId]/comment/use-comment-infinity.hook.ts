@@ -27,6 +27,8 @@ export const usePostCommentInfinity = <TData = InfinityComment | undefined>(
     initialPageParam: null as CommentCursor,
     getNextPageParam: firstPage => firstPage.previousCursor,
     select: data => {
+      // https://tanstack.com/query/latest/docs/framework/react/guides/migrating-to-react-query-3#useinfinitequery-is-now-bi-directional
+      // https://tanstack.com/query/latest/docs/framework/react/guides/infinite-queries#what-if-i-want-to-show-the-pages-in-reversed-order
       const comment = {
         pages: [...data.pages].reverse(),
         pageParams: [...data.pageParams].reverse(),

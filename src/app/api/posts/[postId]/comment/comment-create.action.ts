@@ -7,6 +7,8 @@ import { createCommentSchema } from "@app/api/posts/[postId]/comment/comment.dto
 import { getCommentDataInclude } from "@app/api/posts/[postId]/comment/comment.query";
 import { PostWithUser } from "@app/api/posts/post.prisma";
 
+// TODO Truyền cả post vào để bắn noti
+// Thật ra be có thể tự query post ở đây sẽ đúng đắn hơn
 export async function submitComment({
   post,
   content,

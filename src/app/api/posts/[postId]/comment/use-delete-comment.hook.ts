@@ -2,6 +2,8 @@ import { QueryKey, useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { deleteComment } from "@app/api/posts/[postId]/comment/comment-delete.action";
 import { InfinityComment } from "@app/api/posts/[postId]/comment/comment.dto";
+import { setCommentCount } from "@app/api/posts/[postId]/comment/set-comment-count.helper";
+import { InfinityPost } from "@app/api/posts/post.prisma";
 
 import { useToast } from "@core/app-shadcn/use-toast";
 
@@ -35,6 +37,13 @@ export function useDeleteComment() {
 
       queryClient.setQueryData<InfinityComment>(queryKey, oldData =>
         setQueryData(oldData, deletedComment.id),
+      );
+
+      queryClient.setQueriesData<InfinityPost>(
+        // vì comment có thể vào bất kì post-feed nào
+        // -> ko predicate như create với delete post
+        { queryKey: ["post-feed"] },
+        oldData => setCommentCount(oldData, deletedComment.postId, -1),
       );
 
       toast({
