@@ -115,3 +115,17 @@ const nextCursor =
       notifications.length > pageSize ? notifications[pageSize].id : null;
 
 ```
+
+TODO:
+Tạo 1 context ở cấp Post-item
+-> giúp mọi item bên dưới truy cập được vào post-id, các info của post gốc
+-> tránh props drilling vì component chia nhỏ logic phức tạp
+
+TODO:
+Xem xét web-socket thật sự cho noti
+NotificationItem - Map nên xem xét lại cách viết
+Đang trick vào trang noti -> mark read hết, khá tệ
+Thử nghiên cứu cách khác xử lý
+
+REFACTOR-file structure
+có thể đẩy uploadthing + infinity scroll (react-intersection-observer) vào app-vendor

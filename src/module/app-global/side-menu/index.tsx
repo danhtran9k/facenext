@@ -1,20 +1,35 @@
 import Link from "next/link";
 
+import { validateRequest } from "@app/api/_core/lucia-auth";
+import prisma from "@app/api/_core/prisma";
+
 import { Button } from "@core/app-shadcn/button";
 import { cn } from "@core/utils";
 
-
+import { NotificationsButton } from "./notification-btn";
 import { SideMenuItem } from "./side-menu-item";
 
 interface SideMenuProps {
   className?: string;
 }
 
-export function SideMenu({ className }: SideMenuProps) {
+export async function SideMenu({ className }: SideMenuProps) {
   // khoảng cách top 5.25 rem tính toán tay hard-code - hơi tệ
   // h-fit kết hợp với position sticky
   // flex-none ? - flex 0 0 auto
   // space-y-3 ?
+
+  // TODO: xứ lý gọi async ở cấp Menu lớn, tuỳ trade off
+  const { user } = await validateRequest();
+
+  if (!user) return null;
+
+  const unreadNotificationCount = await prisma.notification.count({
+    where: {
+      recipientId: user.id,
+      read: false,
+    },
+  });
 
   return (
     <div
@@ -23,20 +38,34 @@ export function SideMenu({ className }: SideMenuProps) {
         className,
       )}
     >
-      {SideMenuItem.map(item => (
-        <Button
-          key={item.href}
-          variant="ghost"
-          className="flex items-center justify-start gap-3"
-          title={item.title}
-          asChild
-        >
-          <Link href={item.href}>
-            {item.icon}
-            <span className="hidden lg:inline">{item.title}</span>
-          </Link>
-        </Button>
-      ))}
+      {SideMenuItem.map(item => {
+        // Vì generalize quá sớm nên xuất hiện edge case riêng
+        // Code tạm xử lý
+        // TODO: check lại thử
+
+        if (item.href === "/notifications") {
+          return (
+            <NotificationsButton
+              key={item.href}
+              initialState={{ unreadCount: unreadNotificationCount }}
+            />
+          );
+        }
+        return (
+          <Button
+            key={item.href}
+            variant="ghost"
+            className="flex items-center justify-start gap-3"
+            title={item.title}
+            asChild
+          >
+            <Link href={item.href}>
+              {item.icon}
+              <span className="hidden lg:inline">{item.title}</span>
+            </Link>
+          </Button>
+        );
+      })}
     </div>
   );
 }
