@@ -94,3 +94,7 @@ Nếu cố gắng setQueriesData thì dễ dup data do BE paginate, vì ko biế
 (đẹp nhất là sort theo ngày bookmark, tuy nhiên logic thực tế có thể lại sort theo post bt)
 => ko biết chắc và khả năng phải data lớn mới test hết case được
 => tạm skip vì mất quá nhiều thời gian vào logic business ko cần thiết lúc này
+
+TODO:
+refactor react-query key ra khu vực api hết
+đổi tên hook thành .hook

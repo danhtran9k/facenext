@@ -1,4 +1,8 @@
-import { INTERNAL_ERROR, UNAUTHORIZED_ERROR } from "@app/api/_core/api.common";
+import {
+  INTERNAL_ERROR,
+  UNAUTHORIZED_ERROR,
+  resourceNotFound,
+} from "@app/api/_core/api.common";
 import { validateRequest } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
 import { UserIdParam } from "@app/api/posts/post.prisma";
@@ -34,7 +38,7 @@ export async function GET(_: Request, { params: { userId } }: UserIdParam) {
     });
 
     if (!user) {
-      return Response.json({ error: "User not found" }, { status: 404 });
+      return resourceNotFound("User");
     }
 
     return Response.json(user);

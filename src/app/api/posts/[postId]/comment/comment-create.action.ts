@@ -3,6 +3,7 @@
 
 import { validateRequest } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
+import { prismaNotiCreate } from "@app/api/notifications/noti-create.query";
 import { createCommentSchema } from "@app/api/posts/[postId]/comment/comment.dto";
 import { getCommentDataInclude } from "@app/api/posts/[postId]/comment/comment.query";
 import { PostWithUser } from "@app/api/posts/post.prisma";
@@ -22,14 +23,23 @@ export async function submitComment({
 
   const { content: contentValidated } = createCommentSchema.parse({ content });
 
-  const newComment = await prisma.comment.create({
-    data: {
-      content: contentValidated,
+  const [newComment] = await prisma.$transaction([
+    prisma.comment.create({
+      data: {
+        content: contentValidated,
+        postId: post.id,
+        userId: user.id,
+      },
+      include: getCommentDataInclude(user.id),
+    }),
+    ...prismaNotiCreate({
+      issuerId: user.id,
+      recipientId: post.userId,
+      type: "COMMENT",
       postId: post.id,
-      userId: user.id,
-    },
-    include: getCommentDataInclude(user.id),
-  });
+      allowSelfNoti: false,
+    }),
+  ]);
 
   return newComment;
 }
