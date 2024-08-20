@@ -98,3 +98,20 @@ Nếu cố gắng setQueriesData thì dễ dup data do BE paginate, vì ko biế
 TODO:
 refactor react-query key ra khu vực api hết
 đổi tên hook thành .hook
+
+TODO:
+Refactor prisma pagination
+Tùy orderBy mà các return khác nhau, ngoài ra có thể khác biệt về trường dùng orderBy
+=> consider có nên refactor hay ko
+
+```ts
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: pageSize + 1,
+      cursor: cursor ? { id: cursor } : undefined,
+
+const nextCursor =
+      notifications.length > pageSize ? notifications[pageSize].id : null;
+
+```
