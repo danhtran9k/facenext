@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import kyInstance from "@app/api/_core/ky";
+import { keysComment } from "@app/api/_core/queryKey";
 import {
   CommentCursor,
   CommentsPage,
@@ -12,7 +13,7 @@ const postCommnentQueryFn =
   ({ pageParam }: { pageParam: CommentCursor }) =>
     kyInstance
       .get(
-        `/api/posts/${postId}/comment`,
+        keysComment.api(postId),
         pageParam ? { searchParams: { cursor: pageParam } } : {},
       )
       .json<CommentsPage>();
@@ -22,7 +23,7 @@ export const usePostCommentInfinity = <TData = InfinityComment | undefined>(
   select?: (data: InfinityComment) => TData,
 ) => {
   const query = useInfiniteQuery({
-    queryKey: ["comment", postId],
+    queryKey: keysComment.key(postId),
     queryFn: postCommnentQueryFn(postId),
     initialPageParam: null as CommentCursor,
     getNextPageParam: firstPage => firstPage.previousCursor,

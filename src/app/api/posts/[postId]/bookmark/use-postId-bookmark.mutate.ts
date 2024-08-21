@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import kyInstance from "@app/api/_core/ky";
-import { postIdBookmarkQueryKey } from "@app/api/posts/[postId]/bookmark/use-postId-bookmark";
+import { keysBookmarksInfo } from "@app/api/_core/queryKey";
 import { BookmarkInfo } from "@app/api/posts/post.prisma";
 
 import { useToast } from "@core/app-shadcn/use-toast";
@@ -12,13 +12,13 @@ export const usePostIdBookmarkMutate = (
 ) => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const queryKey = postIdBookmarkQueryKey(postId);
+  const queryKey = keysBookmarksInfo.key(postId);
 
   const mutate = useMutation({
     mutationFn: () =>
       isBookmarkedByUser
-        ? kyInstance.delete(`/api/posts/${postId}/bookmark`)
-        : kyInstance.post(`/api/posts/${postId}/bookmark`),
+        ? kyInstance.delete(keysBookmarksInfo.api(postId))
+        : kyInstance.post(keysBookmarksInfo.api(postId)),
     onMutate: async () => {
       toast({
         description: `Post ${isBookmarkedByUser ? "un" : ""}bookmarked`,

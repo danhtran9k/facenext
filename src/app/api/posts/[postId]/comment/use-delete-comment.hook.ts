@@ -1,5 +1,6 @@
 import { QueryKey, useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { keysComment, keysPostFeed } from "@app/api/_core/queryKey";
 import { deleteComment } from "@app/api/posts/[postId]/comment/comment-delete.action";
 import { InfinityComment } from "@app/api/posts/[postId]/comment/comment.dto";
 import { setCommentCount } from "@app/api/posts/[postId]/comment/set-comment-count.helper";
@@ -31,7 +32,7 @@ export function useDeleteComment() {
   const mutation = useMutation({
     mutationFn: deleteComment,
     onSuccess: async deletedComment => {
-      const queryKey: QueryKey = ["comment", deletedComment.postId];
+      const queryKey: QueryKey = keysComment.key(deletedComment.postId);
 
       await queryClient.cancelQueries({ queryKey });
 
@@ -42,7 +43,7 @@ export function useDeleteComment() {
       queryClient.setQueriesData<InfinityPost>(
         // vì comment có thể vào bất kì post-feed nào
         // -> ko predicate như create với delete post
-        { queryKey: ["post-feed"] },
+        { queryKey: keysPostFeed.key },
         oldData => setCommentCount(oldData, deletedComment.postId, -1),
       );
 

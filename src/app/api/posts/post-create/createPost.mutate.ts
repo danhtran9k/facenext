@@ -1,27 +1,12 @@
-import {
-  QueryFilters,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { invalidateQueryPostSubmitFilter } from "@app/api/_core/queryKey";
 import { InfinityPost } from "@app/api/posts/post.prisma";
 
 import { useSession } from "@core/app-provider";
 import { useToast } from "@core/app-shadcn/use-toast";
 
 import { submitPost } from "./create-post.action";
-
-const invalidateQueryPostSubmitFilter = (userId: string) =>
-  ({
-    queryKey: ["post-feed"],
-    predicate(query) {
-      return (
-        query.queryKey.includes("for-you") ||
-        (query.queryKey.includes("user-posts") &&
-          query.queryKey.includes(userId))
-      );
-    },
-  }) satisfies QueryFilters;
 
 // có cần directive useClient ko
 // vì là hook - ko phải jsx -> pass được ?

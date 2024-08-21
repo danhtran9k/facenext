@@ -1,5 +1,6 @@
 import { QueryKey, useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { keysComment, keysPostFeed } from "@app/api/_core/queryKey";
 import {
   submitComment,
   TSubmitComment,
@@ -37,7 +38,7 @@ export const useCreatePostComment = (postId: string) => {
   const mutation = useMutation({
     mutationFn: submitComment,
     onSuccess: async newComment => {
-      const queryKey: QueryKey = ["comment", postId];
+      const queryKey: QueryKey = keysComment.key(postId);
 
       await queryClient.cancelQueries({ queryKey });
 
@@ -48,7 +49,7 @@ export const useCreatePostComment = (postId: string) => {
       queryClient.setQueriesData<InfinityPost>(
         // vì comment có thể vào bất kì post-feed nào
         // -> ko predicate như create với delete post
-        { queryKey: ["post-feed"] },
+        { queryKey: keysPostFeed.key },
         oldData => setCommentCount(oldData, postId, +1),
       );
 

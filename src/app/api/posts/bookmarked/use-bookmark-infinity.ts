@@ -2,21 +2,22 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { TFetchFeed } from "@app/api/_core/api.common";
 import kyInstance from "@app/api/_core/ky";
-import { PostsPage } from "@app/api/posts/post.prisma";
+import { keysPostFeed } from "@app/api/_core/queryKey";
+import { PostCursor, PostsPage } from "@app/api/posts/post.prisma";
 
 const queryFn = ({ pageParam }: TFetchFeed) =>
   kyInstance
     .get(
-      "/api/posts/bookmarked",
+      keysPostFeed.bookmarks.api,
       pageParam ? { searchParams: { cursor: pageParam } } : {},
     )
     .json<PostsPage>();
 
 export const useBookmarkInfinity = () => {
   const query = useInfiniteQuery({
-    queryKey: ["post-feed", "bookmarks"],
+    queryKey: keysPostFeed.bookmarks.key(),
     queryFn: queryFn,
-    initialPageParam: null as string | null,
+    initialPageParam: null as PostCursor,
     getNextPageParam: lastPage => lastPage.nextCursor,
     staleTime: 1000,
   });

@@ -117,9 +117,11 @@ const nextCursor =
 ```
 
 TODO:
-Tạo 1 context ở cấp Post-item
--> giúp mọi item bên dưới truy cập được vào post-id, các info của post gốc
--> tránh props drilling vì component chia nhỏ logic phức tạp
+Tạo 1 context ở cấp Post-item -> tuy nhiên vì bọ context nên phải cẩn thận rsc vs client
+
+- Ko phải bị ảnh hưởng hoàn toàn vì có nhiều component bọc trung gian sẽ ko cần truy cập vào props post (post.id)
+  -> giúp mọi item bên dưới truy cập được vào post-id, các info của post gốc
+  -> tránh props drilling vì component chia nhỏ logic phức tạp
 
 TODO:
 Xem xét web-socket thật sự cho noti
@@ -129,3 +131,7 @@ Thử nghiên cứu cách khác xử lý
 
 REFACTOR-file structure
 có thể đẩy uploadthing + infinity scroll (react-intersection-observer) vào app-vendor
+
+# TODO:
+
+Gom hết path lại thành 1 const

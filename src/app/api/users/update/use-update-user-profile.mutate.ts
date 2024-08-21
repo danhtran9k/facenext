@@ -5,6 +5,7 @@ import {
 } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
+import { keysPostFeed } from "@app/api/_core/queryKey";
 import { InfinityPost } from "@app/api/posts/post.prisma";
 
 import { useToast } from "@core/app-shadcn/use-toast";
@@ -75,7 +76,7 @@ const useOnSuccess = () => {
     const newAvatarUrl = uploadResult?.[0].serverData.avatarUrl;
 
     const queryFilter: QueryFilters = {
-      queryKey: ["post-feed"],
+      queryKey: keysPostFeed.key,
     };
 
     await queryClient.cancelQueries(queryFilter);

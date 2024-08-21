@@ -1,15 +1,11 @@
-import { QueryKey, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import kyInstance from "@app/api/_core/ky";
+import { keysBookmarksInfo } from "@app/api/_core/queryKey";
 import { BookmarkInfo } from "@app/api/posts/post.prisma";
 
-export const postIdBookmarkQueryKey = (postId: string): QueryKey => [
-  "bookmark-info",
-  postId,
-];
-
 const queryPostIdBookmarkFn = (postId: string) => () =>
-  kyInstance.get(`/api/posts/${postId}/bookmark`).json<BookmarkInfo>();
+  kyInstance.get(keysBookmarksInfo.api(postId)).json<BookmarkInfo>();
 
 // feedInitialData và staleTime: Infinity
 // data thì modified bằng setQueryData => gần như api ko dùng
@@ -20,7 +16,7 @@ export const usePostIdBookmark = (
   initialState: BookmarkInfo,
 ) => {
   const query = useQuery({
-    queryKey: postIdBookmarkQueryKey(postId),
+    queryKey: keysBookmarksInfo.key(postId),
     queryFn: queryPostIdBookmarkFn(postId),
     initialData: initialState,
     staleTime: Infinity,

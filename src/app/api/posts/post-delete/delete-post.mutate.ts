@@ -5,6 +5,7 @@ import {
 } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 
+import { keysPostFeed } from "@app/api/_core/queryKey";
 import { InfinityPost } from "@app/api/posts/post.prisma";
 
 import { useToast } from "@core/app-shadcn/use-toast";
@@ -48,7 +49,9 @@ export function useDeletePostMutation() {
         description: "Post deleted",
       });
 
-      const queryFilter: QueryFilters = { queryKey: ["post-feed"] };
+      const queryFilter: QueryFilters = {
+        queryKey: keysPostFeed.key,
+      };
 
       await queryClient.cancelQueries(queryFilter);
 

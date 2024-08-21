@@ -1,14 +1,15 @@
 import { QueryKey, useMutation, useQueryClient } from "@tanstack/react-query";
 
 import kyInstance from "@app/api/_core/ky";
+import { keysFollowInfo } from "@app/api/_core/queryKey";
 import { FollowerInfo } from "@app/api/posts/post.prisma";
 
 import { useToast } from "@core/app-shadcn/use-toast";
 
 const mutateFollow = (isFollowedByUser: boolean, userId: string) => () => {
   return isFollowedByUser
-    ? kyInstance.delete(`/api/users/${userId}/followers`)
-    : kyInstance.post(`/api/users/${userId}/followers`);
+    ? kyInstance.delete(keysFollowInfo.api(userId))
+    : kyInstance.post(keysFollowInfo.api(userId));
 };
 
 // https://tanstack.com/query/latest/docs/reference/QueryClient#queryclientsetquerydata
@@ -24,7 +25,7 @@ const optimisticUpdate = (previousState: FollowerInfo | undefined) => {
 
 export function useFollowMutate(isFollowedByUser: boolean, userId: string) {
   const queryClient = useQueryClient();
-  const queryKey: QueryKey = ["follower-info", userId];
+  const queryKey: QueryKey = keysFollowInfo.key(userId);
   const { toast } = useToast();
 
   const mutate = useMutation({

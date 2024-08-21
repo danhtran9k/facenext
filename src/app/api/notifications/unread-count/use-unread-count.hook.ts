@@ -1,16 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 
 import kyInstance from "@app/api/_core/ky";
+import { keysNotifications } from "@app/api/_core/queryKey";
 import { NotificationCountInfo } from "@app/api/notifications/noti.prisma";
 
 const fnUnreadCount = () =>
   kyInstance
-    .get("/api/notifications/unread-count")
+    .get(keysNotifications.unreadNotifications.api)
     .json<NotificationCountInfo>();
 
 export const useUnreadCount = (initialState: NotificationCountInfo) => {
   const query = useQuery({
-    queryKey: ["unread-notification-count"],
+    queryKey: keysNotifications.unreadNotifications.key,
     queryFn: fnUnreadCount,
     initialData: initialState,
     // dùng long polling 6s fetch

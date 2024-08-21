@@ -2,6 +2,7 @@ import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 
 import { TFetchFeed } from "@app/api/_core/api.common";
 import kyInstance from "@app/api/_core/ky";
+import { keysPostFeed } from "@app/api/_core/queryKey";
 import { PostCursor, PostsPage } from "@app/api/posts/post.prisma";
 
 const fetchMyFeed =
@@ -9,7 +10,7 @@ const fetchMyFeed =
   async ({ pageParam }: TFetchFeed) =>
     kyInstance
       .get(
-        `/api/users/${userId}/posts`,
+        keysPostFeed.userPost.api(userId),
         pageParam
           ? { searchParams: { cursor: pageParam, limit: 4 } }
           : { searchParams: { limit: 4 } },
@@ -21,7 +22,7 @@ export const useUserPost = <TData = InfiniteData<PostsPage>>(
   select?: (data: InfiniteData<PostsPage>) => TData,
 ) => {
   const mutate = useInfiniteQuery({
-    queryKey: ["post-feed", "user-posts", userId],
+    queryKey: keysPostFeed.userPost.key(userId),
     queryFn: fetchMyFeed(userId),
     initialPageParam: null as PostCursor,
     getNextPageParam: lastPage => lastPage.nextCursor,
