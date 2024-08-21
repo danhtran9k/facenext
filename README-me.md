@@ -94,3 +94,38 @@ Nếu cố gắng setQueriesData thì dễ dup data do BE paginate, vì ko biế
 (đẹp nhất là sort theo ngày bookmark, tuy nhiên logic thực tế có thể lại sort theo post bt)
 => ko biết chắc và khả năng phải data lớn mới test hết case được
 => tạm skip vì mất quá nhiều thời gian vào logic business ko cần thiết lúc này
+
+TODO:
+refactor react-query key ra khu vực api hết
+đổi tên hook thành .hook
+
+TODO:
+Refactor prisma pagination
+Tùy orderBy mà các return khác nhau, ngoài ra có thể khác biệt về trường dùng orderBy
+=> consider có nên refactor hay ko
+
+```ts
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: pageSize + 1,
+      cursor: cursor ? { id: cursor } : undefined,
+
+const nextCursor =
+      notifications.length > pageSize ? notifications[pageSize].id : null;
+
+```
+
+TODO:
+Tạo 1 context ở cấp Post-item
+-> giúp mọi item bên dưới truy cập được vào post-id, các info của post gốc
+-> tránh props drilling vì component chia nhỏ logic phức tạp
+
+TODO:
+Xem xét web-socket thật sự cho noti
+NotificationItem - Map nên xem xét lại cách viết
+Đang trick vào trang noti -> mark read hết, khá tệ
+Thử nghiên cứu cách khác xử lý
+
+REFACTOR-file structure
+có thể đẩy uploadthing + infinity scroll (react-intersection-observer) vào app-vendor

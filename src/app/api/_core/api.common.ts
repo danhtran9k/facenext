@@ -10,6 +10,9 @@ export const UNAUTHORIZED_ERROR = Response.json(
   { status: 401 },
 );
 
+export const resourceNotFound = (res: string) =>
+  Response.json({ error: `${res} not found` }, { status: 404 });
+
 export const DEFAULT_PAGE_LIMIT = 4;
 
 export type TFetchFeed = { pageParam: PostCursor };

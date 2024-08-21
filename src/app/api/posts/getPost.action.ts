@@ -17,3 +17,18 @@ export const getPost = cache(async (postId: string, loggedInUserId: string) => {
 
   return post;
 });
+
+// vì post id là unique và được đánh Index nên ko dùng findFirst
+export const privateGetPostById = async (postId: string) => {
+  const post = await prisma.post.findUnique({
+    where: {
+      id: postId,
+    },
+    select: {
+      userId: true,
+    },
+  });
+
+  // mục tiêu trả về author của post nếu post exist
+  return post;
+};
