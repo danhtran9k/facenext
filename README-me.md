@@ -96,7 +96,6 @@ Nếu cố gắng setQueriesData thì dễ dup data do BE paginate, vì ko biế
 => tạm skip vì mất quá nhiều thời gian vào logic business ko cần thiết lúc này
 
 TODO:
-refactor react-query key ra khu vực api hết
 đổi tên hook thành .hook
 
 TODO:
@@ -129,9 +128,7 @@ NotificationItem - Map nên xem xét lại cách viết
 Đang trick vào trang noti -> mark read hết, khá tệ
 Thử nghiên cứu cách khác xử lý
 
-REFACTOR-file structure
-có thể đẩy uploadthing + infinity scroll (react-intersection-observer) vào app-vendor
-
 # TODO:
 
 Gom hết path lại thành 1 const
+Tách hàm setQuery của 1 số react query mutate cũ ra

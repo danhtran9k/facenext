@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Button } from "@core/app-shadcn/button";
 import { cn } from "@core/utils";
 
-
 import { BottomMenuItem } from "./bottom-menu-item";
 
 interface BottomMenuProps {

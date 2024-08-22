@@ -8,7 +8,6 @@ import { ReactQueryProvider, ThemeProvider } from "@core/app-provider";
 import { Toaster } from "@core/app-shadcn/toaster";
 import { TPureLayout } from "@core/types/common.props";
 
-
 import { ourFileRouter } from "./api/uploadthing/core";
 
 const geistSans = localFont({

@@ -15,7 +15,6 @@ import {
 } from "@core/app-shadcn/dropdown-menu";
 import { cn } from "@core/utils";
 
-
 import { logout } from "@module/sign-out";
 
 import { ThemeDropdownSubmenu } from "../theme-dropdown-submenu";

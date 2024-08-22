@@ -5,12 +5,12 @@ import { useState } from "react";
 
 import { PostWithUser } from "@app/api/posts/post.prisma";
 
+import { Linkify } from "@core/app-vendor/linkify";
 import { formatRelativeDate } from "@core/helper/time.utils";
 
 import { UserAvatar } from "@module/app-global/navbar";
 import { BookmarkButton } from "@module/bookmark-btn";
 import { LikeButton } from "@module/like-btn";
-import { Linkify } from "@module/linkify";
 import { PostCommentShowBtn, PostComment } from "@module/post-comment";
 import PostMoreButton from "@module/post-more";
 import { TooltipUser } from "@module/tooltip-user";

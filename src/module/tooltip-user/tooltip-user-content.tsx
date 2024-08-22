@@ -6,11 +6,11 @@ import { FollowerInfo } from "@app/api/posts/post.prisma";
 import { UserData } from "@app/api/users/user.query";
 
 import { useSession } from "@core/app-provider";
+import { Linkify } from "@core/app-vendor/linkify";
 
 import { UserAvatar } from "@module/app-global/navbar";
 import { FollowButton } from "@module/follow-btn";
 import { FollowerCount } from "@module/follower-count";
-import { Linkify } from "@module/linkify";
 
 interface UserDataProps {
   user: UserData;

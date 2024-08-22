@@ -15,9 +15,10 @@
           {
             "group": [
               "@module/*/**",
+              // core
               "!@core/app-shadcn/*",
+              // module
               "!@module/app-common/*",
-              "!@module/app-form/*",
               "!@module/app-global/*"
             ],
             "message": "Module imports must be absolute."
@@ -47,18 +48,26 @@
             "group": "internal", // Using internal to keep @app within the same top-level grouping
             "position": "before"
           },
+          // {
+          //   "pattern": "@core/app-vendor/**",
+          //   "group": "internal",
+          //   "position": "after"
+          // },
+          // Đúng ra tách ra nhưng làm rối import thêm,
+          // Chỉ ref vào tham khảo, code chạy ok
           {
             "pattern": "@core/**",
             "group": "internal", // Adding @core after @app in the internal group
             "position": "after"
           },
+          // app-provider, app-shadcn, app-form, app-vendor đẩy vào app-core
+          // {
+          //   "pattern": "{@module/app-provider/**,@module/app-provider,@core/app-shadcn/**}",
+          //   "group": "internal",
+          //   "position": "after"
+          // },
           {
-            "pattern": "{@module/app-provider/**,@module/app-provider,@core/app-shadcn/**}",
-            "group": "internal",
-            "position": "after"
-          },
-          {
-            "pattern": "{@module/app-common/**,@module/app-global,@module/app-form/**}",
+            "pattern": "{@module/app-common/**,@module/app-global}",
             "group": "internal",
             "position": "after"
           },
@@ -66,12 +75,12 @@
             "pattern": "{@module/**, @module/app-vendor/**}",
             "group": "internal",
             "position": "after"
-          },
-          {
-            "pattern": "@vendor/**",
-            "group": "internal",
-            "position": "after"
           }
+          // {
+          //   "pattern": "@vendor/**",
+          //   "group": "internal",
+          //   "position": "after"
+          // }
         ],
         "pathGroupsExcludedImportTypes": ["builtin"],
         "newlines-between": "always",
