@@ -74,3 +74,7 @@ export const keysUser = {
   key: (userNameOrId: string) => ["user-data", userNameOrId] as const,
   api: (userNameOrId: string) => `/api/users/${userNameOrId}`,
 } as const;
+
+export const keysStreamChat = {
+  api: "/api/chat-token",
+} as const;
