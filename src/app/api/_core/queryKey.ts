@@ -4,12 +4,15 @@ export const keysNotifications = {
   key: ["notifications"],
   api: "/api/notifications",
 
-  unreadNotifications: {
+  unread: {
     key: ["unread-notification-count"],
     api: "/api/notifications/unread-count",
   } as const,
 } as const;
 
+// Chỗ này nên chuyển function thành object
+// khi nào key hoặc api cần gọi mới truyền params vào sẽ hay hơn
+// Tuy nhiên TRADE_OFF là nếu nested quá thì parasm nhiều lên
 export const keysPostFeed = {
   key: ["post-feed"] as const,
 

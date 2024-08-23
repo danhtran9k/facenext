@@ -21,7 +21,7 @@ export function useSubmitPostMutation() {
   const mutation = useMutation({
     mutationFn: submitPost,
     onSuccess: async newPost => {
-      // có thể dùng queryClient.invalidateQueries(["post-feed", "for-you"])
+      // có thể dùng queryClient.invalidateQueries(keysPostFeed.forYou.key)
       // nhưng sẽ phí 1 lần request lên BE lại
       // Đồng thời vì dùng infinite query nên sẽ gọi lại toàn bộ page
       //  => quá tệ
