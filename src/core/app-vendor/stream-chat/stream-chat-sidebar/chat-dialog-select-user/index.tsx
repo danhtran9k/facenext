@@ -3,6 +3,7 @@
 import { SearchIcon } from "lucide-react";
 import { useState } from "react";
 
+import { useDebounce } from "@core/app-hook/use-debounce";
 import {
   Dialog,
   DialogContent,
@@ -13,12 +14,21 @@ import {
 
 import LoadingButton from "@module/app-common/loading-btn";
 
+import { SelectedUserTagList } from "./select-user-tag-list";
+import { useDialogSelectUsers } from "./use-dialog-select-users.hook";
+import { UsersQueryList } from "./users-query-list";
+
 interface NewChatDialogProps {
   onOpenChange: (open: boolean) => void;
 }
 
 export function NewChatDialog({ onOpenChange }: NewChatDialogProps) {
   const [searchInput, setSearchInput] = useState("");
+  const searchInputDebounced = useDebounce(searchInput);
+
+  // const [selectedUsers, setSelectedUsers] = useState<StreamChatUser[]>([]);
+  const { getRemoveUserHandler, getSelectUserHandler, selectedUsers } =
+    useDialogSelectUsers();
 
   return (
     <Dialog open onOpenChange={onOpenChange}>
@@ -38,8 +48,21 @@ export function NewChatDialog({ onOpenChange }: NewChatDialogProps) {
             />
           </div>
 
+          <SelectedUserTagList
+            selectedUsers={selectedUsers}
+            getHandleUserRemove={getRemoveUserHandler}
+          />
           <hr />
         </div>
+
+        <div className="h-96 overflow-y-auto">
+          <UsersQueryList
+            debounceInput={searchInputDebounced}
+            selectedUsers={selectedUsers}
+            getHandleUserSelect={getSelectUserHandler}
+          />
+        </div>
+
         <DialogFooter className="px-6 pb-6">
           <LoadingButton disabled={true} loading={true}>
             Start chat
