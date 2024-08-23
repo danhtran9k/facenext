@@ -2,6 +2,9 @@
 
 import { SearchIcon } from "lucide-react";
 import { useState } from "react";
+import { useChatContext } from "stream-chat-react";
+
+import { useGetStreamUpdateChannel } from "@app/api/chat-token/use-get-stream-update-channel";
 
 import { useDebounce } from "@core/app-hook/use-debounce";
 import {
@@ -17,18 +20,33 @@ import LoadingButton from "@module/app-common/loading-btn";
 import { SelectedUserTagList } from "./select-user-tag-list";
 import { useDialogSelectUsers } from "./use-dialog-select-users.hook";
 import { UsersQueryList } from "./users-query-list";
-
 interface NewChatDialogProps {
   onOpenChange: (open: boolean) => void;
+  onChatCreated: () => void;
 }
 
-export function NewChatDialog({ onOpenChange }: NewChatDialogProps) {
+export function NewChatDialog({
+  onOpenChange,
+  onChatCreated,
+}: NewChatDialogProps) {
+  const { setActiveChannel } = useChatContext();
+
   const [searchInput, setSearchInput] = useState("");
   const searchInputDebounced = useDebounce(searchInput);
 
   // const [selectedUsers, setSelectedUsers] = useState<StreamChatUser[]>([]);
   const { getRemoveUserHandler, getSelectUserHandler, selectedUsers } =
     useDialogSelectUsers();
+
+  const { mutate, isPending } = useGetStreamUpdateChannel(selectedUsers);
+  const handleStartChat = () => {
+    mutate(undefined, {
+      onSuccess: channel => {
+        setActiveChannel(channel);
+        onChatCreated();
+      },
+    });
+  };
 
   return (
     <Dialog open onOpenChange={onOpenChange}>
@@ -64,7 +82,11 @@ export function NewChatDialog({ onOpenChange }: NewChatDialogProps) {
         </div>
 
         <DialogFooter className="px-6 pb-6">
-          <LoadingButton disabled={true} loading={true}>
+          <LoadingButton
+            disabled={!selectedUsers.length}
+            loading={isPending}
+            onClick={handleStartChat}
+          >
             Start chat
           </LoadingButton>
         </DialogFooter>

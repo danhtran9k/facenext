@@ -12,6 +12,11 @@ export function StreamChatMenuHeader() {
   const [showNewChatDialog, setShowNewChatDialog] = useState(false);
   const { setSidebarClose } = useChatSidebar();
 
+  const handleNewChatCreated = () => {
+    setShowNewChatDialog(false);
+    setSidebarClose();
+  };
+
   return (
     <>
       <div className="flex items-center gap-3 p-2">
@@ -31,7 +36,10 @@ export function StreamChatMenuHeader() {
         </Button>
       </div>
       {showNewChatDialog && (
-        <NewChatDialog onOpenChange={setShowNewChatDialog} />
+        <NewChatDialog
+          onOpenChange={setShowNewChatDialog}
+          onChatCreated={handleNewChatCreated}
+        />
       )}
     </>
   );
