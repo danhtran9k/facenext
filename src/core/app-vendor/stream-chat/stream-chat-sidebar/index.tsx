@@ -1,8 +1,10 @@
 "use client";
 
 import { useChatSidebar } from "@core/app-vendor/stream-chat/chat-sidebar-provider";
-import { StreamChatChannelList } from "@core/app-vendor/stream-chat/stream-chat-sidebar/stream-chat-channel-list";
 import { cn } from "@core/utils";
+
+import { StreamChatChannelList } from "./stream-chat-channel-list";
+import { StreamChatMenuHeader } from "./stream-chat-menu-header";
 
 export function StreamChatSidebar() {
   const { isSidebarOpen } = useChatSidebar();
@@ -14,6 +16,7 @@ export function StreamChatSidebar() {
         isSidebarOpen ? "flex" : "hidden",
       )}
     >
+      <StreamChatMenuHeader />
       <StreamChatChannelList />
     </div>
   );

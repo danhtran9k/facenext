@@ -1,15 +1,11 @@
 "use client";
 
-import {
-  Channel,
-  ChannelHeader,
-  MessageInput,
-  MessageList,
-  Window,
-} from "stream-chat-react";
+import { Channel, MessageInput, MessageList, Window } from "stream-chat-react";
 
 import { useChatSidebar } from "@core/app-vendor/stream-chat/chat-sidebar-provider";
 import { cn } from "@core/utils";
+
+import { StreamChatChannelHeader } from "./stream-chat-channel-header";
 
 export function StreamChatChannel() {
   const { isSidebarOpen } = useChatSidebar();
@@ -21,7 +17,7 @@ export function StreamChatChannel() {
     <div className={cn("w-full md:block", isSidebarOpen && "hidden")}>
       <Channel>
         <Window>
-          <ChannelHeader />
+          <StreamChatChannelHeader />
           <MessageList />
           <MessageInput />
         </Window>

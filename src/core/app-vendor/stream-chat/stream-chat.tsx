@@ -5,10 +5,10 @@ import { Chat } from "stream-chat-react";
 
 import useInitializeChatClient from "@app/api/chat-token/use-init-chat-client.hook";
 
-import { ChatSidebarProvider } from "@core/app-vendor/stream-chat/chat-sidebar-provider";
-import { StreamChatChannel } from "@core/app-vendor/stream-chat/stream-chat-channel";
-import { StreamChatSidebar } from "@core/app-vendor/stream-chat/stream-chat-sidebar";
-import { useStreamChatThemeClassName } from "@core/app-vendor/stream-chat/use-streamChat-theme.hook";
+import { ChatSidebarProvider } from "./chat-sidebar-provider";
+import { StreamChatChannel } from "./stream-chat-channel";
+import { StreamChatSidebar } from "./stream-chat-sidebar";
+import { useStreamChatThemeClassName } from "./use-streamChat-theme.hook";
 
 export function StreamChat() {
   const chatClient = useInitializeChatClient();
