@@ -132,3 +132,11 @@ Thử nghiên cứu cách khác xử lý
 
 Gom hết path lại thành 1 const
 Tách hàm setQuery của 1 số react query mutate cũ ra
+
+# GetStream chat
+
+phải lên dashboard - disable thread share đi vì ko dùng
+
+Update user profil.mutate -> mutateFn ->
+Nếu upload file xong trước -> db update profile đồng thời 2 request cùng lúc ?
+Vấn đề db lock lẫn nhau ?

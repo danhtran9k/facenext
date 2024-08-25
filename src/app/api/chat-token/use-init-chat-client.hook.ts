@@ -16,6 +16,8 @@ const getChatToken = () =>
     .json<TChatTokenResponse>()
     .then(data => data.token);
 
+const SHOULD_ALERT = true;
+
 export default function useInitializeChatClient() {
   const { user } = useSession();
   const [chatClient, setChatClient] = useState<StreamChat | null>(null);
@@ -44,11 +46,17 @@ export default function useInitializeChatClient() {
       .then(() => setChatClient(client));
 
     return () => {
-      setChatClient(null);
+      console.count("🚀🚀 use-init-chat-client cleanup");
       client
         .disconnectUser()
         .catch(error => console.error("Failed to disconnect user", error))
-        .then(() => console.log("Connection closed"));
+        .then(() => {
+          console.log("Connection closed");
+          if (SHOULD_ALERT) {
+            alert("Connection closed");
+          }
+        });
+      setChatClient(null);
     };
     // Trick manual check in useEffect
   }, [user.id, user.username, user.displayName, user.avatarUrl]);

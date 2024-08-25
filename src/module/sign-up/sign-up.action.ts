@@ -6,6 +6,7 @@ import { isRedirectError } from "next/dist/client/components/redirect";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
+import { streamServerClient } from "@app/api/_core/getStream-instance";
 import { lucia } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
 
@@ -60,15 +61,25 @@ export async function signUp(
       };
     }
 
-    // https://www.prisma.io/docs/orm/reference/prisma-client-reference#create
-    await prisma.user.create({
-      data: {
+    // https://www.prisma.io/docs/orm/prisma-client/queries/transactions#interactive-transactions
+    // khác với like là sequential transaction
+    // trade off chờ create user xong mới upsert user lên stream
+    await prisma.$transaction(async tx => {
+      // https://www.prisma.io/docs/orm/reference/prisma-client-reference#create
+      await tx.user.create({
+        data: {
+          id: userId,
+          username,
+          displayName: username,
+          email,
+          passwordHash,
+        },
+      });
+      await streamServerClient.upsertUser({
         id: userId,
         username,
-        displayName: username,
-        email,
-        passwordHash,
-      },
+        name: username,
+      });
     });
 
     const session = await lucia.createSession(userId, {});

@@ -1,6 +1,7 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError, UTApi } from "uploadthing/server";
 
+import { streamServerClient } from "@app/api/_core/getStream-instance";
 import { validateRequest } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
 import { UPLOADTHING_PATH } from "@app/api/_core/server.helper";
@@ -37,12 +38,23 @@ export const ourFileRouter = {
       // This code RUNS ON YOUR SERVER after upload
       const newAvatarUrl = file.url.replace("/f/", UPLOADTHING_PATH);
 
-      await prisma.user.update({
-        where: { id: metadata.user.id },
-        data: {
-          avatarUrl: newAvatarUrl,
-        },
-      });
+      // TODO: thật ra user update xong là ổn, bản thận getStream ko revert lại được
+      // revert prisma lại vô nghĩa
+      // Chỗ này ko rõ solution ntn tốt
+      await Promise.all([
+        prisma.user.update({
+          where: { id: metadata.user.id },
+          data: {
+            avatarUrl: newAvatarUrl,
+          },
+        }),
+        streamServerClient.partialUpdateUser({
+          id: metadata.user.id,
+          set: {
+            image: newAvatarUrl,
+          },
+        }),
+      ]);
 
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
       return { avatarUrl: newAvatarUrl };
