@@ -17,6 +17,7 @@
               "@module/*/**",
               // core
               "!@core/app-shadcn/*",
+              "@core/app-icon/*",
               // module
               "!@module/app-common/*",
               "!@module/app-global/*"
