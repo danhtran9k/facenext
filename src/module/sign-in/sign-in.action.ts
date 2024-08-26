@@ -7,6 +7,8 @@ import { redirect } from "next/navigation";
 import { luciaSetCookieByUserId } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
 
+import { PATH_URL } from "@core/path.const";
+
 import { signInSchema, SignInValues } from "./sign-in.dto";
 
 // sign-in with password only
@@ -46,7 +48,7 @@ export async function signIn(
     }
 
     await luciaSetCookieByUserId(existingUser.id);
-    return redirect("/");
+    return redirect(PATH_URL.ROOT);
   } catch (error) {
     // gotcha khi dùng redirect return ở trên, nếu redirect fail phải catch throw lần nữa
     if (isRedirectError(error)) throw error;

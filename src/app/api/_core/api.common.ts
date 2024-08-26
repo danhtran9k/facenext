@@ -1,6 +1,7 @@
 import { PostCursor } from "@app/api/posts/post.prisma";
 
 import { MS_SECOND } from "@core/app.const";
+import { PATH_URL } from "@core/path.const";
 
 export const INTERNAL_ERROR = Response.json(
   { error: "Internal server error" },
@@ -15,7 +16,7 @@ export const UNAUTHORIZED_ERROR = Response.json(
 export const RES_GOOGLE_REDIRECT = new Response(null, {
   status: 302,
   headers: {
-    Location: "/",
+    Location: PATH_URL.ROOT,
   },
 });
 

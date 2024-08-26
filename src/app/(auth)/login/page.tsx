@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import loginImage from "@app/assets/login-image.jpg";
 
+import { PATH_URL } from "@core/path.const";
+
 import { SignInForm } from "@module/sign-in";
 import GoogleSignInButton from "@module/sign-in-google-btn";
 
@@ -26,7 +28,10 @@ export default function Page() {
             </div>
 
             <SignInForm />
-            <Link href="/signup" className="block text-center hover:underline">
+            <Link
+              href={PATH_URL.SIGN_UP}
+              className="block text-center hover:underline"
+            >
               Don&apos;t have an account? Sign up
             </Link>
           </div>

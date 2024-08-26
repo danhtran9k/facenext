@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { validateRequest } from "@app/api/_core/lucia-auth";
 
 import { SessionProvider } from "@core/app-provider";
+import { PATH_URL } from "@core/path.const";
 import { TPureLayout } from "@core/types/common.props";
 
 import { BottomMenu } from "@module/app-global/bottom-menu";
@@ -15,7 +16,7 @@ export default async function Layout({ children }: TPureLayout) {
   // -> cần setup provider đẩy xuống để child ko gọi thêm
   const session = await validateRequest();
 
-  if (!session.user) redirect("/login");
+  if (!session.user) redirect(PATH_URL.SIGN_IN);
 
   // control hidden qua css, sv vẫn phải trả về, vẫn render ra nhưng ko show
   // tuỳ, ko hay lắm nhưng tạm skip, vì ko cần effect để tính toán nên trade-off

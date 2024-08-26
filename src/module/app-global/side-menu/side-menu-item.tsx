@@ -1,24 +1,26 @@
 import { Bell, Bookmark, Home, Mail } from "lucide-react";
 
+import { PATH_URL } from "@core/path.const";
+
 export const SideMenuItem = [
   {
     title: "Home",
-    href: "/",
+    href: PATH_URL.ROOT,
     icon: <Home />,
   },
   {
     title: "Notifications",
-    href: "/notifications",
+    href: PATH_URL.NOTIFICATIONS,
     icon: <Bell />,
   },
   {
     title: "Messages",
-    href: "/messages",
+    href: PATH_URL.MESSAGES,
     icon: <Mail />,
   },
   {
     title: "Bookmarks",
-    href: "/bookmarks",
+    href: PATH_URL.BOOKMARK,
     icon: <Bookmark />,
   },
 ];

@@ -7,6 +7,7 @@ import { PostWithUser } from "@app/api/posts/post.prisma";
 
 import { Linkify } from "@core/app-vendor/linkify";
 import { formatRelativeDate } from "@core/helper/time.utils";
+import { PATH_URL } from "@core/path.const";
 
 import { UserAvatar } from "@module/app-global/navbar";
 import { BookmarkButton } from "@module/bookmark-btn";
@@ -43,7 +44,7 @@ export function PostItem({ post }: PostProps) {
             </TooltipUser>
 
             <Link
-              href={`/posts/${post.id}`}
+              href={PATH_URL.postItem(post.id)}
               className="block text-sm text-muted-foreground hover:underline"
               // do hàm tính toán Data sẽ khiến createdAt cache
               // Tạm sẽ test ko dùng xem có lỗi ko

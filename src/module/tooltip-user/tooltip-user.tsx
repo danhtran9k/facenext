@@ -3,6 +3,8 @@ import { PropsWithChildren } from "react";
 
 import { UserData } from "@app/api/users/user.query";
 
+import { PATH_URL } from "@core/path.const";
+
 import { TooltipUserBase } from "./tooltip-user-base";
 
 // Lí do ko nên tạo file props chung cho nhiều component
@@ -16,7 +18,7 @@ interface TooltipUserProps extends PropsWithChildren {
 export function TooltipUser({ children, user, className }: TooltipUserProps) {
   return (
     <TooltipUserBase user={user}>
-      <Link href={`/users/${user.username}`} className={className}>
+      <Link href={PATH_URL.userProfile(user.username)} className={className}>
         {children}
       </Link>
     </TooltipUserBase>

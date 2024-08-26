@@ -4,6 +4,8 @@ import Link from "next/link";
 
 import signupImage from "@app/assets/signup-image.jpg";
 
+import { PATH_URL } from "@core/path.const";
+
 import { SignUpForm } from "@module/sign-up";
 
 export const metadata: Metadata = {
@@ -26,7 +28,10 @@ export default function Page() {
           </div>
           <div className="space-y-5">
             <SignUpForm />
-            <Link href="/login" className="block text-center hover:underline">
+            <Link
+              href={PATH_URL.SIGN_IN}
+              className="block text-center hover:underline"
+            >
               Already have an account? Log in
             </Link>
           </div>

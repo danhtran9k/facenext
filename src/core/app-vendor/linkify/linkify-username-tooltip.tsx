@@ -5,6 +5,8 @@ import { PropsWithChildren } from "react";
 
 import { useUserByNameOrId } from "@app/api/users/[userId]/use-user-by-name-or-id.query";
 
+import { PATH_URL } from "@core/path.const";
+
 import { TooltipUser } from "@module/tooltip-user";
 
 interface LinkifyUsernameTooltipProps extends PropsWithChildren {
@@ -28,7 +30,7 @@ export function LinkifyUsernameTooltip({
     // Cẩn thận mis-match giữa 2 link
     return (
       <Link
-        href={`/users/${username}`}
+        href={PATH_URL.userProfile(username)}
         className="text-primary hover:underline"
       >
         {children}

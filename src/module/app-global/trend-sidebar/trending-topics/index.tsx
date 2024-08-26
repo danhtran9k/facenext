@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { formatNumber } from "@core/helper/number.utils";
+import { PATH_URL } from "@core/path.const";
 
 import { getTrendingTopics } from "./getTrendingTopics.query";
 
@@ -14,7 +15,7 @@ export async function TrendingTopics() {
         const title = hashtag.split("#")[1];
 
         return (
-          <Link key={title} href={`/hashtag/${title}`} className="block">
+          <Link key={title} href={PATH_URL.hashtag(title)} className="block">
             <p
               className="line-clamp-1 break-all font-semibold hover:underline"
               title={hashtag}

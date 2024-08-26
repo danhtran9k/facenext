@@ -9,6 +9,7 @@ import { keysPostFeed } from "@app/api/_core/queryKey";
 import { InfinityPost } from "@app/api/posts/post.prisma";
 
 import { useToast } from "@core/app-shadcn/use-toast";
+import { PATH_URL } from "@core/path.const";
 
 import { deletePost } from "./delete-post.action";
 
@@ -63,8 +64,8 @@ export function useDeletePostMutation() {
       // ko phải gọi revalidate query như create vì ko có edge case
 
       // Nếu đang trong url delete post thì chuyển về user profile
-      if (pathname === `/posts/${deletedPost.id}`) {
-        router.push(`/users/${deletedPost.user.username}`);
+      if (pathname === PATH_URL.postItem(deletedPost.id)) {
+        router.push(PATH_URL.userProfile(deletedPost.user.username));
       }
     },
   });

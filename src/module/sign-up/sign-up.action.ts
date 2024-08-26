@@ -9,6 +9,8 @@ import { streamServerClient } from "@app/api/_core/getStream-instance";
 import { luciaSetCookieByUserId } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
 
+import { PATH_URL } from "@core/path.const";
+
 import { signUpSchema, SignUpValues } from "./sign-up.dto";
 
 // https://lucia-auth.com/tutorials/username-and-password/nextjs-app
@@ -84,7 +86,7 @@ export async function signUp(
     await luciaSetCookieByUserId(userId);
 
     // return về 1 function return never sẽ skip được Promise<{ error: string }> define ở trên
-    return redirect("/");
+    return redirect(PATH_URL.ROOT);
   } catch (error) {
     // gotcha khi dùng redirect return ở trên, nếu redirect fail phải catch throw lần nữa
     if (isRedirectError(error)) throw error;

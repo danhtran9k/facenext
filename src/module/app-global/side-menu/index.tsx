@@ -5,6 +5,7 @@ import { validateRequest } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
 
 import { Button } from "@core/app-shadcn/button";
+import { PATH_URL } from "@core/path.const";
 import { cn } from "@core/utils";
 
 import { MessagesButton } from "./message-btn";
@@ -48,7 +49,7 @@ export async function SideMenu({ className }: SideMenuProps) {
         // Code tạm xử lý
         // TODO: check lại thử
 
-        if (item.href === "/notifications") {
+        if (item.href === PATH_URL.NOTIFICATIONS) {
           return (
             <NotificationsButton
               key={item.href}
@@ -57,7 +58,7 @@ export async function SideMenu({ className }: SideMenuProps) {
           );
         }
 
-        if (item.href === "/messages") {
+        if (item.href === PATH_URL.MESSAGES) {
           return (
             <MessagesButton
               key={item.href}

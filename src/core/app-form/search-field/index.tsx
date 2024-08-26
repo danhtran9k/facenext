@@ -4,6 +4,7 @@ import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import { Input } from "@core/app-shadcn/input";
+import { PATH_URL } from "@core/path.const";
 
 export default function SearchField() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export default function SearchField() {
     // name="q" của input
     const q = (form.q as HTMLInputElement).value.trim();
     if (!q) return;
-    router.push(`/search?q=${encodeURIComponent(q)}`);
+    router.push(PATH_URL.searchQuery(encodeURIComponent(q)));
   }
 
   //  method="GET" action="/search -> chỉ setup khi js bị disable trên browser

@@ -13,6 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@core/app-shadcn/dropdown-menu";
+import { PATH_URL } from "@core/path.const";
 import { cn } from "@core/utils";
 
 import { logout } from "@module/sign-out";
@@ -26,7 +27,7 @@ interface UserButtonProps {
 
 export function UserDropdown({ className }: UserButtonProps) {
   const { user } = useSession();
-  const urlProfile = `/users/${user.username}`;
+  const urlProfile = PATH_URL.userProfile(user.username);
 
   const queryClient = useQueryClient();
 
