@@ -91,12 +91,7 @@ export const validateRequest = cache(async (): Promise<TLuciaValidate> => {
 
   try {
     if (session?.fresh) {
-      const sessionCookie = lucia.createSessionCookie(session.id);
-      cookies().set(
-        sessionCookie.name,
-        sessionCookie.value,
-        sessionCookie.attributes,
-      );
+      setCookieFromLuciaSessionId(session.id);
     }
     if (!session) {
       const sessionCookie = lucia.createBlankSessionCookie();
@@ -112,3 +107,20 @@ export const validateRequest = cache(async (): Promise<TLuciaValidate> => {
 
   return result;
 });
+
+export const setCookieFromLuciaSessionId = (luciaSessionId: string) => {
+  if (!luciaSessionId) return;
+
+  const sessionCookie = lucia.createSessionCookie(luciaSessionId);
+  cookies().set(
+    sessionCookie.name,
+    sessionCookie.value,
+    sessionCookie.attributes,
+  );
+};
+
+export const luciaSetCookieByUserId = async (userId: string) => {
+  // NOTE: only call this with valid - pre-existed userId
+  const session = await lucia.createSession(userId, {});
+  setCookieFromLuciaSessionId(session.id);
+};
