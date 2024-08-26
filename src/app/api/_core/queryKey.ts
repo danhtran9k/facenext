@@ -81,7 +81,7 @@ export const keysUser = {
 } as const;
 
 export const keysStreamChat = {
-  api: "/api/chat-token",
+  api: "/api/chat/token",
 
   unreadCount: {
     key: ["unread-chat-count"],

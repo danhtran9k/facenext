@@ -6,6 +6,7 @@
     "dev": "next dev -p 4243",
     "build": "next build",
     "start": "next start",
+    "postinstall": "prisma generate",
     "lint": "next lint",
     "chk": "tsc && yarn lint",
     "lint:fix": "eslint . --fix",

@@ -22,6 +22,16 @@ const nextConfig = {
       },
     ],
   },
+  // https://nextjs.org/docs/pages/api-reference/next-config-js/rewrites
+  rewrites: () => {
+    return [
+      {
+        source: "/hashtag/:tag",
+        // %23: -> # escape HTML
+        destination: "/search?q=%23:tag",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

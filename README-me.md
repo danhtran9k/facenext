@@ -128,6 +128,30 @@ giữa 2 user với nhau nếu muốn tăng độ phức tạp có thể tách r
 Prj hiện tại đang merge 2 option lại chung, riêng việc tạo group bị limit
 => tạm chấp nhận, hiểu ý tưởng trước
 
+# DEPLOY - VERCEL
+
+nhớ copy env vào -> copy toàn bộ file paste vào, web tự filter ra add đồng thời
+Remove PUBLIC_BASE_URL đi
+
+Trước khi bấm Deploy -> check phần Build and Output Settings
+-> override lại Install Command
+`npm install --legacy-peer-deps`
+
+Chờ Deploy xong click vào Dashboard
+Check settings -> check NodeJs >= 20+
+Nếu trước đó bản cũ hơn thì phải re-deploy lại
+
+=> deploy xong có URL
+=> settings => update thêm env PUBLIC_BASE_URL lại, nhớ có https
+=> Tabs Deployments -> re-deploy
+
+Về stream-chat dù đang set ở Dev vẫn xài được ở Production
+Tuy nhiên sẽ có sự khác biệt -> check docs
+https://getstream.io/chat/docs/react/production_and_development_mode/
+-> phải tạo 1 app riêng ra ? (kiểu tách biệt)
+
+<!-- ==================================================== -->
+
 # TODO:
 
 Tạo 1 context ở cấp Post-item -> tuy nhiên vì bọ context nên phải cẩn thận rsc vs client
