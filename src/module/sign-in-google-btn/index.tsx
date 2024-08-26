@@ -3,6 +3,8 @@ import { Button } from "@core/app-shadcn/button";
 import { URL_AUTH } from "@core/url.const";
 
 export default function GoogleSignInButton() {
+  // NOTE: ko dùng Link của next/Link mà phải dùng a tag
+  // Next Link sẽ mess up server side redirect TH này -> có error popup
   return (
     <Button
       variant="outline"
