@@ -3,11 +3,10 @@
 import { hash } from "@node-rs/argon2";
 import { generateIdFromEntropySize } from "lucia";
 import { isRedirectError } from "next/dist/client/components/redirect";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { streamServerClient } from "@app/api/_core/getStream-instance";
-import { lucia } from "@app/api/_core/lucia-auth";
+import { luciaSetCookieByUserId } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
 
 import { signUpSchema, SignUpValues } from "./sign-up.dto";
@@ -82,13 +81,7 @@ export async function signUp(
       });
     });
 
-    const session = await lucia.createSession(userId, {});
-    const sessionCookie = lucia.createSessionCookie(session.id);
-    cookies().set(
-      sessionCookie.name,
-      sessionCookie.value,
-      sessionCookie.attributes,
-    );
+    await luciaSetCookieByUserId(userId);
 
     // return về 1 function return never sẽ skip được Promise<{ error: string }> define ở trên
     return redirect("/");

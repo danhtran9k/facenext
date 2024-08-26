@@ -12,6 +12,13 @@ export const UNAUTHORIZED_ERROR = Response.json(
   { status: 401 },
 );
 
+export const RES_GOOGLE_REDIRECT = new Response(null, {
+  status: 302,
+  headers: {
+    Location: "/",
+  },
+});
+
 export const resourceNotFound = (res: string) =>
   Response.json({ error: `${res} not found` }, { status: 404 });
 

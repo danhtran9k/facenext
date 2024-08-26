@@ -2,10 +2,9 @@
 
 import { verify } from "@node-rs/argon2";
 import { isRedirectError } from "next/dist/client/components/redirect";
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { lucia } from "@app/api/_core/lucia-auth";
+import { luciaSetCookieByUserId } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
 
 import { signInSchema, SignInValues } from "./sign-in.dto";
@@ -46,13 +45,7 @@ export async function signIn(
       };
     }
 
-    const session = await lucia.createSession(existingUser.id, {});
-    const sessionCookie = lucia.createSessionCookie(session.id);
-    cookies().set(
-      sessionCookie.name,
-      sessionCookie.value,
-      sessionCookie.attributes,
-    );
+    await luciaSetCookieByUserId(existingUser.id);
     return redirect("/");
   } catch (error) {
     // gotcha khi dùng redirect return ở trên, nếu redirect fail phải catch throw lần nữa

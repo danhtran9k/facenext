@@ -146,3 +146,19 @@ Mỗi group có thể rename lại
 giữa 2 user với nhau nếu muốn tăng độ phức tạp có thể tách riêng option group chat vs single chat
 Prj hiện tại đang merge 2 option lại chung, riêng việc tạo group bị limit
 => tạm chấp nhận, hiểu ý tưởng trước
+
+# Google OAuth
+
+cloud console -> create prj -> APIs - Services -> OAuth consent screen
+
+External app -> fill vào, skip logo - khỏi verfify phiền
+Những trường ko required skip hết, mail thì lấy chính mail đang đăng kí
+
+Scope -> chọn email và profile
+Có thể skip test user => vào lại dashboard -> chọn Publish App
+
+## Step 2
+
+Credentials -> create Credentials -> OAuth client Id
+Authorized redirect URIS -> multi được, cho local + development riêng ok
+http://localhost:[PORT]/api/auth/callback/google
