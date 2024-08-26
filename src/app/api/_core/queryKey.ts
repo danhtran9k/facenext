@@ -36,6 +36,11 @@ export const keysPostFeed = {
       [...keysPostFeed.key, "user-posts", userId] as const,
     api: (userId: string) => `/api/users/${userId}/posts`,
   } as const,
+
+  search: {
+    key: (query: string) => ["post-feed", "search", query] as const,
+    api: "/api/search",
+  },
 };
 
 export const invalidateQueryPostSubmitFilter = (userId: string) =>
