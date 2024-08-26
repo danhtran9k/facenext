@@ -3,3 +3,7 @@ import { DefaultStreamChatGenerics } from "stream-chat-react";
 
 export type GetStreamUsersQuery = UserFilters<DefaultStreamChatGenerics>;
 export type StreamChatUser = UserResponse<DefaultStreamChatGenerics>;
+
+export interface UnreadChatCount {
+  unreadCount: number;
+}

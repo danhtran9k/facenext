@@ -1,11 +1,13 @@
 import Link from "next/link";
 
+import { streamServerClient } from "@app/api/_core/getStream-instance";
 import { validateRequest } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
 
 import { Button } from "@core/app-shadcn/button";
 import { cn } from "@core/utils";
 
+import { MessagesButton } from "./message-btn";
 import { NotificationsButton } from "./notification-btn";
 import { SideMenuItem } from "./side-menu-item";
 
@@ -24,12 +26,15 @@ export async function SideMenu({ className }: SideMenuProps) {
 
   if (!user) return null;
 
-  const unreadNotificationCount = await prisma.notification.count({
-    where: {
-      recipientId: user.id,
-      read: false,
-    },
-  });
+  const [unreadNotificationCount, unreadMessageCount] = await Promise.all([
+    prisma.notification.count({
+      where: {
+        recipientId: user.id,
+        read: false,
+      },
+    }),
+    (await streamServerClient.getUnreadCount(user.id)).total_unread_count,
+  ]);
 
   return (
     <div
@@ -51,6 +56,16 @@ export async function SideMenu({ className }: SideMenuProps) {
             />
           );
         }
+
+        if (item.href === "/messages") {
+          return (
+            <MessagesButton
+              key={item.href}
+              initialState={{ unreadCount: unreadMessageCount }}
+            />
+          );
+        }
+
         return (
           <Button
             key={item.href}
