@@ -2,7 +2,7 @@
 
 import { ChannelList } from "stream-chat-react";
 
-import { useChannelListOption } from "@app/api/chat-token/use-channel-list-option.hook";
+import { useChannelListOption } from "@app/api/chat/use-channel-list-option.hook";
 
 import { StreamChatPreviewMess } from "./stream-chat-channel-preview";
 

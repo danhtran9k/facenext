@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useChatContext } from "stream-chat-react";
 
-import { StreamChatUser } from "@app/api/chat-token/getStream.type";
+import { StreamChatUser } from "@app/api/chat/getStream.type";
 
 import { useSession } from "@core/app-provider";
 import { toast } from "@core/app-shadcn/use-toast";

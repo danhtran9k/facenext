@@ -3,7 +3,7 @@
 import { Loader2 } from "lucide-react";
 import { Chat } from "stream-chat-react";
 
-import useInitializeChatClient from "@app/api/chat-token/use-init-chat-client.hook";
+import useInitializeChatClient from "@app/api/chat/use-init-chat-client.hook";
 
 import { ChatSidebarProvider } from "./chat-sidebar-provider";
 import { StreamChatChannel } from "./stream-chat-channel";

@@ -1,7 +1,7 @@
 import { Check, Loader2 } from "lucide-react";
 
-import { StreamChatUser } from "@app/api/chat-token/getStream.type";
-import { useGetStreamUsers } from "@app/api/chat-token/use-get-stream-users.hook";
+import { StreamChatUser } from "@app/api/chat/getStream.type";
+import { useGetStreamUsers } from "@app/api/chat/use-get-stream-users.hook";
 
 import { UserAvatar } from "@module/app-global/navbar";
 

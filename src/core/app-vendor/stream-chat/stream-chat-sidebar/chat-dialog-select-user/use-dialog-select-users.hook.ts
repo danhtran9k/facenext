@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-import { StreamChatUser } from "@app/api/chat-token/getStream.type";
+import { StreamChatUser } from "@app/api/chat/getStream.type";
 
 export const useDialogSelectUsers = () => {
   const [selectedUsers, setSelectedUsers] = useState<StreamChatUser[]>([]);
