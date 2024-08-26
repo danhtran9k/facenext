@@ -1,11 +1,8 @@
 import { NextRequest } from "next/server";
 
-import {
-  DEFAULT_PAGE_LIMIT,
-  INTERNAL_ERROR,
-  UNAUTHORIZED_ERROR,
-} from "@app/api/_core/api.common";
+import { INTERNAL_ERROR, UNAUTHORIZED_ERROR } from "@app/api/_core/api.common";
 import { validateRequest } from "@app/api/_core/lucia-auth";
+import { getPaginateSearchParams } from "@app/api/_core/pagination.helper";
 import prisma from "@app/api/_core/prisma";
 import { PostsPage } from "@app/api/posts/post.prisma";
 import { postDataInclude } from "@app/api/posts/post.query";
@@ -18,26 +15,19 @@ export async function GET(req: NextRequest) {
       return UNAUTHORIZED_ERROR;
     }
 
-    // https://nextjs.org/docs/app/api-reference/functions/next-request#nexturl
-    const cursor = req.nextUrl.searchParams.get("cursor") || undefined;
-    const pageSize =
-      Number(req.nextUrl.searchParams.get("limit")) || DEFAULT_PAGE_LIMIT;
+    const { getDataAndCursor, paginateQuery, SORT_ORDER } =
+      getPaginateSearchParams(req.nextUrl.searchParams);
 
     // n+1 problem ??
     const posts = await prisma.post.findMany({
       include: postDataInclude(user.id),
-      orderBy: { createdAt: "desc" },
-      take: pageSize + 1,
-      // skip: cursor ? 1 : 0,
-      // ko dùng skip vì take đã lấy dư 1, tự search thêm
-      cursor: cursor ? { id: cursor } : undefined,
+      orderBy: { createdAt: SORT_ORDER },
+      ...paginateQuery,
     });
 
-    // vì lấy dư + 1 nên phải slice và tính toán nextCursor lại
-    const nextCursor = posts.length > pageSize ? posts[pageSize].id : null;
-
+    const { cursor: nextCursor, dataPaginate } = getDataAndCursor(posts);
     const data: PostsPage = {
-      posts: posts.slice(0, pageSize),
+      posts: dataPaginate,
       nextCursor,
     };
 

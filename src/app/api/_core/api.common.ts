@@ -23,8 +23,6 @@ export const RES_GOOGLE_REDIRECT = new Response(null, {
 export const resourceNotFound = (res: string) =>
   Response.json({ error: `${res} not found` }, { status: 404 });
 
-export const DEFAULT_PAGE_LIMIT = 4;
-
 export type TFetchFeed = { pageParam: PostCursor };
 
 export const IS_POOLING = false;

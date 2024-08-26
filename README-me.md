@@ -98,55 +98,6 @@ Nếu cố gắng setQueriesData thì dễ dup data do BE paginate, vì ko biế
 TODO:
 đổi tên hook thành .hook
 
-TODO:
-Refactor prisma pagination
-Tùy orderBy mà các return khác nhau, ngoài ra có thể khác biệt về trường dùng orderBy
-=> consider có nên refactor hay ko
-
-```ts
-      orderBy: {
-        createdAt: "desc",
-      },
-      take: pageSize + 1,
-      cursor: cursor ? { id: cursor } : undefined,
-
-const nextCursor =
-      notifications.length > pageSize ? notifications[pageSize].id : null;
-
-```
-
-TODO:
-Tạo 1 context ở cấp Post-item -> tuy nhiên vì bọ context nên phải cẩn thận rsc vs client
-
-- Ko phải bị ảnh hưởng hoàn toàn vì có nhiều component bọc trung gian sẽ ko cần truy cập vào props post (post.id)
-  -> giúp mọi item bên dưới truy cập được vào post-id, các info của post gốc
-  -> tránh props drilling vì component chia nhỏ logic phức tạp
-
-TODO:
-Xem xét web-socket thật sự cho noti
-NotificationItem - Map nên xem xét lại cách viết
-Đang trick vào trang noti -> mark read hết, khá tệ
-Thử nghiên cứu cách khác xử lý
-
-# TODO:
-
-Gom hết path lại thành 1 const
-Tách hàm setQuery của 1 số react query mutate cũ ra
-
-# GetStream chat
-
-phải lên dashboard - disable thread share đi vì ko dùng
-
-Update user profil.mutate -> mutateFn ->
-Nếu upload file xong trước -> db update profile đồng thời 2 request cùng lúc ?
-Vấn đề db lock lẫn nhau ?
-
-Cùng 1 group user có thể có nhiều group riêng biệt nhau
-Mỗi group có thể rename lại
-giữa 2 user với nhau nếu muốn tăng độ phức tạp có thể tách riêng option group chat vs single chat
-Prj hiện tại đang merge 2 option lại chung, riêng việc tạo group bị limit
-=> tạm chấp nhận, hiểu ý tưởng trước
-
 # Google OAuth
 
 cloud console -> create prj -> APIs - Services -> OAuth consent screen
@@ -162,3 +113,33 @@ Có thể skip test user => vào lại dashboard -> chọn Publish App
 Credentials -> create Credentials -> OAuth client Id
 Authorized redirect URIS -> multi được, cho local + development riêng ok
 http://localhost:[PORT]/api/auth/callback/google
+
+# GetStream chat
+
+phải lên dashboard - disable thread share đi vì ko dùng
+
+Update user profil.mutate -> mutateFn ->
+Nếu upload file xong trước -> db update profile đồng thời 2 request cùng lúc ?
+Vấn đề db lock lẫn nhau ?
+
+Cùng 1 group user có thể có nhiều group riêng biệt nhau
+Mỗi group có thể rename lại
+giữa 2 user với nhau nếu muốn tăng độ phức tạp có thể tách riêng option group chat vs single chat
+Prj hiện tại đang merge 2 option lại chung, riêng việc tạo group bị limit
+=> tạm chấp nhận, hiểu ý tưởng trước
+
+# TODO:
+
+Tạo 1 context ở cấp Post-item -> tuy nhiên vì bọ context nên phải cẩn thận rsc vs client
+
+- Ko phải bị ảnh hưởng hoàn toàn vì có nhiều component bọc trung gian sẽ ko cần truy cập vào props post (post.id)
+  -> giúp mọi item bên dưới truy cập được vào post-id, các info của post gốc
+  -> tránh props drilling vì component chia nhỏ logic phức tạp
+
+TODO:
+Xem xét web-socket thật sự cho noti
+NotificationItem - Map nên xem xét lại cách viết
+Đang trick vào trang noti -> mark read hết, khá tệ
+Thử nghiên cứu cách khác xử lý
+
+Tách hàm setQuery của 1 số react query mutate cũ ra
