@@ -38,9 +38,9 @@ export function NewChatDialog({
   const { getRemoveUserHandler, getSelectUserHandler, selectedUsers } =
     useDialogSelectUsers();
 
-  const { mutate, isPending } = useGetStreamUpdateChannel(selectedUsers);
+  const { mutate, isPending } = useGetStreamUpdateChannel();
   const handleStartChat = () => {
-    mutate(undefined, {
+    mutate(selectedUsers, {
       onSuccess: channel => {
         setActiveChannel(channel);
         onChatCreated();
