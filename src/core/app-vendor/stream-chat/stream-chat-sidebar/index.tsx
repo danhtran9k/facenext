@@ -5,9 +5,12 @@ import { cn } from "@core/utils";
 
 import { StreamChatChannelList } from "./stream-chat-channel-list";
 import { StreamChatMenuHeader } from "./stream-chat-menu-header";
+import { useRefetchUnreadCount } from "./use-refetch-unread-count";
 
 export function StreamChatSidebar() {
   const { isSidebarOpen } = useChatSidebar();
+
+  useRefetchUnreadCount();
 
   return (
     <div
