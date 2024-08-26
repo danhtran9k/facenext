@@ -132,3 +132,17 @@ Thử nghiên cứu cách khác xử lý
 
 Gom hết path lại thành 1 const
 Tách hàm setQuery của 1 số react query mutate cũ ra
+
+# GetStream chat
+
+phải lên dashboard - disable thread share đi vì ko dùng
+
+Update user profil.mutate -> mutateFn ->
+Nếu upload file xong trước -> db update profile đồng thời 2 request cùng lúc ?
+Vấn đề db lock lẫn nhau ?
+
+Cùng 1 group user có thể có nhiều group riêng biệt nhau
+Mỗi group có thể rename lại
+giữa 2 user với nhau nếu muốn tăng độ phức tạp có thể tách riêng option group chat vs single chat
+Prj hiện tại đang merge 2 option lại chung, riêng việc tạo group bị limit
+=> tạm chấp nhận, hiểu ý tưởng trước

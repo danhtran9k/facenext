@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell } from "lucide-react";
+import { Mail } from "lucide-react";
 
 import { NotificationCountInfo } from "@app/api/notifications/noti.prisma";
 import { useUnreadCount } from "@app/api/notifications/unread-count/use-unread-count.hook";
@@ -11,17 +11,15 @@ interface NotificationsButtonProps {
   initialState: NotificationCountInfo;
 }
 
-export function NotificationsButton({
-  initialState,
-}: NotificationsButtonProps) {
+export function MessagesButton({ initialState }: NotificationsButtonProps) {
   const { data } = useUnreadCount(initialState);
 
   return (
     <UnreadCountBtn
       count={data.unreadCount}
-      link="/notifications"
-      title="Notifications"
-      icon={<Bell />}
+      link="/messages"
+      title="Messages"
+      icon={<Mail />}
     />
   );
 }

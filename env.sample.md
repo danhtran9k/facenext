@@ -17,3 +17,10 @@ NEXT_PUBLIC_UPLOADTHING_APP_ID=
 # CronJob - secret - just random string to verified
 
 CRON_SECRET=
+
+# Stream-chat
+
+## https://dashboard.getstream.io/app/[APP_ID]/chat/overview -->
+
+STREAM_SECRET=
+NEXT_PUBLIC_STREAM_KEY=
