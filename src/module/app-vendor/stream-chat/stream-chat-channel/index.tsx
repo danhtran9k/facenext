@@ -2,8 +2,9 @@
 
 import { Channel, MessageInput, MessageList, Window } from "stream-chat-react";
 
-import { useChatSidebar } from "@core/app-vendor/stream-chat/chat-sidebar-provider";
 import { cn } from "@core/utils";
+
+import { useChatSidebar } from "@module/app-vendor/stream-chat";
 
 import { StreamChatChannelHeader } from "./stream-chat-channel-header";
 

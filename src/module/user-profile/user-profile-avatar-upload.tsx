@@ -4,13 +4,13 @@ import { Camera } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
 import { useRef } from "react";
 
-import {
-  CropImageDialog,
-  useCropImageResize,
-} from "@core/app-vendor/crop-image-dialog";
 import { ACCEPTED_UPLOAD_FILE_TYPES } from "@core/app.const";
 
 import { BtnFileInput } from "@module/app-common/btn-file-input";
+import {
+  CropImageDialog,
+  useCropImageResize,
+} from "@module/app-vendor/crop-image-dialog";
 
 interface AvatarInputProps {
   src: string | StaticImageData;

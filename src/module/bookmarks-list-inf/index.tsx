@@ -2,9 +2,10 @@
 
 import { Loader2 } from "lucide-react";
 
-import InfiniteScrollContainer from "@core/app-vendor/InfiniteScrollContainer";
-
 import { useBookmarkInfinity } from "@app/api/posts/bookmarked/use-bookmark-infinity";
+
+import InfiniteScrollContainer from "@module/app-vendor/InfiniteScrollContainer";
+
 
 import { PostItem, PostsLoadingSkeleton } from "@module/post-item";
 

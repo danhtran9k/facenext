@@ -14,13 +14,14 @@
           },
           {
             "group": [
-              "@module/*/**",
               // core
-              "!@core/app-shadcn/*",
               "@core/app-icon/*",
+              "!@core/app-shadcn/*",
               // module
+              "@module/*/**",
               "!@module/app-common/*",
-              "!@module/app-global/*"
+              "!@module/app-global/*",
+              "!@module/app-vendor/*"
             ],
             "message": "Module imports must be absolute."
           }
@@ -45,7 +46,7 @@
             "position": "before"
           },
           // {
-          //   "pattern": "@core/app-vendor/**",
+          //   "pattern": "@module/app-vendor/**",
           //   "group": "internal",
           //   "position": "after"
           // },

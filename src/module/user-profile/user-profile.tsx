@@ -1,10 +1,11 @@
 import { formatDate } from "date-fns";
 
-import { Linkify } from "@core/app-vendor/linkify";
 import { formatNumber } from "@core/helper/number.utils";
 
 import { FollowerInfo } from "@app/api/posts/post.prisma";
 import { UserData } from "@app/api/users/user.query";
+
+import { Linkify } from "@module/app-vendor/linkify";
 
 import { UserAvatar } from "@module/app-global/navbar";
 import { FollowButton } from "@module/follow-btn";

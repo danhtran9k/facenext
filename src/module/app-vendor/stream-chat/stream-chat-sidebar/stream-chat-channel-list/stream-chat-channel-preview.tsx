@@ -5,7 +5,7 @@ import {
   ChannelPreviewUIComponentProps,
 } from "stream-chat-react";
 
-import { useChatSidebar } from "@core/app-vendor/stream-chat/chat-sidebar-provider";
+import { useChatSidebar } from "@module/app-vendor/stream-chat";
 
 type TStreamChatPreviewMess = ChannelPreviewUIComponentProps;
 

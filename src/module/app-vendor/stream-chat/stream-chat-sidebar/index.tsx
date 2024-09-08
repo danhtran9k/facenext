@@ -1,7 +1,8 @@
 "use client";
 
-import { useChatSidebar } from "@core/app-vendor/stream-chat/chat-sidebar-provider";
 import { cn } from "@core/utils";
+
+import { useChatSidebar } from "@module/app-vendor/stream-chat";
 
 import { StreamChatChannelList } from "./stream-chat-channel-list";
 import { StreamChatMenuHeader } from "./stream-chat-menu-header";

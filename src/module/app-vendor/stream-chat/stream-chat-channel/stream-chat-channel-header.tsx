@@ -4,7 +4,8 @@ import { Menu } from "lucide-react";
 import { ChannelHeader, ChannelHeaderProps } from "stream-chat-react";
 
 import { Button } from "@core/app-shadcn/button";
-import { useChatSidebar } from "@core/app-vendor/stream-chat/chat-sidebar-provider";
+
+import { useChatSidebar } from "@module/app-vendor/stream-chat";
 
 interface CustomChannelHeaderProps extends ChannelHeaderProps {}
 

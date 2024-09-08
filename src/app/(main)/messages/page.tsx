@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { StreamChat } from "@core/app-vendor/stream-chat/stream-chat";
+import { StreamChat } from "@module/app-vendor/stream-chat";
 
 export const metadata: Metadata = {
   title: "Messages",

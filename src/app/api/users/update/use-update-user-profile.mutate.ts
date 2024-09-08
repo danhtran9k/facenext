@@ -6,11 +6,13 @@ import {
 import { useRouter } from "next/navigation";
 
 import { useToast } from "@core/app-shadcn/use-toast";
-import { useUploadThing } from "@core/app-vendor/uploadthing.ts";
+
 
 import { keysPostFeed } from "@app/api/_core/queryKey";
 
 import { InfinityPost } from "@app/api/posts/post.prisma";
+
+import { useUploadThing } from "@module/app-vendor/uploadthing.ts";
 
 import { updateUserProfile } from "./update-user-profile.action";
 import { UpdateUserProfileValues } from "./update-user-profile.dto";

@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { useState } from "react";
 
-import { Linkify } from "@core/app-vendor/linkify";
 import { formatRelativeDate } from "@core/helper/time.utils";
 import { PATH_URL } from "@core/path.const";
 
 import { PostWithUser } from "@app/api/posts/post.prisma";
+
+import { Linkify } from "@module/app-vendor/linkify";
 
 import { UserAvatar } from "@module/app-global/navbar";
 import { BookmarkButton } from "@module/bookmark-btn";

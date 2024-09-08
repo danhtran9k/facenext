@@ -4,7 +4,8 @@ import { MailPlus, X } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@core/app-shadcn/button";
-import { useChatSidebar } from "@core/app-vendor/stream-chat/chat-sidebar-provider";
+
+import { useChatSidebar } from "@module/app-vendor/stream-chat";
 
 import { NewChatDialog } from "./chat-dialog-select-user";
 

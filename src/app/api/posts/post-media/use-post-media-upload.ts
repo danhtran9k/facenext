@@ -1,8 +1,9 @@
 import { useState } from "react";
 
 import { useToast } from "@core/app-shadcn/use-toast";
-import { useUploadThing } from "@core/app-vendor/uploadthing.ts";
 import { splitFilename } from "@core/helper/filename.utils";
+
+import { useUploadThing } from "@module/app-vendor/uploadthing.ts";
 
 export interface Attachment {
   file: File;
