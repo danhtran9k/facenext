@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 
 import { useToast } from "@core/app-shadcn/use-toast";
 
-
 import { keysPostFeed } from "@app/api/_core/queryKey";
 
 import { InfinityPost } from "@app/api/posts/post.prisma";

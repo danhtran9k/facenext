@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 
 import { TrendsSidebar } from "@module/app-global/trend-sidebar";
+
 import PostSearchInfiniteScroll from "@module/post-search";
 
 interface PageProps {

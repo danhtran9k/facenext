@@ -6,7 +6,6 @@ import { useInfinityFeed } from "@app/api/posts/for-you/useInfinityFeed";
 
 import InfiniteScrollContainer from "@module/app-vendor/InfiniteScrollContainer";
 
-
 import { PostItem, PostsLoadingSkeleton } from "@module/post-item";
 
 const _nativeFetch_ForYouFeed = async () => {

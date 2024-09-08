@@ -6,7 +6,6 @@ import { useBookmarkInfinity } from "@app/api/posts/bookmarked/use-bookmark-infi
 
 import InfiniteScrollContainer from "@module/app-vendor/InfiniteScrollContainer";
 
-
 import { PostItem, PostsLoadingSkeleton } from "@module/post-item";
 
 export function BookmarksListInf() {

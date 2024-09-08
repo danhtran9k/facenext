@@ -6,7 +6,6 @@ import { usePostSearchInfinite } from "@app/api/search/use-post-search.hook";
 
 import InfiniteScrollContainer from "@module/app-vendor/InfiniteScrollContainer";
 
-
 import { PostItem, PostsLoadingSkeleton } from "@module/post-item";
 
 interface PostSearchInfiniteScrollProps {

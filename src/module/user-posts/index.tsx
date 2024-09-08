@@ -6,7 +6,6 @@ import { useUserPost } from "@app/api/users/[userId]/posts/use-user-post.query";
 
 import InfiniteScrollContainer from "@module/app-vendor/InfiniteScrollContainer";
 
-
 import { PostItem, PostsLoadingSkeleton } from "@module/post-item";
 
 interface UserPostsProps {

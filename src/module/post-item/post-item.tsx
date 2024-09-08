@@ -8,9 +8,9 @@ import { PATH_URL } from "@core/path.const";
 
 import { PostWithUser } from "@app/api/posts/post.prisma";
 
+import { UserAvatar } from "@module/app-global/navbar";
 import { Linkify } from "@module/app-vendor/linkify";
 
-import { UserAvatar } from "@module/app-global/navbar";
 import { BookmarkButton } from "@module/bookmark-btn";
 import { LikeButton } from "@module/like-btn";
 import { PostCommentShowBtn, PostComment } from "@module/post-comment";

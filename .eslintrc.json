@@ -73,8 +73,10 @@
             "group": "internal", // Using internal to keep @app within the same top-level grouping
             "position": "after"
           },
+          // app-global có thể xem chưa các dạng layout
+          // vd các thành phần item phức tạp của 1 route layout
           {
-            "pattern": "{@module/app-common/**,@module/app-layout/**,@module/app-vendor/**}",
+            "pattern": "{@module/app-common/**,@module/app-global/**,@module/app-vendor/**}",
             "group": "internal",
             "position": "after"
           },

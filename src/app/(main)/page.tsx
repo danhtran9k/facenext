@@ -6,6 +6,7 @@ import {
 } from "@core/app-shadcn/tabs";
 
 import { TrendsSidebar } from "@module/app-global/trend-sidebar";
+
 import { FeedFollowing } from "@module/feed-following";
 import { ForYouFeedClient, ForYouFeedServer } from "@module/for-you-feed";
 import { CreatePostEditor } from "@module/post-create";

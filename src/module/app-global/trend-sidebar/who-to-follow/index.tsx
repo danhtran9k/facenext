@@ -4,6 +4,7 @@ import prisma from "@app/api/_core/prisma";
 import { userDataSelect } from "@app/api/users/user.query";
 
 import { UserAvatar } from "@module/app-global/navbar";
+
 import { FollowButton } from "@module/follow-btn";
 import { TooltipUser } from "@module/tooltip-user";
 

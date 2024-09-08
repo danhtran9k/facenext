@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 
 import { TrendsSidebar } from "@module/app-global/trend-sidebar";
+
 import { BookmarksListInf } from "@module/bookmarks-list-inf";
 
 export const metadata: Metadata = {

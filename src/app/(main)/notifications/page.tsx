@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 
 import { TrendsSidebar } from "@module/app-global/trend-sidebar";
+
 import { NotificationList } from "@module/notification-list";
 
 export const metadata: Metadata = {
