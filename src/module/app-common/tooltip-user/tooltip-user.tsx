@@ -1,11 +1,17 @@
 import Link from "next/link";
 import { PropsWithChildren } from "react";
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@core/app-shadcn/tooltip";
 import { PATH_URL } from "@core/path.const";
 
 import { UserData } from "@app/api/users/user.query";
 
-import { TooltipUserBase } from "./tooltip-user-base";
+import { TooltipUserContent } from "./tooltip-user-content";
 
 // Lí do ko nên tạo file props chung cho nhiều component
 // vd TH này chỉ là 1 case đặc biệt kèm Link để DRY
@@ -17,10 +23,21 @@ interface TooltipUserProps extends PropsWithChildren {
 
 export function TooltipUser({ children, user, className }: TooltipUserProps) {
   return (
-    <TooltipUserBase user={user}>
-      <Link href={PATH_URL.userProfile(user.username)} className={className}>
-        {children}
-      </Link>
-    </TooltipUserBase>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Link
+            href={PATH_URL.userProfile(user.username)}
+            className={className}
+          >
+            {children}
+          </Link>
+        </TooltipTrigger>
+
+        <TooltipContent>
+          <TooltipUserContent user={user} />
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }

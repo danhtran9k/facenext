@@ -7,7 +7,7 @@ import { PATH_URL } from "@core/path.const";
 
 import { useUserByNameOrId } from "@app/api/users/[userId]/use-user-by-name-or-id.query";
 
-import { TooltipUser } from "@module/tooltip-user";
+import { TooltipUser } from "@module/app-common/tooltip-user";
 
 interface LinkifyUsernameTooltipProps extends PropsWithChildren {
   username: string;
@@ -25,6 +25,7 @@ export function LinkifyUsernameTooltip({
 }: LinkifyUsernameTooltipProps) {
   const { data } = useUserByNameOrId(username, hasNestedTooltip);
 
+  // Phải setup DK dừng vì lý thuyết có thể bị recursive
   if (!data || !hasNestedTooltip) {
     // Tuy ko có data những vẫn setup url dummy
     // Cẩn thận mis-match giữa 2 link
@@ -38,6 +39,8 @@ export function LinkifyUsernameTooltip({
     );
   }
 
+  // Tooltip User content lại gọi Linkify
+  // nhưng khi gọi sẽ kèm hasNestedTooltip = false tránh recursive
   return (
     <TooltipUser user={data} className="text-primary hover:underline">
       {children}

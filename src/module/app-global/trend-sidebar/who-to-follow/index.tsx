@@ -3,10 +3,10 @@ import prisma from "@app/api/_core/prisma";
 
 import { userDataSelect } from "@app/api/users/user.query";
 
+import { TooltipUser } from "@module/app-common/tooltip-user";
 import { UserAvatar } from "@module/app-global/navbar";
 
 import { FollowButton } from "@module/follow-btn";
-import { TooltipUser } from "@module/tooltip-user";
 
 export async function WhoToFollow() {
   const { user } = await validateRequest();
