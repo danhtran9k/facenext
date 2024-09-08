@@ -9,7 +9,7 @@ import { PATH_URL } from "@core/path.const";
 import { PostWithUser } from "@app/api/posts/post.prisma";
 
 import { TooltipUser } from "@module/app-common/tooltip-user";
-import { UserAvatar } from "@module/app-global/navbar";
+import { UserAvatar } from "@module/app-common/user-avatar";
 import { Linkify } from "@module/app-vendor/linkify";
 
 import { BookmarkButton } from "@module/bookmark-btn";

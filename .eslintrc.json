@@ -20,8 +20,10 @@
               // module
               "@module/*/**",
               "!@module/app-common/*",
+              "!@module/app-vendor/*",
+              // forbidden export child of global/layout unless manual export
               "!@module/app-global/*",
-              "!@module/app-vendor/*"
+              "@module/app-global/*/**"
             ],
             "message": "Module imports must be absolute."
           }

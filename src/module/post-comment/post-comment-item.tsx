@@ -3,7 +3,7 @@ import { formatRelativeDate } from "@core/helper/time.utils";
 import { CommentData } from "@app/api/posts/[postId]/comment/comment.dto";
 
 import { TooltipUser } from "@module/app-common/tooltip-user";
-import { UserAvatar } from "@module/app-global/navbar";
+import { UserAvatar } from "@module/app-common/user-avatar";
 
 import { CommentMoreButton } from "@module/post-comment";
 

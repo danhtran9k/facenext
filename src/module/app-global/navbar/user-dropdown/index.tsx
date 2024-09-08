@@ -16,10 +16,11 @@ import {
 import { PATH_URL } from "@core/path.const";
 import { cn } from "@core/utils";
 
+import { UserAvatar } from "@module/app-common/user-avatar";
+
 import { logout } from "@module/sign-out";
 
 import { ThemeDropdownSubmenu } from "../theme-dropdown-submenu";
-import { UserAvatar } from "../user-avatar";
 
 interface UserButtonProps {
   className?: string;

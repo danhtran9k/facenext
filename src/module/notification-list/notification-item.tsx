@@ -4,7 +4,7 @@ import { cn } from "@core/utils";
 
 import { NotificationData } from "@app/api/notifications/noti.prisma";
 
-import { UserAvatar } from "@module/app-global/navbar";
+import { UserAvatar } from "@module/app-common/user-avatar";
 
 import { NotificationMap } from "./notification-item.map";
 

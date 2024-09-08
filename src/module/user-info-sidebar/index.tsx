@@ -3,7 +3,7 @@ import { validateRequest } from "@app/api/_core/lucia-auth";
 import { UserData } from "@app/api/users/user.query";
 
 import { TooltipUser } from "@module/app-common/tooltip-user";
-import { UserAvatar } from "@module/app-global/navbar";
+import { UserAvatar } from "@module/app-common/user-avatar";
 import { Linkify } from "@module/app-vendor/linkify";
 
 import { FollowButton } from "@module/follow-btn";

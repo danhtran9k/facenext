@@ -4,7 +4,7 @@ import { X } from "lucide-react";
 
 import { StreamChatUser } from "@app/api/chat/getStream.type";
 
-import { UserAvatar } from "@module/app-global/navbar";
+import { UserAvatar } from "@module/app-common/user-avatar";
 
 interface SelectedUserTagProps {
   selectedUsers: StreamChatUser[];

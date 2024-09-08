@@ -11,7 +11,7 @@ import { usePostMediaUpload } from "@app/api/posts/post-media/use-post-media-upl
 
 import { BtnFileInput } from "@module/app-common/btn-file-input";
 import LoadingButton from "@module/app-common/loading-btn";
-import { UserAvatar } from "@module/app-global/navbar";
+import { UserAvatar } from "@module/app-common/user-avatar";
 
 import { EditorWithDragDropUpload } from "./editor-with-dragdrop-upload";
 import { AttachmentPreviews } from "./post-attach-preview";
