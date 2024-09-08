@@ -3,6 +3,7 @@ import { HTTPError } from "ky";
 
 import kyInstance from "@app/api/_core/ky";
 import { keysUser } from "@app/api/_core/queryKey";
+
 import { UserData } from "@app/api/users/user.query";
 
 export const useUserByNameOrId = (username: string, enabled = true) => {

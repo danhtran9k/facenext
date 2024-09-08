@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { PropsWithChildren } from "react";
 
-import { useUserByNameOrId } from "@app/api/users/[userId]/use-user-by-name-or-id.query";
-
 import { PATH_URL } from "@core/path.const";
+
+import { useUserByNameOrId } from "@app/api/users/[userId]/use-user-by-name-or-id.query";
 
 import { TooltipUser } from "@module/tooltip-user";
 

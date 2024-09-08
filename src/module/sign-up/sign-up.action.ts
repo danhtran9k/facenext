@@ -5,11 +5,11 @@ import { generateIdFromEntropySize } from "lucia";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { redirect } from "next/navigation";
 
+import { PATH_URL } from "@core/path.const";
+
 import { streamServerClient } from "@app/api/_core/getStream-instance";
 import { luciaSetCookieByUserId } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
-
-import { PATH_URL } from "@core/path.const";
 
 import { signUpSchema, SignUpValues } from "./sign-up.dto";
 

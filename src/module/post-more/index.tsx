@@ -3,8 +3,6 @@
 import { MoreHorizontal, Trash2 } from "lucide-react";
 import { useState } from "react";
 
-import { PostWithUser } from "@app/api/posts/post.prisma";
-
 import { useSession } from "@core/app-provider";
 import { Button } from "@core/app-shadcn/button";
 import {
@@ -13,6 +11,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@core/app-shadcn/dropdown-menu";
+
+import { PostWithUser } from "@app/api/posts/post.prisma";
 
 import { DeletePostDialog } from "@module/post-delete";
 

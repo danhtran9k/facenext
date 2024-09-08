@@ -2,11 +2,11 @@
 
 import { Bookmark } from "lucide-react";
 
+import { cn } from "@core/utils";
+
 import { usePostIdBookmark } from "@app/api/posts/[postId]/bookmark/use-postId-bookmark";
 import { usePostIdBookmarkMutate } from "@app/api/posts/[postId]/bookmark/use-postId-bookmark.mutate";
 import { BookmarkInfo } from "@app/api/posts/post.prisma";
-
-import { cn } from "@core/utils";
 
 interface BookmarkButtonProps {
   postId: string;

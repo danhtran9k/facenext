@@ -4,8 +4,6 @@ import { SearchIcon } from "lucide-react";
 import { useState } from "react";
 import { useChatContext } from "stream-chat-react";
 
-import { useGetStreamUpdateChannel } from "@app/api/chat/use-get-stream-update-channel";
-
 import { useDebounce } from "@core/app-hook/use-debounce";
 import {
   Dialog,
@@ -14,6 +12,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@core/app-shadcn/dialog";
+
+import { useGetStreamUpdateChannel } from "@app/api/chat/use-get-stream-update-channel";
 
 import LoadingButton from "@module/app-common/loading-btn";
 

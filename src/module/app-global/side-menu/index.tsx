@@ -1,12 +1,12 @@
 import Link from "next/link";
 
-import { streamServerClient } from "@app/api/_core/getStream-instance";
-import { validateRequest } from "@app/api/_core/lucia-auth";
-import prisma from "@app/api/_core/prisma";
-
 import { Button } from "@core/app-shadcn/button";
 import { PATH_URL } from "@core/path.const";
 import { cn } from "@core/utils";
+
+import { streamServerClient } from "@app/api/_core/getStream-instance";
+import { validateRequest } from "@app/api/_core/lucia-auth";
+import prisma from "@app/api/_core/prisma";
 
 import { MessagesButton } from "./message-btn";
 import { NotificationsButton } from "./notification-btn";

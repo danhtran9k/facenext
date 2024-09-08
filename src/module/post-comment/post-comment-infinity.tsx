@@ -2,10 +2,10 @@
 
 import { Loader2 } from "lucide-react";
 
+import { Button } from "@core/app-shadcn/button";
+
 import { usePostCommentInfinity } from "@app/api/posts/[postId]/comment/use-comment-infinity.hook";
 import { PostWithUser } from "@app/api/posts/post.prisma";
-
-import { Button } from "@core/app-shadcn/button";
 
 import { PostCommentItem } from "./post-comment-item";
 

@@ -2,9 +2,9 @@ import { Prisma } from "@prisma/client";
 import { InfiniteData } from "@tanstack/react-query";
 import { z } from "zod";
 
-import { getCommentDataInclude } from "@app/api/posts/[postId]/comment/comment.query";
-
 import { requiredString } from "@core/types/common.schema";
+
+import { getCommentDataInclude } from "@app/api/posts/[postId]/comment/comment.query";
 
 export type CommentData = Prisma.CommentGetPayload<{
   include: ReturnType<typeof getCommentDataInclude>;

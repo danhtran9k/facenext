@@ -1,7 +1,8 @@
-import { validateRequest } from "@app/api/_core/lucia-auth";
-import { UserData } from "@app/api/users/user.query";
-
 import { Linkify } from "@core/app-vendor/linkify";
+
+import { validateRequest } from "@app/api/_core/lucia-auth";
+
+import { UserData } from "@app/api/users/user.query";
 
 import { UserAvatar } from "@module/app-global/navbar";
 import { FollowButton } from "@module/follow-btn";

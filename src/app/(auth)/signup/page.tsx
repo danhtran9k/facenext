@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import signupImage from "@app/assets/signup-image.jpg";
-
 import { PATH_URL } from "@core/path.const";
+
+import signupImage from "@app/assets/signup-image.jpg";
 
 import { SignUpForm } from "@module/sign-up";
 

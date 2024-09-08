@@ -1,10 +1,11 @@
 import { QueryKey, useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { useToast } from "@core/app-shadcn/use-toast";
+
 import kyInstance from "@app/api/_core/ky";
 import { keysLikeInfo } from "@app/api/_core/queryKey";
-import { LikeInfo } from "@app/api/posts/post.prisma";
 
-import { useToast } from "@core/app-shadcn/use-toast";
+import { LikeInfo } from "@app/api/posts/post.prisma";
 
 const mutateLikeFn = (isLikedByUser: boolean, postId: string) => () => {
   return isLikedByUser

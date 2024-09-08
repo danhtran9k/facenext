@@ -1,12 +1,13 @@
 import { QueryKey, useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { useToast } from "@core/app-shadcn/use-toast";
+
 import { keysComment, keysPostFeed } from "@app/api/_core/queryKey";
+
 import { deleteComment } from "@app/api/posts/[postId]/comment/comment-delete.action";
 import { InfinityComment } from "@app/api/posts/[postId]/comment/comment.dto";
 import { setCommentCount } from "@app/api/posts/[postId]/comment/set-comment-count.helper";
 import { InfinityPost } from "@app/api/posts/post.prisma";
-
-import { useToast } from "@core/app-shadcn/use-toast";
 
 const setQueryData = (
   oldData: InfinityComment | undefined,

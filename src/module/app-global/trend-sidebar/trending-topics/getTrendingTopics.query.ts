@@ -1,8 +1,8 @@
 import { unstable_cache } from "next/cache";
 
-import prisma from "@app/api/_core/prisma";
-
 import { HOUR_IN_MS, MS_SECOND } from "@core/app.const";
+
+import prisma from "@app/api/_core/prisma";
 
 // https://nextjs.org/docs/app/api-reference/functions/unstable_cache
 // TODO: raw query - tạm skip

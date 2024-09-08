@@ -1,9 +1,9 @@
 import { NotificationType } from "@prisma/client";
 import { Heart, MessageCircle, User2 } from "lucide-react";
 
-import { NotificationData } from "@app/api/notifications/noti.prisma";
-
 import { PATH_URL } from "@core/path.const";
+
+import { NotificationData } from "@app/api/notifications/noti.prisma";
 
 export const NotificationMap = (
   notification: NotificationData,

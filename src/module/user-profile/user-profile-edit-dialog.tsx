@@ -5,14 +5,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import {
-  UpdateUserProfileValues,
-  updateUserProfileSchema,
-} from "@app/api/users/update/update-user-profile.dto";
-import { useUpdateProfileMutation } from "@app/api/users/update/use-update-user-profile.mutate";
-import { UserData } from "@app/api/users/user.query";
-import avatarPlaceholder from "@app/assets/avatar-placeholder.png";
-
-import {
   Dialog,
   DialogContent,
   DialogDescription,
@@ -31,6 +23,14 @@ import {
 import { Input } from "@core/app-shadcn/input";
 import { Label } from "@core/app-shadcn/label";
 import { Textarea } from "@core/app-shadcn/textarea";
+
+import {
+  UpdateUserProfileValues,
+  updateUserProfileSchema,
+} from "@app/api/users/update/update-user-profile.dto";
+import { useUpdateProfileMutation } from "@app/api/users/update/use-update-user-profile.mutate";
+import { UserData } from "@app/api/users/user.query";
+import avatarPlaceholder from "@app/assets/avatar-placeholder.png";
 
 import LoadingButton from "@module/app-common/loading-btn";
 

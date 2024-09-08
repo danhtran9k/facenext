@@ -2,9 +2,9 @@
 
 import { Loader2 } from "lucide-react";
 
-import { useInfinityFeed } from "@app/api/posts/for-you/useInfinityFeed";
-
 import InfiniteScrollContainer from "@core/app-vendor/InfiniteScrollContainer";
+
+import { useInfinityFeed } from "@app/api/posts/for-you/useInfinityFeed";
 
 import { PostItem, PostsLoadingSkeleton } from "@module/post-item";
 

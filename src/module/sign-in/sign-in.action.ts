@@ -4,10 +4,10 @@ import { verify } from "@node-rs/argon2";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { redirect } from "next/navigation";
 
+import { PATH_URL } from "@core/path.const";
+
 import { luciaSetCookieByUserId } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
-
-import { PATH_URL } from "@core/path.const";
 
 import { signInSchema, SignInValues } from "./sign-in.dto";
 

@@ -1,6 +1,6 @@
-import { CommentData } from "@app/api/posts/[postId]/comment/comment.dto";
-
 import { formatRelativeDate } from "@core/helper/time.utils";
+
+import { CommentData } from "@app/api/posts/[postId]/comment/comment.dto";
 
 import { UserAvatar } from "@module/app-global/navbar";
 import { CommentMoreButton } from "@module/post-comment";

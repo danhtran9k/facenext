@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-import { UserData } from "@app/api/users/user.query";
-
 import { Button } from "@core/app-shadcn/button";
+
+import { UserData } from "@app/api/users/user.query";
 
 import { UserProfileEditDialog } from "./user-profile-edit-dialog";
 

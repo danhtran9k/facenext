@@ -4,6 +4,7 @@ import { INTERNAL_ERROR, UNAUTHORIZED_ERROR } from "@app/api/_core/api.common";
 import { validateRequest } from "@app/api/_core/lucia-auth";
 import { getPaginateSearchParams } from "@app/api/_core/pagination.helper";
 import prisma from "@app/api/_core/prisma";
+
 import {
   NotificationsPage,
   notificationsInclude,

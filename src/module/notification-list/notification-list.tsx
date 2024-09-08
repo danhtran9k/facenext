@@ -3,10 +3,10 @@
 import { Loader2 } from "lucide-react";
 import { useEffect } from "react";
 
+import InfiniteScrollContainer from "@core/app-vendor/InfiniteScrollContainer";
+
 import { useMarkAsRead } from "@app/api/notifications/mark-as-read/use-mark-as-read.hook";
 import { useNotiInfinity } from "@app/api/notifications/use-noti-infinity.hook";
-
-import InfiniteScrollContainer from "@core/app-vendor/InfiniteScrollContainer";
 
 import { PostsLoadingSkeleton } from "@module/post-item";
 

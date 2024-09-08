@@ -2,9 +2,9 @@
 
 import { Loader2 } from "lucide-react";
 
-import { useUserPost } from "@app/api/users/[userId]/posts/use-user-post.query";
-
 import InfiniteScrollContainer from "@core/app-vendor/InfiniteScrollContainer";
+
+import { useUserPost } from "@app/api/users/[userId]/posts/use-user-post.query";
 
 import { PostItem, PostsLoadingSkeleton } from "@module/post-item";
 

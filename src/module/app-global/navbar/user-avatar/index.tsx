@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-import avatarPlaceholder from "@app/assets/avatar-placeholder.png";
-
 import { cn } from "@core/utils";
+
+import avatarPlaceholder from "@app/assets/avatar-placeholder.png";
 
 interface UserAvatarProps {
   avatarUrl: string | null | undefined;

@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 
 import { validateRequest } from "@app/api/_core/lucia-auth";
+
 import { getPost } from "@app/api/posts/getPost.action";
 
 import { PostItem } from "@module/post-item";

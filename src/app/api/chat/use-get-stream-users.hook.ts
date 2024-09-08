@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { useChatContext } from "stream-chat-react";
 
-import { GetStreamUsersQuery } from "@app/api/chat/getStream.type";
-
 import { useSession } from "@core/app-provider";
+
+import { GetStreamUsersQuery } from "@app/api/chat/getStream.type";
 
 const queryKey = (input: string) => ["stream-users", input];
 

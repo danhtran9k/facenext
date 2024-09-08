@@ -44,11 +44,6 @@
             "group": "internal",
             "position": "before"
           },
-          {
-            "pattern": "@app/**",
-            "group": "internal", // Using internal to keep @app within the same top-level grouping
-            "position": "before"
-          },
           // {
           //   "pattern": "@core/app-vendor/**",
           //   "group": "internal",
@@ -59,7 +54,7 @@
           {
             "pattern": "@core/**",
             "group": "internal", // Adding @core after @app in the internal group
-            "position": "after"
+            "position": "before"
           },
           // app-provider, app-shadcn, app-form, app-vendor đẩy vào app-core
           // {
@@ -68,12 +63,22 @@
           //   "position": "after"
           // },
           {
-            "pattern": "{@module/app-common/**,@module/app-global}",
+            "pattern": "@app/api/_core/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "@app/**",
+            "group": "internal", // Using internal to keep @app within the same top-level grouping
+            "position": "after"
+          },
+          {
+            "pattern": "{@module/app-common/**,@module/app-layout/**,@module/app-vendor/**}",
             "group": "internal",
             "position": "after"
           },
           {
-            "pattern": "{@module/**, @module/app-vendor/**}",
+            "pattern": "@module/**",
             "group": "internal",
             "position": "after"
           }

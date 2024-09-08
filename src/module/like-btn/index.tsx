@@ -2,11 +2,11 @@
 
 import { Heart } from "lucide-react";
 
+import { cn } from "@core/utils";
+
 import { useLikePost } from "@app/api/posts/[postId]/likes/use-like-post.mutate";
 import { useLikePostQuery } from "@app/api/posts/[postId]/likes/use-like-post.query";
 import { LikeInfo } from "@app/api/posts/post.prisma";
-
-import { cn } from "@core/utils";
 
 interface LikeButtonProps {
   postId: string;

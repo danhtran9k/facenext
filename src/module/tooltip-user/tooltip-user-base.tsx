@@ -1,13 +1,13 @@
 import { PropsWithChildren } from "react";
 
-import { UserData } from "@app/api/users/user.query";
-
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@core/app-shadcn/tooltip";
+
+import { UserData } from "@app/api/users/user.query";
 
 import { TooltipUserContent } from "./tooltip-user-content";
 

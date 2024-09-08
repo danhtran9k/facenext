@@ -5,6 +5,7 @@ import {
 } from "@app/api/_core/api.common";
 import { validateRequest } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
+
 import { prismaNotiCreate } from "@app/api/notifications/noti-create.query";
 import { FollowerInfo, UserIdParam } from "@app/api/posts/post.prisma";
 

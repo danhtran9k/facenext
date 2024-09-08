@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import loginImage from "@app/assets/login-image.jpg";
-
 import { PATH_URL } from "@core/path.const";
+
+import loginImage from "@app/assets/login-image.jpg";
 
 import { SignInForm } from "@module/sign-in";
 import GoogleSignInButton from "@module/sign-in-google-btn";

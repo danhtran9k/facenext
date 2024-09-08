@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import kyInstance from "@app/api/_core/ky";
 import { keysFollowInfo } from "@app/api/_core/queryKey";
+
 import { FollowerInfo } from "@app/api/posts/post.prisma";
 
 export function useFollowerInfo(userId: string, initialState: FollowerInfo) {

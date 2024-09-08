@@ -1,10 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { useToast } from "@core/app-shadcn/use-toast";
+
 import kyInstance from "@app/api/_core/ky";
 import { keysBookmarksInfo } from "@app/api/_core/queryKey";
-import { BookmarkInfo } from "@app/api/posts/post.prisma";
 
-import { useToast } from "@core/app-shadcn/use-toast";
+import { BookmarkInfo } from "@app/api/posts/post.prisma";
 
 export const usePostIdBookmarkMutate = (
   postId: string,

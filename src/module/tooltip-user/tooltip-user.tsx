@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { PropsWithChildren } from "react";
 
-import { UserData } from "@app/api/users/user.query";
-
 import { PATH_URL } from "@core/path.const";
+
+import { UserData } from "@app/api/users/user.query";
 
 import { TooltipUserBase } from "./tooltip-user-base";
 

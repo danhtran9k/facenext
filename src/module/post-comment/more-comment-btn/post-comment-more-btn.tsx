@@ -3,8 +3,6 @@
 import { MoreHorizontal, Trash2 } from "lucide-react";
 import { useState } from "react";
 
-import { CommentData } from "@app/api/posts/[postId]/comment/comment.dto";
-
 import { useSession } from "@core/app-provider";
 import { Button } from "@core/app-shadcn/button";
 import {
@@ -13,6 +11,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@core/app-shadcn/dropdown-menu";
+
+import { CommentData } from "@app/api/posts/[postId]/comment/comment.dto";
 
 import { DeleteCommentDialog } from "./post-comment-delete-dialog";
 

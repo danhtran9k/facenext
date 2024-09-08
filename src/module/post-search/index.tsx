@@ -2,9 +2,9 @@
 
 import { Loader2 } from "lucide-react";
 
-import { usePostSearchInfinite } from "@app/api/search/use-post-search.hook";
-
 import InfiniteScrollContainer from "@core/app-vendor/InfiniteScrollContainer";
+
+import { usePostSearchInfinite } from "@app/api/search/use-post-search.hook";
 
 import { PostItem, PostsLoadingSkeleton } from "@module/post-item";
 

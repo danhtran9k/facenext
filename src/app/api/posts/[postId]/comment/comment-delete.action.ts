@@ -2,6 +2,7 @@
 
 import { validateRequest } from "@app/api/_core/lucia-auth";
 import prisma from "@app/api/_core/prisma";
+
 import { getCommentDataInclude } from "@app/api/posts/[postId]/comment/comment.query";
 
 export async function deleteComment(id: string) {

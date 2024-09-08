@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
 
-import { validateRequest } from "@app/api/_core/lucia-auth";
-
 import { PATH_URL } from "@core/path.const";
 import { TPureLayout } from "@core/types/common.props";
+
+import { validateRequest } from "@app/api/_core/lucia-auth";
 
 // Validate trong Layout ko hay lắm, tuy nhiên là pp protect route style React-client
 // proj này sẽ tạm test thử pp này, coi thử có vấn đề gì

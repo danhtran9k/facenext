@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import kyInstance from "@app/api/_core/ky";
 import { keysBookmarksInfo } from "@app/api/_core/queryKey";
+
 import { BookmarkInfo } from "@app/api/posts/post.prisma";
 
 const queryPostIdBookmarkFn = (postId: string) => () =>

@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 
-import { FollowerInfo } from "@app/api/posts/post.prisma";
-import { UserData } from "@app/api/users/user.query";
-
 import { useSession } from "@core/app-provider";
 import { Linkify } from "@core/app-vendor/linkify";
 import { PATH_URL } from "@core/path.const";
+
+import { FollowerInfo } from "@app/api/posts/post.prisma";
+import { UserData } from "@app/api/users/user.query";
 
 import { UserAvatar } from "@module/app-global/navbar";
 import { FollowButton } from "@module/follow-btn";

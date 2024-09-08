@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { StreamChat } from "stream-chat";
 
+import { useSession } from "@core/app-provider";
+
 import kyInstance from "@app/api/_core/ky";
 import { keysStreamChat } from "@app/api/_core/queryKey";
-
-import { useSession } from "@core/app-provider";
 
 type TChatTokenResponse = {
   token: string;

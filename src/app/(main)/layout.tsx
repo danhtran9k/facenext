@@ -1,10 +1,10 @@
 import { redirect } from "next/navigation";
 
-import { validateRequest } from "@app/api/_core/lucia-auth";
-
 import { SessionProvider } from "@core/app-provider";
 import { PATH_URL } from "@core/path.const";
 import { TPureLayout } from "@core/types/common.props";
+
+import { validateRequest } from "@app/api/_core/lucia-auth";
 
 import { BottomMenu } from "@module/app-global/bottom-menu";
 import { Navbar } from "@module/app-global/navbar";

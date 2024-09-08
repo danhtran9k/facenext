@@ -3,6 +3,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { IS_POOLING, POOLING_INTERVAL } from "@app/api/_core/api.common";
 import kyInstance from "@app/api/_core/ky";
 import { keysNotifications } from "@app/api/_core/queryKey";
+
 import {
   NotificationCursor,
   NotificationsPage,

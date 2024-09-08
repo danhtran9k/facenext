@@ -1,8 +1,5 @@
 "use client";
 
-import { CommentData } from "@app/api/posts/[postId]/comment/comment.dto";
-import { useDeleteComment } from "@app/api/posts/[postId]/comment/use-delete-comment.hook";
-
 import { Button } from "@core/app-shadcn/button";
 import {
   Dialog,
@@ -12,6 +9,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@core/app-shadcn/dialog";
+
+import { CommentData } from "@app/api/posts/[postId]/comment/comment.dto";
+import { useDeleteComment } from "@app/api/posts/[postId]/comment/use-delete-comment.hook";
 
 import LoadingButton from "@module/app-common/loading-btn";
 

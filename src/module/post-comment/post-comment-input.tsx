@@ -3,11 +3,11 @@
 import { Loader2, SendHorizonal } from "lucide-react";
 import { useState } from "react";
 
-import { useCreatePostComment } from "@app/api/posts/[postId]/comment/use-create-comment.hook";
-import { PostWithUser } from "@app/api/posts/post.prisma";
-
 import { Button } from "@core/app-shadcn/button";
 import { Input } from "@core/app-shadcn/input";
+
+import { useCreatePostComment } from "@app/api/posts/[postId]/comment/use-create-comment.hook";
+import { PostWithUser } from "@app/api/posts/post.prisma";
 
 interface CommentInputProps {
   post: PostWithUser;

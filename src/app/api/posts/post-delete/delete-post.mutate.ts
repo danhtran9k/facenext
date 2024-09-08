@@ -5,11 +5,12 @@ import {
 } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 
-import { keysPostFeed } from "@app/api/_core/queryKey";
-import { InfinityPost } from "@app/api/posts/post.prisma";
-
 import { useToast } from "@core/app-shadcn/use-toast";
 import { PATH_URL } from "@core/path.const";
+
+import { keysPostFeed } from "@app/api/_core/queryKey";
+
+import { InfinityPost } from "@app/api/posts/post.prisma";
 
 import { deletePost } from "./delete-post.action";
 

@@ -1,9 +1,9 @@
 "use client";
 
+import { formatNumber } from "@core/helper/number.utils";
+
 import { FollowerInfo } from "@app/api/posts/post.prisma";
 import { useFollowerInfo } from "@app/api/users/[userId]/followers/use-follower-info";
-
-import { formatNumber } from "@core/helper/number.utils";
 
 interface FollowerCountProps {
   userId: string;

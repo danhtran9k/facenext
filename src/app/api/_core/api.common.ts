@@ -1,7 +1,8 @@
-import { PostCursor } from "@app/api/posts/post.prisma";
 
 import { MS_SECOND } from "@core/app.const";
 import { PATH_URL } from "@core/path.const";
+
+import { PostCursor } from "@app/api/posts/post.prisma";
 
 export const INTERNAL_ERROR = Response.json(
   { error: "Internal server error" },

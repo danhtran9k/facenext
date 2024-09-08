@@ -2,6 +2,7 @@ import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 
 import kyInstance from "@app/api/_core/ky";
 import { keysPostFeed } from "@app/api/_core/queryKey";
+
 import { PostCursor, PostsPage } from "@app/api/posts/post.prisma";
 
 const searchQueryFn =

@@ -1,9 +1,9 @@
 import { generateCodeVerifier, generateState } from "arctic";
 import { cookies } from "next/headers";
 
-import { google } from "@app/api/_core/google-oauth";
-
 import { PATH_URL } from "@core/path.const";
+
+import { google } from "@app/api/_core/google-oauth";
 
 export async function GET() {
   const state = generateState();

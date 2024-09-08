@@ -3,9 +3,9 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { lucia, validateRequest } from "@app/api/_core/lucia-auth";
-
 import { PATH_URL } from "@core/path.const";
+
+import { lucia, validateRequest } from "@app/api/_core/lucia-auth";
 
 // https://lucia-auth.com/tutorials/username-and-password/nextjs-app
 // logic logout ko return gì cả, nếu ko authorize thì throw error, ko show mess gì hết

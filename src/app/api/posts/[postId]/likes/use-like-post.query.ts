@@ -2,6 +2,7 @@ import { QueryKey, useQuery } from "@tanstack/react-query";
 
 import kyInstance from "@app/api/_core/ky";
 import { keysLikeInfo } from "@app/api/_core/queryKey";
+
 import { LikeInfo } from "@app/api/posts/post.prisma";
 
 const likeQueryFn = (postId: string) => () =>

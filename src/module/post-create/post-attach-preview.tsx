@@ -1,9 +1,9 @@
 import { X } from "lucide-react";
 import Image from "next/image";
 
-import { Attachment } from "@app/api/posts/post-media/use-post-media-upload";
-
 import { cn } from "@core/utils";
+
+import { Attachment } from "@app/api/posts/post-media/use-post-media-upload";
 
 interface AttachmentPreviewItemProps {
   attachment: Attachment;

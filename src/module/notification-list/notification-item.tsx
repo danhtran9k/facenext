@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import { NotificationData } from "@app/api/notifications/noti.prisma";
-
 import { cn } from "@core/utils";
+
+import { NotificationData } from "@app/api/notifications/noti.prisma";
 
 import { UserAvatar } from "@module/app-global/navbar";
 
